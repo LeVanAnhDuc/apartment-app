@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
+  baseDirectory: __dirname
 });
 
 const eslintConfig = [
@@ -28,14 +28,14 @@ const eslintConfig = [
         ecmaVersion: "latest",
         sourceType: "module",
         ecmaFeatures: {
-          jsx: true,
+          jsx: true
         },
-        project: "./tsconfig.json",
+        project: "./tsconfig.json"
       },
       globals: {
         ...globals.browser,
-        ...globals.node,
-      },
+        ...globals.node
+      }
     },
     plugins: {
       "@typescript-eslint": pluginTs,
@@ -43,7 +43,7 @@ const eslintConfig = [
       "react-hooks": pluginReactHooks,
       "@next/next": pluginNext,
       prettier: pluginPrettier,
-      import: pluginImport,
+      import: pluginImport
     },
     rules: {
       ...pluginJs.configs.recommended.rules,
@@ -53,7 +53,10 @@ const eslintConfig = [
       ...pluginNext.configs.recommended.rules,
       "prettier/prettier": "error",
       "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        { argsIgnorePattern: "^_" }
+      ],
       "@typescript-eslint/explicit-function-return-type": "off",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
@@ -61,21 +64,28 @@ const eslintConfig = [
       "import/order": [
         "error",
         {
-          groups: ["builtin", "external", "internal", "parent", "sibling", "index"],
+          groups: [
+            "builtin",
+            "external",
+            "internal",
+            "parent",
+            "sibling",
+            "index"
+          ],
           "newlines-between": "always",
-          alphabetize: { order: "asc", caseInsensitive: true },
-        },
-      ],
+          alphabetize: { order: "asc", caseInsensitive: true }
+        }
+      ]
     },
     settings: {
       react: {
-        version: "detect",
-      },
-    },
+        version: "detect"
+      }
+    }
   },
   {
-    ignores: ["node_modules", "dist", "build", ".next", "*.json"],
-  },
+    ignores: ["node_modules", "dist", "build", ".next", "*.json"]
+  }
 ];
 
 export default eslintConfig;
