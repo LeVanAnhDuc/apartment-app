@@ -10,16 +10,26 @@ import pluginTs from "@typescript-eslint/eslint-plugin";
 import parserTs from "@typescript-eslint/parser";
 import pluginPrettier from "eslint-plugin-prettier";
 import pluginImport from "eslint-plugin-import";
+import pluginUnusedImports from "eslint-plugin-unused-imports";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname
+  baseDirectory: __dirname,
+  recommendedConfig: pluginJs.configs.recommended
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends(
+    "next",
+    "next/core-web-vitals",
+    "next/typescript",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "prettier"
+  ),
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
@@ -43,7 +53,8 @@ const eslintConfig = [
       "react-hooks": pluginReactHooks,
       "@next/next": pluginNext,
       prettier: pluginPrettier,
-      import: pluginImport
+      import: pluginImport,
+      "unused-imports": pluginUnusedImports
     },
     rules: {
       ...pluginJs.configs.recommended.rules,
@@ -58,9 +69,17 @@ const eslintConfig = [
         { argsIgnorePattern: "^_" }
       ],
       "@typescript-eslint/explicit-function-return-type": "off",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/ban-ts-comment": "warn",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
       "@next/next/no-html-link-for-pages": "off",
+      "prefer-const": "warn",
+      "no-var": "error",
+      "no-console": "warn",
+      "spaced-comment": "error",
+      "arrow-body-style": ["error", "as-needed"],
+      "unused-imports/no-unused-imports": "error",
       "import/order": [
         "error",
         {
