@@ -5,5 +5,7 @@
   "singleQuote": false,
   "tabWidth": 2,
   "trailingComma": "none",
+  "quoteProps": "as-needed",
+  "endOfLine": "lf",
   "plugins": ["prettier-plugin-tailwindcss"]
 }

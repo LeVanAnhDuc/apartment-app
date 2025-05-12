@@ -63,34 +63,22 @@ const eslintConfig = [
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
       "prettier/prettier": "error",
-      "no-unused-vars": "off",
-      "@typescript-eslint/no-unused-vars": [
-        "error",
-        { argsIgnorePattern: "^_" }
-      ],
       "@typescript-eslint/explicit-function-return-type": "off",
-      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/ban-ts-comment": "warn",
       "react/react-in-jsx-scope": "off",
       "react/prop-types": "off",
-      "@next/next/no-html-link-for-pages": "off",
       "prefer-const": "warn",
       "no-var": "error",
       "no-console": "warn",
       "spaced-comment": "error",
       "arrow-body-style": ["error", "as-needed"],
       "unused-imports/no-unused-imports": "error",
+      "@typescript-eslint/consistent-type-imports": "error",
       "import/order": [
         "error",
         {
-          groups: [
-            "builtin",
-            "external",
-            "internal",
-            "parent",
-            "sibling",
-            "index"
-          ],
+          groups: ["builtin", "external", "internal", ["parent", "sibling"]],
           "newlines-between": "always",
           alphabetize: { order: "asc", caseInsensitive: true }
         }
@@ -103,7 +91,15 @@ const eslintConfig = [
     }
   },
   {
-    ignores: ["node_modules", "dist", "build", ".next", "*.json"]
+    ignores: [
+      "node_modules",
+      "dist",
+      "build",
+      ".next",
+      "*.json",
+      ".eslintrc.*",
+      ".prettierrc"
+    ]
   }
 ];
 
