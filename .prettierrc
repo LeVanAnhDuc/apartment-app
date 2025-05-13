@@ -7,5 +7,6 @@
   "trailingComma": "none",
   "quoteProps": "as-needed",
   "endOfLine": "lf",
+  "arrowParens": "always",
   "plugins": ["prettier-plugin-tailwindcss"]
 }
