@@ -1,11 +1,17 @@
 // libs
 import { Facebook, Apple } from "lucide-react";
 // component
+import { Separator } from "@/components/ui/separator";
 import ButtonSignInWith from "../ButtonSignInWith";
 
 const GroupButtonSignInWith = () => (
   <main className="flex flex-col gap-5">
-    <p className="text-center font-medium text-black">-- Or Sign in with --</p>
+    <div className="flex items-center justify-center gap-2 overflow-hidden">
+      <Separator className="bg-tertiary" />
+      <span className="text-sm font-medium text-black">Or</span>
+      <Separator className="bg-tertiary" />
+    </div>
+
     <div className="grid grid-cols-3 gap-5">
       <ButtonSignInWith
         icon={

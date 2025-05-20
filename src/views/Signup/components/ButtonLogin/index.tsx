@@ -1,15 +1,16 @@
+// libs
 import Link from "next/link";
 
-const ButtonSignUp = () => (
+const ButtonLogin = () => (
   <main className="text-center text-sm">
-    Don’t have an account?{" "}
+    Already have an account?{" "}
     <Link
-      href="/signup"
+      href="/login"
       className="text-primary hover:text-secondary font-medium"
     >
-      Sign up
+      Login
     </Link>
   </main>
 );
 
-export default ButtonSignUp;
+export default ButtonLogin;
