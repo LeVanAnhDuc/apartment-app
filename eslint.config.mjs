@@ -85,15 +85,7 @@ const eslintConfig = [
       "promise/always-return": "warn", // Bắt buộc phải return trong mỗi nhánh của .then() để tránh "lost promise chain".
       "promise/no-return-wrap": "warn", // Tránh viết return Promise.resolve(Promise.resolve(...)).
       "promise/param-names": "warn", //	Đảm bảo bạn dùng đúng tên tham số (thường là resolve, reject) khi tạo Promise.
-      "promise/catch-or-return": "warn", // Phải có .catch() hoặc return một promise để xử lý lỗi.
-      "import/order": [
-        "error",
-        {
-          groups: ["builtin", "external", "internal", ["parent", "sibling"]],
-          "newlines-between": "always",
-          alphabetize: { order: "asc", caseInsensitive: true }
-        }
-      ] // Sắp xếp các import theo thứ tự bảng chữ cái
+      "promise/catch-or-return": "warn" // Phải có .catch() hoặc return một promise để xử lý lỗi.
     },
     settings: {
       react: {
