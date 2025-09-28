@@ -2,8 +2,8 @@
 import Button from "@/components/Button";
 
 const ButtonLogin = () => (
-  <Button type="submit" className="h-12 w-full text-lg">
-    Login
+  <Button type="submit" className="text-md h-10 w-full font-medium">
+    Sign in
   </Button>
 );
 

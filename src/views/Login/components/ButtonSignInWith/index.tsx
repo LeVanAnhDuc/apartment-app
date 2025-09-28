@@ -10,7 +10,10 @@ const ButtonSignInWith = ({
   icon: ReactNode;
   children: ReactNode;
 }) => (
-  <Button className="text-primary border-primary hover:bg-background flex h-10 w-full items-center justify-center gap-2 border-1 bg-transparent hover:border-black">
+  <Button
+    variant="outline"
+    className="border-primary text-primary hover:!bg-primary bg-white hover:text-white"
+  >
     {icon}
     {children}
   </Button>

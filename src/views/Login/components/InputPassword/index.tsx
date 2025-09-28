@@ -17,7 +17,7 @@ const InputPassword = () => {
       <Input
         type={showPassword ? "text" : "password"}
         placeholder="Password"
-        className="h-13"
+        className="h-12"
       />
       <span
         className="absolute top-4 right-4 hover:cursor-pointer"

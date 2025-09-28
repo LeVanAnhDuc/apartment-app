@@ -66,7 +66,12 @@ const eslintConfig = [
       ...pluginReact.configs.recommended.rules,
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
-      "prettier/prettier": "error", // Cảnh báo lỗi định dạng của prettier
+      "prettier/prettier": [
+        "error",
+        {
+          endOfLine: "auto"
+        }
+      ], // Cảnh báo lỗi định dạng của prettier
       "@typescript-eslint/explicit-function-return-type": "off", // Tắt kiểm tra kiểu trả về của hàm
       "@typescript-eslint/no-explicit-any": "error", // Cấm sử dụng any
       "@typescript-eslint/ban-ts-comment": "warn", // Cảnh báo khi sử dụng @ts-ignore, @ts-expect-error, @ts-nocheck, @ts-check
@@ -110,3 +115,4 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
+

@@ -6,16 +6,18 @@ import ButtonForgotPassword from "../../components/ButtonForgotPassword";
 import GroupButtonSignInWith from "../../components/GroupButtonSignInWith";
 import ButtonSignUp from "../../components/ButtonSignUp";
 import ButtonLogin from "../../components/ButtonLogin";
+import OtherSignInWith from "../../components/OtherSignInWith";
 
 const LoginBlock = () => (
-  <main className="flex h-screen items-center justify-center">
-    <div className="rounded-3xl bg-white p-8 shadow-2xl sm:p-10 md:p-14">
+  <main className="flex flex-1 items-center justify-center">
+    <div className="w-md rounded-3xl bg-white p-6 shadow-2xl">
       <FormTitle />
-      <form className="mt-10 space-y-5">
+      <form className="mt-6 space-y-5">
         <InputEmail />
         <InputPassword />
         <ButtonForgotPassword />
         <ButtonLogin />
+        <OtherSignInWith />
         <GroupButtonSignInWith />
         <ButtonSignUp />
       </form>
