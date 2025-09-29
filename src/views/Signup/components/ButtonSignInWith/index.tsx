@@ -1,7 +1,7 @@
 // types
 import type { ReactNode } from "react";
 // components
-import Button from "@/components/Button";
+import Button from "@/components/CustomButton";
 
 const ButtonSignInWith = ({
   icon,

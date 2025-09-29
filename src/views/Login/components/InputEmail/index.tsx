@@ -1,8 +1,12 @@
 // component
-import Input from "@/components/Input";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 const InputEmail = () => (
-  <Input type="email" placeholder="Email" className="h-12" />
+  <div className="grid gap-3">
+    <Label htmlFor="email">Email</Label>
+    <Input id="email" type="email" placeholder="m@example.com" required />
+  </div>
 );
 
 export default InputEmail;

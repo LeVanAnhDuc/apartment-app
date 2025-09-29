@@ -4,7 +4,7 @@ import Header from "./mains/Header";
 import LoginBlock from "./mains/LoginBlock";
 
 const Login = () => (
-  <section className="bg-background flex size-full h-screen flex-col">
+  <section className="flex size-full h-screen flex-col">
     <Header />
     <LoginBlock />
     <Footer />

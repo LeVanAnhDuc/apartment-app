@@ -1,27 +1,42 @@
 // components
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
 import InputEmail from "../../components/InputEmail";
 import InputPassword from "../../components/InputPassword";
-import FormTitle from "../../components/FormTitle";
 import ButtonForgotPassword from "../../components/ButtonForgotPassword";
-import GroupButtonSignInWith from "../../components/GroupButtonSignInWith";
-import ButtonSignUp from "../../components/ButtonSignUp";
 import ButtonLogin from "../../components/ButtonLogin";
-import OtherSignInWith from "../../components/OtherSignInWith";
+import ButtonLoginWithGoogle from "../../components/ButtonLoginWithGoogle";
+import ButtonSignUp from "../../components/ButtonSignUp";
 
 const LoginBlock = () => (
   <main className="flex flex-1 items-center justify-center">
-    <div className="w-md rounded-3xl bg-white p-6 shadow-2xl">
-      <FormTitle />
-      <form className="mt-6 space-y-5">
-        <InputEmail />
-        <InputPassword />
-        <ButtonForgotPassword />
-        <ButtonLogin />
-        <OtherSignInWith />
-        <GroupButtonSignInWith />
-        <ButtonSignUp />
-      </form>
-    </div>
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Student Login</CardTitle>
+        <CardDescription>
+          Enter your email below to login to your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form>
+          <div className="flex flex-col gap-6">
+            <InputEmail />
+            <InputPassword />
+            <ButtonForgotPassword />
+            <div className="space-y-3">
+              <ButtonLogin />
+              <ButtonLoginWithGoogle />
+            </div>
+          </div>
+          <ButtonSignUp />
+        </form>
+      </CardContent>
+    </Card>
   </main>
 );
 
