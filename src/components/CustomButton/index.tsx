@@ -22,13 +22,14 @@ const CustomButton = ({
   className,
   loading,
   variant = "default",
+  fullWidth,
   ...props
 }: ButtonProps) => (
   <ButtonUI
     className={cn(
       "hover:cursor-pointer",
       {
-        "w-full": props.fullWidth,
+        "w-full": fullWidth,
         "hover:bg-primary/80": variant === "default"
       },
       className

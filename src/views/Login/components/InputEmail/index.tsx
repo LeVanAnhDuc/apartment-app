@@ -28,7 +28,6 @@ const InputEmail = () => {
           <FormControl>
             <Input
               {...field}
-              type="email"
               placeholder="m@example.com"
               aria-invalid={fieldState.invalid}
               autoFocus
