@@ -1,3 +1,5 @@
+// libs
+import { useTranslations } from "next-intl";
 // types
 import type { LoginFormValues } from "@/types/Login";
 // component
@@ -17,6 +19,7 @@ import CONSTANTS from "@/constants";
 const { EMAIL } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 
 const InputEmail = () => {
+  const t = useTranslations("login.form.input");
   const { field, fieldState } = useFieldProps<LoginFormValues>(EMAIL);
 
   return (
@@ -24,7 +27,7 @@ const InputEmail = () => {
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Email</FormLabel>
+          <FormLabel>{t("labelEmail")}</FormLabel>
           <FormControl>
             <Input
               {...field}

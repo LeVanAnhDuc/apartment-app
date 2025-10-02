@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 // types
 import type { ReactNode } from "react";
+import type { Locale } from "@/i18n/config";
 // others
 import { routing } from "@/i18n/routing";
 import "./globals.css";
@@ -14,14 +15,14 @@ export const generateStaticParams = () =>
 export async function generateMetadata({
   params
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: Locale }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "common" });
+  const t = await getTranslations({ locale, namespace: "common.app" });
 
   return {
-    title: t("app.name"),
-    description: t("app.description")
+    title: t("name"),
+    description: t("description")
   };
 }
 

@@ -2,6 +2,7 @@
 // libs
 import { Eye, EyeOff } from "lucide-react";
 import { useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 // types
 import type { LoginFormValues } from "@/types/Login";
 // component
@@ -21,6 +22,7 @@ import CONSTANTS from "@/constants";
 const { PASSWORD } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 
 const InputPassword = () => {
+  const t = useTranslations("login.form.input");
   const [showPassword, setShowPassword] = useState(false);
   const { field, fieldState } = useFieldProps<LoginFormValues>(PASSWORD);
 
@@ -33,12 +35,12 @@ const InputPassword = () => {
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>Password</FormLabel>
+          <FormLabel>{t("labelPassword")}</FormLabel>
           <FormControl>
             <main className="relative size-full">
               <Input
                 type={showPassword ? "text" : "password"}
-                placeholder="Password"
+                placeholder={t("labelPassword")}
                 aria-invalid={fieldState.invalid}
                 {...field}
               />
