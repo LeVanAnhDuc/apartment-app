@@ -1,0 +1,21 @@
+{
+  "title": "Create an account",
+  "form": {
+    "title": "Create an account",
+    "description": "Enter your details below to create your account",
+    "input": {
+      "labelFullName": "Full Name",
+      "labelEmail": "Email",
+      "labelPhone": "Phone",
+      "labelPassword": "Password",
+      "labelPasswordConfirm": "Confirm Password"
+    },
+    "button": {
+      "signup": "Sign Up",
+      "signupWithGoogle": "Sign Up with Google"
+    }
+  },
+  "link": {
+    "login": "Already have an account? Login"
+  }
+}

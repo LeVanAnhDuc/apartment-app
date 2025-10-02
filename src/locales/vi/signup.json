@@ -1,0 +1,21 @@
+{
+  "title": "Tạo tài khoản",
+  "form": {
+    "title": "Tạo tài khoản",
+    "description": "Nhập thông tin chi tiết của bạn dưới đây để tạo tài khoản của bạn",
+    "input": {
+      "labelFullName": "Họ và tên",
+      "labelEmail": "Email",
+      "labelPhone": "Số điện thoại",
+      "labelPassword": "Mật khẩu",
+      "labelPasswordConfirm": "Xác nhận mật khẩu"
+    },
+    "button": {
+      "signup": "Đăng ký",
+      "signupWithGoogle": "Đăng ký với Google"
+    }
+  },
+  "link": {
+    "login": "Đã có tài khoản? Đăng nhập"
+  }
+}
