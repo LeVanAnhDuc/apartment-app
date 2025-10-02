@@ -16,7 +16,7 @@ const ModalLanguage = () => (
     <Dialog>
       <DialogTrigger>
         <CustomButton
-          className="rounded-xl border-2 shadow-lg has-[>svg]:p-2"
+          className="size-9 rounded-full border-1 shadow-lg has-[>svg]:p-2.5"
           variant={"outline"}
         >
           <Globe className="text-primary size-4" />

@@ -1,6 +1,7 @@
 // components
 import Logo from "@/components/Logo";
 import ModalLanguage from "@/components/ModalLanguage";
+import AvatarDropdown from "../AvatarDropdown";
 
 const Header = () => (
   <header className="bg-background fixed top-0 right-0 left-0 z-50 flex w-full items-center justify-between border-b px-6 py-3">
@@ -9,7 +10,10 @@ const Header = () => (
       <span className="font-semibold">Platform Learning</span>
     </section>
 
-    <ModalLanguage />
+    <section className="flex items-center justify-center gap-4">
+      <ModalLanguage />
+      <AvatarDropdown />
+    </section>
   </header>
 );
 
