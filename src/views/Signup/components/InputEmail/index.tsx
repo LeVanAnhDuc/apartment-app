@@ -1,8 +1,6 @@
-// component
-import Input from "@/components/Input";
+// components
+import { Input } from "@/components/ui/input";
 
-const InputEmail = () => (
-  <Input type="email" placeholder="Email" className="h-13" />
-);
+const InputEmail = () => <Input placeholder="m@example.com" autoFocus />;
 
 export default InputEmail;

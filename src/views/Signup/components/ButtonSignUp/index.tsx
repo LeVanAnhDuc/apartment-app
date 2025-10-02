@@ -1,10 +1,10 @@
 // components
-import Button from "@/components/CustomButton";
+import CustomButton from "@/components/CustomButton";
 
 const ButtonSignUp = () => (
-  <Button type="submit" className="h-12 w-full text-lg">
+  <CustomButton fullWidth type="submit">
     Sign Up
-  </Button>
+  </CustomButton>
 );
 
 export default ButtonSignUp;

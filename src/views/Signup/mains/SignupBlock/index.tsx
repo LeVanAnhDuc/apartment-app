@@ -1,27 +1,24 @@
 // components
-import InputEmail from "../../components/InputEmail";
-import InputPassword from "../../components/InputPassword";
-import FormTitle from "../../components/FormTitle";
-import ButtonSignUp from "../../components/ButtonSignUp";
-import ButtonLogin from "../../components/ButtonLogin";
-import InputFullName from "../../components/InputFullName";
-import InputPhone from "../../components/InputPhone";
-import InputPasswordConfirm from "../../components/InputPasswordConfirm";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
+} from "@/components/ui/card";
+import FormSignup from "../../components/FormSignup";
 
 const SignupBlock = () => (
   <main className="flex h-full items-center justify-center">
-    <div className="rounded-3xl bg-white p-8 shadow-2xl sm:p-10 md:p-14">
-      <FormTitle />
-      <form className="mt-10 space-y-5">
-        <InputFullName />
-        <InputEmail />
-        <InputPhone />
-        <InputPassword />
-        <InputPasswordConfirm />
-        <ButtonSignUp />
-        <ButtonLogin />
-      </form>
-    </div>
+    <Card className="w-sm">
+      <CardHeader>
+        <CardTitle>Create Your Account</CardTitle>
+        <CardDescription>Create an account to get started</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <FormSignup />
+      </CardContent>
+    </Card>
   </main>
 );
 

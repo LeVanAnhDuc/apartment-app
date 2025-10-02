@@ -2,7 +2,7 @@
 import SignupBlock from "./mains/SignupBlock";
 
 const Signup = () => (
-  <section className="bg-tertiary h-screen w-screen">
+  <section className="flex size-full h-screen flex-1 flex-col">
     <SignupBlock />
   </section>
 );

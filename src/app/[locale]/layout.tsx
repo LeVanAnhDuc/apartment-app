@@ -46,7 +46,7 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider>
           <Header />
-          {children}
+          <div className="pt-16">{children}</div>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -1,8 +1,8 @@
 // libs
-import Link from "next/link";
 import { useTranslations } from "next-intl";
 // others
 import CONSTANTS from "@/constants";
+import { Link } from "@/i18n/navigation";
 
 const { SIGNUP } = CONSTANTS.ROUTES;
 
