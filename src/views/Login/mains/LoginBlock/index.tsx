@@ -9,14 +9,12 @@ import {
   CardTitle
 } from "@/components/ui/card";
 import FormLogin from "../../components/FormLogin";
-import LanguageSwitcher from "@/components/ModalLanguage";
 
 const LoginBlock = () => {
   const t = useTranslations("login.form");
 
   return (
-    <main className="flex flex-1 items-center justify-center">
-      <LanguageSwitcher />
+    <main className="flex h-full items-center justify-center">
       <Card className="w-sm">
         <CardHeader>
           <CardTitle>{t("title")}</CardTitle>

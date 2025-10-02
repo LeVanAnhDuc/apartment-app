@@ -5,6 +5,8 @@ import { getTranslations } from "next-intl/server";
 // types
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
+// components
+import Header from "@/components/Header";
 // others
 import { routing } from "@/i18n/routing";
 import "./globals.css";
@@ -42,7 +44,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <Header />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

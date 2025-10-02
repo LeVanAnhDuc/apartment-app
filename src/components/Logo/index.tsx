@@ -2,8 +2,8 @@
 import { BookOpen } from "lucide-react";
 
 const Logo = () => (
-  <div className="bg-primary flex h-8 w-8 items-center justify-center rounded-md">
-    <BookOpen className="h-5 w-5 text-white" />
+  <div className="bg-primary flex size-8 items-center justify-center rounded-md">
+    <BookOpen className="size-5 text-white" />
   </div>
 );
 

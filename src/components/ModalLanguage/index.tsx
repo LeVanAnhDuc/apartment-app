@@ -15,8 +15,11 @@ const ModalLanguage = () => (
   <>
     <Dialog>
       <DialogTrigger>
-        <CustomButton className="rounded-full" variant={"outline"}>
-          <Globe />
+        <CustomButton
+          className="rounded-xl border-2 shadow-lg has-[>svg]:p-2"
+          variant={"outline"}
+        >
+          <Globe className="text-primary size-4" />
         </CustomButton>
       </DialogTrigger>
       <DialogContent className="w-5xl sm:max-w-[calc(100%-2rem)]">
