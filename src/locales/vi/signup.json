@@ -16,6 +16,7 @@
     }
   },
   "link": {
-    "login": "Đã có tài khoản? Đăng nhập"
+    "descriptionSignUp": "Đã có tài khoản",
+    "login": "Đăng nhập"
   }
 }

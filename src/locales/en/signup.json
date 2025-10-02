@@ -16,6 +16,7 @@
     }
   },
   "link": {
-    "login": "Already have an account? Login"
+    "descriptionSignUp": "Already have an account",
+    "login": "Login"
   }
 }
