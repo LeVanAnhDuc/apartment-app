@@ -1,3 +1,5 @@
+// libs
+import { useTranslations } from "next-intl";
 // components
 import {
   Card,
@@ -7,21 +9,25 @@ import {
   CardTitle
 } from "@/components/ui/card";
 import FormLogin from "../../components/FormLogin";
+import LanguageSwitcher from "@/components/ModalLanguage";
 
-const LoginBlock = () => (
-  <main className="flex flex-1 items-center justify-center">
-    <Card className="w-sm">
-      <CardHeader>
-        <CardTitle>Student Login</CardTitle>
-        <CardDescription>
-          Enter your email below to login to your account
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <FormLogin />
-      </CardContent>
-    </Card>
-  </main>
-);
+const LoginBlock = () => {
+  const t = useTranslations("login.form");
+
+  return (
+    <main className="flex flex-1 items-center justify-center">
+      <LanguageSwitcher />
+      <Card className="w-sm">
+        <CardHeader>
+          <CardTitle>{t("title")}</CardTitle>
+          <CardDescription>{t("description")}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <FormLogin />
+        </CardContent>
+      </Card>
+    </main>
+  );
+};
 
 export default LoginBlock;

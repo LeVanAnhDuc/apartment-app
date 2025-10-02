@@ -1,0 +1,20 @@
+{
+  "title": "Login Page",
+  "form": {
+    "title": "Login",
+    "description": "Enter your email below to login to your account.",
+    "input": {
+      "labelEmail": "Email",
+      "labelPassword": "Password"
+    },
+    "button": {
+      "login": "Sign in",
+      "loginWithGoogle": "Sign in with Google"
+    }
+  },
+  "link": {
+    "forgotPassword": "Forgot Password",
+    "descriptionSignUp": "Don't have an account",
+    "signUp": "Sign up"
+  }
+}

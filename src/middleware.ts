@@ -1,17 +1,21 @@
 // libs
-import { NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
+import createMiddleware from "next-intl/middleware";
 // types
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 // others
 import CONSTANTS from "./constants";
 
 const { LOGIN, HOME } = CONSTANTS.ROUTES;
+
+const intlMiddleware = createMiddleware(routing);
+
 export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === HOME) {
     return NextResponse.redirect(new URL(LOGIN, request.url));
   }
 
-  return NextResponse.next();
+  return intlMiddleware(request);
 }
 
 export const config = {

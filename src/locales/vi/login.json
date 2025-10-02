@@ -1,0 +1,20 @@
+{
+  "title": "Trang đăng nhập",
+  "form": {
+    "title": "Đăng nhập",
+    "description": "Nhập email của bạn bên dưới để đăng nhập vào tài khoản của bạn.",
+    "input": {
+      "labelEmail": "Email",
+      "labelPassword": "Mật khẩu"
+    },
+    "button": {
+      "login": "Đăng nhập",
+      "loginWithGoogle": "Đăng nhập bằng Google"
+    }
+  },
+  "link": {
+    "forgotPassword": "Quên mật khẩu",
+    "descriptionSignUp": "Chưa có tài khoản",
+    "signUp": "Đăng ký"
+  }
+}
