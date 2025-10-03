@@ -1,9 +1,5 @@
-// others
-import CONSTANTS from "@/constants";
+// types
+import type { z } from "zod";
+import type { loginFormValidation } from "@/forms/Login/validations";
 
-const { EMAIL, PASSWORD } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
-
-export interface LoginFormValues {
-  [EMAIL]: string;
-  [PASSWORD]: string;
-}
+export type LoginFormValues = z.infer<typeof loginFormValidation>;
