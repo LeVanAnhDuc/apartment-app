@@ -46,7 +46,7 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider>
           <Header />
-          <div className="pt-16">{children}</div>
+          <div className="min-h-[calc(100vh-4rem)] pt-16">{children}</div>
         </NextIntlClientProvider>
       </body>
     </html>
