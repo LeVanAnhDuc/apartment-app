@@ -7,6 +7,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 // components
 import Header from "@/components/Header";
+import ProvidersReactQuery from "@/contexts/ProvidersReactQuery";
 // others
 import { routing } from "@/i18n/routing";
 import "./globals.css";
@@ -44,10 +45,12 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <NextIntlClientProvider>
-          <Header />
-          <div className="min-h-[calc(100vh-4rem)] pt-16">{children}</div>
-        </NextIntlClientProvider>
+        <ProvidersReactQuery>
+          <NextIntlClientProvider>
+            <Header />
+            <div className="min-h-[calc(100vh-4rem)] pt-16">{children}</div>
+          </NextIntlClientProvider>
+        </ProvidersReactQuery>
       </body>
     </html>
   );
