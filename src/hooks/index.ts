@@ -1,5 +1,7 @@
 import useFieldProps from "./useFieldProps";
+import useApiQuery from "./useApiQuery";
 
 export default {
-  useFieldProps
+  useFieldProps,
+  useApiQuery
 };

@@ -4,6 +4,8 @@
 import { FormProvider, useForm } from "react-hook-form";
 // types
 import type { LoginFormValues } from "@/types/Login";
+// api
+import { useLoginMutation } from "@/apis/auth/queries";
 // components
 import ButtonForgotPassword from "../ButtonForgotPassword";
 import ButtonLogin from "../ButtonLogin";
@@ -20,19 +22,19 @@ const FormLogin = () => {
     mode: "onChange"
   });
 
+  const { mutate: login, isPending } = useLoginMutation();
+
+  const onSubmit = (data: LoginFormValues) => login(data);
+
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit((data) =>
-          console.log("Form data:", data)
-        )}
-      >
+      <form onSubmit={methods.handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-6">
           <InputEmail />
           <InputPassword />
           <ButtonForgotPassword />
           <div className="space-y-3">
-            <ButtonLogin />
+            <ButtonLogin loading={isPending} />
             <ButtonLoginWithGoogle />
           </div>
         </div>
