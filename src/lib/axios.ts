@@ -1,18 +1,164 @@
 // libs
 import axios from "axios";
+// types
+import type { AxiosError, InternalAxiosRequestConfig } from "axios";
+// others
+import CONSTANTS from "@/constants";
+import { confirmErrorToast } from "@/utils";
 
 const API_TIMEOUT = 30000;
+
+const handleLogout = () => {
+  // TODO: Delete tokens
+
+  window.location.href = CONSTANTS.ROUTES.LOGIN;
+};
+
+let isRefreshing = false;
+let failedQueue: Array<{
+  resolve: (value?: unknown) => void;
+  reject: (reason?: unknown) => void;
+}> = [];
+
+const processQueue = (
+  error: AxiosError | null,
+  token: string | null = null
+) => {
+  failedQueue.forEach((prom) => {
+    if (error) {
+      prom.reject(error);
+    } else {
+      prom.resolve(token);
+    }
+  });
+  failedQueue = [];
+};
+
+// ============================================
+// AXIOS INSTANCE
+// ============================================
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: API_TIMEOUT,
-  withCredentials: true,
   headers: {
     "Content-Type": "application/json"
   }
 });
 
-// In a real-world scenario, a senior developer would add interceptors here
-// to automatically attach the auth token to requests and handle token refreshing.
+// ============================================
+// GLOBAL INTERCEPTORS
+// ============================================
+
+axiosInstance.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    // TODO: Get token from store
+    const token = "";
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  async (error: AxiosError) => {
+    const originalRequest = error.config as InternalAxiosRequestConfig & {
+      _retry?: boolean;
+    };
+
+    // ============================================
+    // HANDLE 401 - AUTO REFRESH TOKEN (SILENT)
+    // ============================================
+    if (
+      error.response?.status === 401 &&
+      originalRequest &&
+      !originalRequest._retry
+    ) {
+      // Queue subsequent requests while refreshing
+      if (isRefreshing) {
+        return new Promise((resolve, reject) => {
+          failedQueue.push({ resolve, reject });
+        })
+          .then((token) => {
+            if (originalRequest.headers) {
+              originalRequest.headers.Authorization = `Bearer ${token}`;
+            }
+            return axiosInstance(originalRequest);
+          })
+          .catch((err) => Promise.reject(err));
+      }
+
+      originalRequest._retry = true;
+      isRefreshing = true;
+
+      // TODO: Get refresh token from store
+      const refreshToken = "";
+
+      if (!refreshToken) {
+        processQueue(error, null);
+        isRefreshing = false;
+        confirmErrorToast("Session expired. Please login again.");
+        handleLogout();
+        return Promise.reject(error);
+      }
+
+      try {
+        // Call refresh API
+        //
+        const newAccessToken = "";
+
+        // Save new token
+        //
+
+        // Update original request header
+        if (originalRequest.headers) {
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        }
+
+        // Process queued requests
+        processQueue(null, newAccessToken);
+        isRefreshing = false;
+
+        // Retry original request
+        return axiosInstance(originalRequest);
+      } catch (refreshError) {
+        processQueue(refreshError as AxiosError, null);
+        isRefreshing = false;
+        confirmErrorToast("Unable to refresh session. Please login again.");
+        handleLogout();
+        return Promise.reject(refreshError);
+      }
+    }
+
+    // ============================================
+    // INFRASTRUCTURE ERRORS (TOAST HERE)
+    // ============================================
+
+    // Network Error (no response from server)
+    if (!error.response) {
+      confirmErrorToast(
+        "Unable to connect to server. Please check your internet connection."
+      );
+      return Promise.reject(error);
+    }
+
+    // Timeout Error
+    if (error.code === "ECONNABORTED") {
+      confirmErrorToast("Request timeout. Please try again.");
+      return Promise.reject(error);
+    }
+
+    // 5XX SERVER ERRORS
+    if (error.response.status >= 500) {
+      confirmErrorToast("Server error. Please try again later.");
+      return Promise.reject(error);
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export default axiosInstance;

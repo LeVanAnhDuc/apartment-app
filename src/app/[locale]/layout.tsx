@@ -8,6 +8,7 @@ import type { Locale } from "@/i18n/config";
 // components
 import Header from "@/components/Header";
 import ProvidersReactQuery from "@/contexts/ProvidersReactQuery";
+import { Toaster } from "@/components/ui/sonner";
 // others
 import { routing } from "@/i18n/routing";
 import "./globals.css";
@@ -50,6 +51,7 @@ export default async function RootLayout({
             <Header />
             <div className="min-h-[calc(100vh-4rem)] pt-16">{children}</div>
           </NextIntlClientProvider>
+          <Toaster />
         </ProvidersReactQuery>
       </body>
     </html>
