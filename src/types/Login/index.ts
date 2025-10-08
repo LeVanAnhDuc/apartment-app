@@ -7,7 +7,7 @@ export type LoginFormValues = z.infer<typeof loginFormValidation>;
 
 export interface LoginDataResponse {
   accessToken: string;
-  refreshToken: string;
+  idToken: string;
 }
 
 export type LoginSuccessResponse = ResponsePattern<LoginDataResponse>;
