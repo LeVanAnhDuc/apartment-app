@@ -7,7 +7,7 @@ import type { VariantProps } from "class-variance-authority";
 // components
 import { Button as ButtonUI } from "@/components/ui/button";
 // others
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 interface ButtonProps
   extends ComponentProps<"button">,

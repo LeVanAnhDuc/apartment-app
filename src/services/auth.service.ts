@@ -1,5 +1,5 @@
 // libs
-import axiosInstance from "@/lib/axios";
+import axiosInstance from "@/libs/axios";
 // types
 import type { LoginFormValues, LoginSuccessResponse } from "@/types/Login";
 // constants

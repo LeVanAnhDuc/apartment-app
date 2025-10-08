@@ -1,7 +1,7 @@
 // libs
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 // others
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 
 const AvatarUser = ({ className }: { className?: string }) => (
   <Avatar

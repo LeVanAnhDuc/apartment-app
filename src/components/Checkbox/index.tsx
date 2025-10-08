@@ -1,6 +1,6 @@
 // components
 import { Checkbox as CheckboxUI } from "@/components/ui/checkbox";
-import { cn } from "@/lib/utils";
+import { cn } from "@/libs/utils";
 // types
 import type * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import type { ComponentProps } from "react";

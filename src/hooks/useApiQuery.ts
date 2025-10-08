@@ -5,7 +5,7 @@ import type { AxiosError, AxiosRequestConfig } from "axios";
 import type { UseQueryOptions } from "@tanstack/react-query";
 import type { ResponsePattern } from "@/types/common";
 // others
-import axiosInstance from "@/lib/axios";
+import axiosInstance from "@/libs/axios";
 
 const useApiQuery = <TData = unknown, TError = AxiosError>(
   key: string | string[],

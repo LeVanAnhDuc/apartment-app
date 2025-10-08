@@ -1,7 +1,11 @@
 // libs
 import axios from "axios";
 // types
-import type { AxiosError, InternalAxiosRequestConfig } from "axios";
+import type {
+  AxiosError,
+  AxiosInstance,
+  InternalAxiosRequestConfig
+} from "axios";
 // others
 import CONSTANTS from "@/constants";
 import { confirmErrorToast } from "@/utils";
@@ -38,7 +42,7 @@ const processQueue = (
 // AXIOS INSTANCE
 // ============================================
 
-const axiosInstance = axios.create({
+const axiosInstance: AxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: API_TIMEOUT,
   headers: {
