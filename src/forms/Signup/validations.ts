@@ -3,7 +3,7 @@ import * as z from "zod";
 // others
 import CONSTANTS from "@/constants";
 
-const { FULL_NAME, EMAIL, PHONE, PASSWORD, PASSWORD_CONFIRM } =
+const { FULL_NAME, EMAIL, PASSWORD, PASSWORD_CONFIRM } =
   CONSTANTS.FIELD_NAMES.SIGNUP_FIELD_NAMES;
 
 export const signupFormValidation = z
@@ -14,10 +14,6 @@ export const signupFormValidation = z
       .min(1, "Email is required")
       .email("Email is invalid")
       .refine((value) => CONSTANTS.REGEX_EMAIL.test(value), "Email is invalid"),
-    [PHONE]: z
-      .string()
-      .min(1, "Phone is required")
-      .refine((value) => CONSTANTS.REGEX_PHONE.test(value), "Phone is invalid"),
     [PASSWORD]: z
       .string()
       .min(1, "Password is required")

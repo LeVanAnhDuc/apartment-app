@@ -12,7 +12,7 @@ import InputEmail from "../InputEmail";
 import InputFullName from "../InputFullName";
 import InputPassword from "../InputPassword";
 import InputPasswordConfirm from "../InputPasswordConfirm";
-import InputPhone from "../InputPhone";
+
 // forms
 import { signupFormProps } from "@/forms/Signup";
 
@@ -32,7 +32,6 @@ const FormSignup = () => {
         <div className="flex flex-col gap-6">
           <InputFullName />
           <InputEmail />
-          <InputPhone />
           <InputPassword />
           <InputPasswordConfirm />
           <div className="space-y-3">

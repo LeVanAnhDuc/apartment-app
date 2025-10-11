@@ -8,7 +8,6 @@ const CONSTANTS = {
   FIELD_NAMES,
   REGEX_EMAIL:
     /^[a-zA-Z0-9](?:[a-zA-Z0-9]|(?<![.])[.](?![.]))*[a-zA-Z0-9]@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-  REGEX_PHONE: /^[0-9]{10}$/,
   END_POINTS,
   STORAGE_KEYS
 };
