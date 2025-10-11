@@ -19,7 +19,7 @@ const ModalContent = () => (
       </TabsTrigger>
     </TabsList>
 
-    <TabsContent value="language">
+    <TabsContent value="language" asChild>
       <SelectLocale />
     </TabsContent>
 
