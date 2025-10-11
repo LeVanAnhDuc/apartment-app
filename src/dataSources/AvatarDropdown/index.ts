@@ -1,26 +1,30 @@
 // libs
 import { User, Settings, Moon } from "lucide-react";
+// types
+import type { useTranslations as useTranslationsType } from "next-intl";
 
-export const menuItems = [
+export const getTranslatedMenuItems = (
+  t: ReturnType<typeof useTranslationsType<"common">>
+) => [
   {
     key: "profile",
     icon: User,
-    label: "Profile",
-    description: "View your profile",
+    label: t("avatarDropdown.profile"),
+    description: t("avatarDropdown.profileDescription"),
     action: () => console.log("Profile clicked")
   },
   {
     key: "settings",
     icon: Settings,
-    label: "Settings",
-    description: "Manage preferences",
+    label: t("avatarDropdown.settings"),
+    description: t("avatarDropdown.settingsDescription"),
     action: () => console.log("Settings clicked")
   },
   {
     key: "darkMode",
     icon: Moon,
-    label: "Dark Mode",
-    description: "Toggle theme",
+    label: t("avatarDropdown.darkMode"),
+    description: t("avatarDropdown.darkModeDescription"),
     action: () => console.log("Dark Mode toggled")
   }
 ];

@@ -2,5 +2,16 @@
   "app": {
     "name": "Đức Application",
     "description": "Welcome to Đức platform"
+  },
+  "avatarDropdown": {
+    "account": "Account",
+    "signOut": "Sign Out",
+    "logoutDescription": "Logout from account",
+    "profile": "Profile",
+    "profileDescription": "View your profile",
+    "settings": "Settings",
+    "settingsDescription": "Manage preferences",
+    "darkMode": "Dark Mode",
+    "darkModeDescription": "Toggle theme"
   }
 }

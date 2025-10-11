@@ -1,6 +1,17 @@
 {
   "app": {
-    "name": "Ứng dụng của Đức",
-    "description": "Chào mừng đến với nền tảng của Đức"
+    "name": "Ứng dụng Đức",
+    "description": "Chào mừng đến với nền tảng Đức"
+  },
+  "avatarDropdown": {
+    "account": "Tài khoản",
+    "signOut": "Đăng xuất",
+    "logoutDescription": "Đăng xuất khỏi tài khoản",
+    "profile": "Hồ sơ",
+    "profileDescription": "Xem hồ sơ của bạn",
+    "settings": "Cài đặt",
+    "settingsDescription": "Quản lý tùy chọn",
+    "darkMode": "Chế độ tối",
+    "darkModeDescription": "Chuyển đổi giao diện"
   }
 }
