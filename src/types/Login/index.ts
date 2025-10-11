@@ -11,3 +11,5 @@ export interface LoginDataResponse {
 }
 
 export type LoginSuccessResponse = ResponsePattern<LoginDataResponse>;
+
+export type LogoutSuccessResponse = ResponsePattern<never>;
