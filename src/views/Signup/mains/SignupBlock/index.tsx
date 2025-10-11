@@ -14,7 +14,7 @@ const SignupBlock = () => {
   const t = useTranslations("signup.form");
 
   return (
-    <main className="flex h-full items-center justify-center">
+    <main className="auth-background flex h-full items-center justify-center">
       <Card className="w-sm">
         <CardHeader>
           <CardTitle>{t("title")}</CardTitle>
