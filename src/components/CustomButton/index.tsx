@@ -23,6 +23,8 @@ const CustomButton = ({
   loading,
   variant = "default",
   fullWidth,
+  iconRight,
+  iconLeft,
   ...props
 }: ButtonProps) => (
   <ButtonUI
@@ -38,9 +40,9 @@ const CustomButton = ({
     variant={variant}
     {...props}
   >
-    {loading ? <Loader2Icon className="animate-spin" /> : props.iconLeft}
+    {loading ? <Loader2Icon className="animate-spin" /> : iconLeft}
     {props.children}
-    {props.iconRight}
+    {iconRight}
   </ButtonUI>
 );
 
