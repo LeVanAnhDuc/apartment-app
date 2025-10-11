@@ -4,8 +4,8 @@
 import { FormProvider, useForm } from "react-hook-form";
 // types
 import type { LoginFormValues } from "@/types/Login";
-// apis
-import { useLoginMutation } from "@/apis/auth";
+// services
+import { useLoginMutation } from "@/services/auths";
 // components
 import ButtonForgotPassword from "../ButtonForgotPassword";
 import ButtonLogin from "../ButtonLogin";

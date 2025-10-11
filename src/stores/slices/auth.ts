@@ -2,8 +2,8 @@
 import type { AuthState, AuthStore, UserAttributes } from "@/types/stores";
 import type { IToken } from "@/types/token";
 import type { StateCreator } from "zustand";
-// services
-import { tokenService } from "@/services/token.service";
+// others
+import { decodeToken } from "@/utils";
 
 const initialState: AuthState = {
   accessToken: undefined,
@@ -16,8 +16,8 @@ const createAuthSlice: StateCreator<AuthStore> = (set) => ({
 
   setTokens: (tokens: IToken) => {
     const { idToken, accessToken } = tokens;
-    const userAttributes =
-      tokenService.getDecodedIdToken<UserAttributes>(idToken);
+
+    const userAttributes = decodeToken<UserAttributes>(idToken);
 
     set({
       idToken,
@@ -26,7 +26,7 @@ const createAuthSlice: StateCreator<AuthStore> = (set) => ({
     });
   },
 
-  clearTokens: () => {
+  clearStorages: () => {
     set({
       idToken: undefined,
       accessToken: undefined,

@@ -1,6 +1,6 @@
 // stores
-import { authStore } from "@/stores";
+import { useAuthStore } from "@/stores";
 
-const useUserAttributes = () => authStore((state) => state.userAttributes);
+const useUserAttributes = () => useAuthStore((state) => state.userAttributes);
 
 export default useUserAttributes;

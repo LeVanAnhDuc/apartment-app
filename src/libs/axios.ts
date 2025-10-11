@@ -6,15 +6,18 @@ import type {
   AxiosInstance,
   InternalAxiosRequestConfig
 } from "axios";
+// stores
+import { authStoreState } from "@/stores";
 // others
 import CONSTANTS from "@/constants";
-import { confirmErrorToast } from "@/utils";
+import { confirmErrorToast, getAuthorizationHeader } from "@/utils";
 
 const API_TIMEOUT = 30000;
 
 const handleLogout = () => {
-  // TODO: Delete tokens
+  const { clearStorages } = authStoreState();
 
+  clearStorages();
   window.location.href = CONSTANTS.ROUTES.LOGIN;
 };
 
@@ -43,24 +46,22 @@ const processQueue = (
 // ============================================
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  baseURL: "http://localhost:3000/api/v1",
+  // baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
   timeout: API_TIMEOUT,
   headers: {
     "Content-Type": "application/json"
   }
 });
 
-// ============================================
-// GLOBAL INTERCEPTORS
-// ============================================
-
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    // TODO: Get token from store
-    const token = "";
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+    const idToken = getAuthorizationHeader();
+
+    if (idToken) {
+      config.headers.set("Authorization", `Bearer ${idToken}`);
     }
+
     return config;
   },
   (error) => Promise.reject(error)

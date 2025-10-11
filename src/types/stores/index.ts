@@ -21,7 +21,7 @@ export interface AuthState extends Partial<IToken> {
 
 export interface AuthActions {
   setTokens: (tokens: IToken) => void;
-  clearTokens: () => void;
+  clearStorages: () => void;
 }
 
 export type AuthStore = AuthState & AuthActions;

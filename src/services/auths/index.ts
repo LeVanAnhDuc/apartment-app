@@ -2,16 +2,17 @@
 import { useMutation } from "@tanstack/react-query";
 // types
 import type { LoginFormValues, LoginSuccessResponse } from "@/types/Login";
-// services
-import { login } from "@/services/auth.service";
+// apis
+import { login } from "./fetchers";
 // stores
-import { authStore } from "@/stores";
+import { authStoreState } from "@/stores";
 
 export const useLoginMutation = () =>
   useMutation<LoginSuccessResponse, Error, LoginFormValues>({
     mutationFn: login,
     onSuccess: (data) => {
-      authStore((state) => state.setTokens)({
+      const { setTokens } = authStoreState();
+      setTokens({
         accessToken: data.data.accessToken,
         idToken: data.data.idToken
       });

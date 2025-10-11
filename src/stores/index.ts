@@ -5,6 +5,8 @@ import type { AuthStore } from "@/types/stores";
 // slices
 import createAuthSlice from "./slices/auth";
 
-export const authStore = create<AuthStore>()((...props) => ({
+export const useAuthStore = create<AuthStore>()((...props) => ({
   ...createAuthSlice(...props)
 }));
+
+export const authStoreState = useAuthStore.getState;
