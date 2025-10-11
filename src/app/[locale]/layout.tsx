@@ -6,8 +6,9 @@ import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 // components
-import ProvidersReactQuery from "@/contexts/ProvidersReactQuery";
 import { Toaster } from "@/components/ui/sonner";
+// contexts
+import AppProvider from "@/contexts/AppProvider";
 // others
 import { routing } from "@/i18n/routing";
 import "./globals.css";
@@ -45,10 +46,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <ProvidersReactQuery>
+        <AppProvider>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>
           <Toaster />
-        </ProvidersReactQuery>
+        </AppProvider>
       </body>
     </html>
   );

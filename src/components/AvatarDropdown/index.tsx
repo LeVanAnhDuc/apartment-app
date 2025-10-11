@@ -26,13 +26,13 @@ const AvatarDropdown = () => (
     </DropdownMenuTrigger>
 
     <DropdownMenuContent
-      className="w-72 overflow-hidden rounded-xl border-0 p-2 shadow-2xl"
+      className="dark:bg-popover dark:text-popover-foreground w-72 overflow-hidden rounded-xl border-0 p-2 shadow-2xl transition-all duration-300"
       align="end"
     >
       <UserInfoHeader />
-      <DropdownMenuSeparator />
+      <DropdownMenuSeparator className="dark:bg-border" />
       <MenuItems />
-      <DropdownMenuSeparator />
+      <DropdownMenuSeparator className="dark:bg-border" />
       <SignoutItem />
     </DropdownMenuContent>
   </DropdownMenu>

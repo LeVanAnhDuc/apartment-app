@@ -4,7 +4,8 @@ import { User, Settings, Moon } from "lucide-react";
 import type { useTranslations as useTranslationsType } from "next-intl";
 
 export const getTranslatedMenuItems = (
-  t: ReturnType<typeof useTranslationsType<"common">>
+  t: ReturnType<typeof useTranslationsType<"common">>,
+  toggleTheme?: () => void
 ) => [
   {
     key: "profile",
@@ -25,6 +26,6 @@ export const getTranslatedMenuItems = (
     icon: Moon,
     label: t("avatarDropdown.darkMode"),
     description: t("avatarDropdown.darkModeDescription"),
-    action: () => console.log("Dark Mode toggled")
+    action: toggleTheme
   }
 ];

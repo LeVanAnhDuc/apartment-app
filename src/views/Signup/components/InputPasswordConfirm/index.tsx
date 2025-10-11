@@ -15,7 +15,7 @@ import {
   FormMessage
 } from "@/components/ui/form";
 // hooks
-import useFieldProps from "@/hooks/useFieldProps";
+import { useFieldProps } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
 
