@@ -6,7 +6,6 @@ import { getTranslations } from "next-intl/server";
 import type { ReactNode } from "react";
 import type { Locale } from "@/i18n/config";
 // components
-import Header from "@/components/Header";
 import ProvidersReactQuery from "@/contexts/ProvidersReactQuery";
 import { Toaster } from "@/components/ui/sonner";
 // others
@@ -47,10 +46,7 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <ProvidersReactQuery>
-          <NextIntlClientProvider>
-            <Header />
-            <div className="min-h-[calc(100vh-4rem)] pt-16">{children}</div>
-          </NextIntlClientProvider>
+          <NextIntlClientProvider>{children}</NextIntlClientProvider>
           <Toaster />
         </ProvidersReactQuery>
       </body>
