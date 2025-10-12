@@ -66,6 +66,10 @@ const eslintConfig = [
       ...pluginReact.configs.recommended.rules,
       ...pluginReactHooks.configs.recommended.rules,
       ...pluginNext.configs.recommended.rules,
+      // Cấu hình không bắt lỗi type globals
+      "no-undef": "off",
+      "@typescript-eslint/no-unused-vars": "error",
+      // ----------------------------
       "prettier/prettier": [
         "error",
         {
@@ -115,4 +119,3 @@ const eslintConfig = [
 ];
 
 export default eslintConfig;
-

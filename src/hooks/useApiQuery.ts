@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 // types
 import type { AxiosError, AxiosRequestConfig } from "axios";
 import type { UseQueryOptions } from "@tanstack/react-query";
-import type { ResponsePattern } from "@/types/common";
 // others
 import axiosInstance from "@/libs/axios";
 
