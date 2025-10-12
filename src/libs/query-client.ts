@@ -2,7 +2,7 @@
 import { QueryClient, QueryCache, MutationCache } from "@tanstack/react-query";
 import { isAxiosError } from "axios";
 // others
-import { confirmErrorToast } from "@/utils";
+import { errorToast } from "@/utils";
 
 function getErrorMessage(error: unknown): string {
   if (isAxiosError(error)) {
@@ -47,7 +47,7 @@ function queryErrorHandler(error: unknown): void {
 
   const message = getErrorMessage(error);
 
-  confirmErrorToast(message);
+  errorToast(message);
 }
 
 const queryClient = new QueryClient({

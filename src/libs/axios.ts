@@ -57,9 +57,7 @@ axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const idToken = getAuthorizationHeader();
 
-    if (idToken) {
-      config.headers.set("Authorization", `Bearer ${idToken}`);
-    }
+    if (idToken) config.headers.Authorization = idToken;
 
     return config;
   },
@@ -104,26 +102,24 @@ axiosInstance.interceptors.response.use(
       if (!refreshToken) {
         processQueue(error, null);
         isRefreshing = false;
-        confirmErrorToast("Session expired. Please login again.");
+        await confirmErrorToast("Session expired. Please login again.");
         handleLogout();
         return Promise.reject(error);
       }
 
       try {
-        // Call refresh API
+        // TODO: Call refresh API
         //
-        const newAccessToken = "";
+        const idToken = "";
 
-        // Save new token
+        // TODO: Save new token
         //
 
-        // Update original request header
-        if (originalRequest.headers) {
-          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
-        }
+        if (originalRequest.headers)
+          originalRequest.headers.Authorization = `Bearer ${idToken}`;
 
         // Process queued requests
-        processQueue(null, newAccessToken);
+        processQueue(null, idToken);
         isRefreshing = false;
 
         // Retry original request
@@ -131,7 +127,9 @@ axiosInstance.interceptors.response.use(
       } catch (refreshError) {
         processQueue(refreshError as AxiosError, null);
         isRefreshing = false;
-        confirmErrorToast("Unable to refresh session. Please login again.");
+        await confirmErrorToast(
+          "Unable to refresh session. Please login again."
+        );
         handleLogout();
         return Promise.reject(refreshError);
       }
@@ -143,7 +141,7 @@ axiosInstance.interceptors.response.use(
 
     // Network Error (no response from server)
     if (!error.response) {
-      confirmErrorToast(
+      await confirmErrorToast(
         "Unable to connect to server. Please check your internet connection."
       );
       return Promise.reject(error);
@@ -151,15 +149,17 @@ axiosInstance.interceptors.response.use(
 
     // Timeout Error
     if (error.code === "ECONNABORTED") {
-      confirmErrorToast("Request timeout. Please try again.");
+      await confirmErrorToast("Request timeout. Please try again.");
       return Promise.reject(error);
     }
 
     // 5XX SERVER ERRORS
     if (error.response.status >= 500) {
-      confirmErrorToast("Server error. Please try again later.");
+      await confirmErrorToast("Server error. Please try again later.");
       return Promise.reject(error);
     }
+
+    // TODO: handle catch cancel request. return early not show message toast
 
     return Promise.reject(error);
   }
