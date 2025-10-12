@@ -1,12 +1,13 @@
 "use client";
 // libs
-import { Check, Loader } from "lucide-react";
+import { Check } from "lucide-react";
 import { hasLocale, useLocale } from "next-intl";
 import { useState, useTransition } from "react";
 // types
 import { localeNames, type Locale } from "@/i18n/config";
 // components
 import CustomButton from "@/components/CustomButton";
+import { Spinner } from "@/components/ui/spinner";
 // others
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
@@ -32,12 +33,7 @@ const SelectLocale = () => {
   const getRightIcon = (locale: Locale) => {
     if (locale === localActive) return <Check />;
 
-    if (pending && locale === pendingLocale)
-      return (
-        <span className="animate-spin">
-          <Loader />
-        </span>
-      );
+    if (pending && locale === pendingLocale) return <Spinner />;
 
     return null;
   };
@@ -55,9 +51,7 @@ const SelectLocale = () => {
             className={`h-11 ${localActive === locale && "border-gray-900"}`}
             iconRight={getRightIcon(locale)}
           >
-            <div className="font-medium text-gray-900">
-              {localeNames[locale]}
-            </div>
+            {localeNames[locale]}
           </CustomButton>
         ))}
       </div>

@@ -1,11 +1,10 @@
-// libs
-import { Loader2Icon } from "lucide-react";
 // types
 import type { ComponentProps, ReactNode } from "react";
 import type { buttonVariants } from "@/components/ui/button";
 import type { VariantProps } from "class-variance-authority";
 // components
 import { Button as ButtonUI } from "@/components/ui/button";
+import { Spinner } from "../ui/spinner";
 // others
 import { cn } from "@/libs/utils";
 
@@ -40,7 +39,7 @@ const CustomButton = ({
     variant={variant}
     {...props}
   >
-    {loading ? <Loader2Icon className="animate-spin" /> : iconLeft}
+    {loading ? <Spinner /> : iconLeft}
     {props.children}
     {iconRight}
   </ButtonUI>
