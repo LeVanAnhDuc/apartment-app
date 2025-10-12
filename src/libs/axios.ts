@@ -9,7 +9,6 @@ import type {
 // stores
 import { authStoreState } from "@/stores";
 // others
-import CONSTANTS from "@/constants";
 import { confirmErrorToast, getAuthorizationHeader } from "@/utils";
 
 const API_TIMEOUT = 30000;
@@ -18,7 +17,7 @@ const handleLogout = () => {
   const { clearStorages } = authStoreState();
 
   clearStorages();
-  window.location.href = CONSTANTS.ROUTES.LOGIN;
+  // TODO: Redirect to login
 };
 
 let isRefreshing = false;
