@@ -12,12 +12,12 @@ import { getTranslatedMenuItems } from "@/dataSources/AvatarDropdown";
 
 const MenuItems = () => {
   const t = useTranslations("common");
-  const { setTheme } = useTheme();
+  const { setTheme, theme } = useTheme();
 
   const handleToggleTheme = () =>
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
-  const menuItems = getTranslatedMenuItems(t, handleToggleTheme);
+  const menuItems = getTranslatedMenuItems(t, handleToggleTheme, theme);
 
   return (
     <>

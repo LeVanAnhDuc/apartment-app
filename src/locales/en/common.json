@@ -12,6 +12,8 @@
     "settings": "Settings",
     "settingsDescription": "Manage preferences",
     "darkMode": "Dark Mode",
-    "darkModeDescription": "Toggle theme"
+    "darkModeDescription": "Toggle theme",
+    "lightMode": "Light Mode",
+    "lightModeDescription": "Toggle theme"
   }
 }
