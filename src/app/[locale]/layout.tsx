@@ -44,7 +44,7 @@ export default async function RootLayout({
   }
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body>
         <AppProvider>
           <NextIntlClientProvider>{children}</NextIntlClientProvider>

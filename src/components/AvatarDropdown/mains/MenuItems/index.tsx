@@ -1,21 +1,23 @@
 // libs
 import React from "react";
+import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 // components
 import {
   DropdownMenuItem,
   DropdownMenuLabel
 } from "@/components/ui/dropdown-menu";
-// contexts
-import { useThemeContext } from "@/hooks";
 // dataSources
 import { getTranslatedMenuItems } from "@/dataSources/AvatarDropdown";
 
 const MenuItems = () => {
   const t = useTranslations("common");
-  const { toggleTheme } = useThemeContext();
+  const { setTheme } = useTheme();
 
-  const menuItems = getTranslatedMenuItems(t, toggleTheme);
+  const handleToggleTheme = () =>
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+  const menuItems = getTranslatedMenuItems(t, handleToggleTheme);
 
   return (
     <>
