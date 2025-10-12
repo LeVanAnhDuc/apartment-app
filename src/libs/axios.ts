@@ -9,7 +9,12 @@ import type {
 // stores
 import { authStoreState } from "@/stores";
 // others
-import { confirmErrorToast, getAuthorizationHeader } from "@/utils";
+import {
+  confirmErrorToast,
+  getAuthorizationHeader,
+  getCurrentLocale
+} from "@/utils";
+import CONSTANTS from "@/constants";
 
 const API_TIMEOUT = 30000;
 
@@ -17,7 +22,9 @@ const handleLogout = () => {
   const { clearStorages } = authStoreState();
 
   clearStorages();
-  // TODO: Redirect to login
+
+  const currentLocale = getCurrentLocale();
+  window.location.href = `/${currentLocale}${CONSTANTS.ROUTES.LOGIN}`;
 };
 
 let isRefreshing = false;

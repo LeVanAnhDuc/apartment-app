@@ -1,8 +1,12 @@
 // libs
 import { toast } from "sonner";
 import { jwtDecode } from "jwt-decode";
+// types
+import type { Locale } from "next-intl";
 // stores
 import { authStoreState } from "@/stores";
+// i18n
+import { defaultLocale, locales } from "@/i18n/config";
 
 export const confirmErrorToast = (message: string): Promise<void> =>
   new Promise((resolve) => {
@@ -28,5 +32,17 @@ export const decodeToken = <T>(token: string) => {
     return jwtDecode<T>(token);
   } catch {
     return undefined;
+  }
+};
+
+export const getCurrentLocale = (): Locale => {
+  try {
+    const pathname = window.location.pathname;
+    const localeMatch = pathname.match(/\/([^/]+)/);
+    const locale = localeMatch?.[1] as Locale;
+
+    return locales.includes(locale) ? locale : defaultLocale;
+  } catch {
+    return defaultLocale;
   }
 };
