@@ -1,8 +1,6 @@
 // libs
 import axiosInstance from "@/libs/axios";
 // types
-import type { LoginFormValues, LoginSuccessResponse } from "@/types/Login";
-import type { LogoutSuccessResponse } from "@/types/Login";
 import type {
   RequestResetFormValues,
   VerifyCodeFormValues,
@@ -14,26 +12,6 @@ import type {
 // constants
 import CONSTANTS from "@/constants";
 
-export const login = async (
-  credentials: LoginFormValues
-): Promise<LoginSuccessResponse> => {
-  const { data } = await axiosInstance.post<LoginSuccessResponse>(
-    CONSTANTS.END_POINTS.AUTH.LOGIN,
-    credentials
-  );
-
-  return data;
-};
-
-export const logout = async (): Promise<LogoutSuccessResponse> => {
-  const { data } = await axiosInstance.post<LogoutSuccessResponse>(
-    CONSTANTS.END_POINTS.AUTH.LOGOUT
-  );
-
-  return data;
-};
-
-// Forgot Password API functions
 export const requestReset = async (
   values: RequestResetFormValues
 ): Promise<RequestResetSuccessResponse> => {
