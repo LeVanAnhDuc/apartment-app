@@ -17,10 +17,7 @@ import InputPassword from "../InputPassword";
 import { loginFormProps } from "@/forms/Login";
 
 const FormLogin = () => {
-  const methods = useForm<LoginFormValues>({
-    ...loginFormProps,
-    mode: "onChange"
-  });
+  const methods = useForm<LoginFormValues>({ ...loginFormProps });
 
   const { mutate: login, isPending } = useLoginMutation();
 

@@ -12,15 +12,11 @@ import InputEmail from "../InputEmail";
 import InputFullName from "../InputFullName";
 import InputPassword from "../InputPassword";
 import InputPasswordConfirm from "../InputPasswordConfirm";
-
 // forms
 import { signupFormProps } from "@/forms/Signup";
 
 const FormSignup = () => {
-  const methods = useForm<SignupFormValues>({
-    ...signupFormProps,
-    mode: "onChange"
-  });
+  const methods = useForm<SignupFormValues>({ ...signupFormProps });
 
   return (
     <FormProvider {...methods}>

@@ -1,22 +1,17 @@
 "use client";
 
 // libs
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 // types
 import type { VerifyCodeFormValues } from "@/types/ForgotPassword";
 // components
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
 import CustomButton from "@/components/CustomButton";
-import OtpInputField from "../OtpInputField";
+import InputOtp from "../InputOtp";
 import ResendCodeSection from "../ResendCodeSection";
 // forms
-import {
-  verifyCodeValidation,
-  initialVerifyCodeFormData
-} from "@/forms/ForgotPassword";
+import { verifyCodeFormProps } from "@/forms/ForgotPassword";
 // services
 import { useVerifyCodeMutation } from "@/services/auths";
 
@@ -30,47 +25,46 @@ const VerifyCodeForm = ({
   onBack: () => void;
 }) => {
   const t = useTranslations("forgotPassword");
-  const verifyCodeMutation = useVerifyCodeMutation();
+  const methods = useForm<VerifyCodeFormValues>({ ...verifyCodeFormProps });
 
-  const form = useForm<VerifyCodeFormValues>({
-    resolver: zodResolver(verifyCodeValidation),
-    defaultValues: initialVerifyCodeFormData
-  });
+  const { mutate: verifyCode, isPending } = useVerifyCodeMutation();
 
-  const onSubmit = async (values: VerifyCodeFormValues) => {
-    await verifyCodeMutation.mutateAsync({ ...values, email });
-    onSuccess();
+  const onSubmit = (values: VerifyCodeFormValues) => {
+    verifyCode(
+      { ...values, email },
+      {
+        onSuccess
+      }
+    );
   };
 
-  const handleAutoSubmit = () => form.handleSubmit(onSubmit)();
-
-  const isLoading = verifyCodeMutation.isPending;
+  const handleAutoSubmit = () => methods.handleSubmit(onSubmit)();
 
   return (
     <div className="space-y-4">
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <OtpInputField disabled={isLoading} onAutoSubmit={handleAutoSubmit} />
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4">
+          <InputOtp onAutoSubmit={handleAutoSubmit} />
 
           <CustomButton
             type="submit"
             fullWidth
-            loading={verifyCodeMutation.isPending}
-            disabled={isLoading}
+            loading={isPending}
+            disabled={isPending}
           >
             {t("form.step2.button.verify")}
           </CustomButton>
         </form>
-      </Form>
+      </FormProvider>
 
-      <ResendCodeSection email={email} disabled={isLoading} />
+      <ResendCodeSection email={email} disabled={isPending} />
 
       <div className="text-center">
         <Button
           variant="link"
           onClick={onBack}
           className="text-sm"
-          disabled={isLoading}
+          disabled={isPending}
         >
           {t("form.step2.button.backToEmail")}
         </Button>

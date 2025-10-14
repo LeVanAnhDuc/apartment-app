@@ -22,13 +22,7 @@ import CONSTANTS from "@/constants";
 const { OTP_LENGTH } = CONSTANTS.FORGOT_PASSWORD;
 const { OTP } = CONSTANTS.FIELD_NAMES.FORGOT_PASSWORD_FIELD_NAMES;
 
-const OtpInputField = ({
-  disabled,
-  onAutoSubmit
-}: {
-  disabled?: boolean;
-  onAutoSubmit?: () => void;
-}) => {
+const InputOtp = ({ onAutoSubmit }: { onAutoSubmit?: () => void }) => {
   const t = useTranslations("forgotPassword");
   const { field } = useFieldProps<VerifyCodeFormValues>(OTP);
 
@@ -49,7 +43,6 @@ const OtpInputField = ({
                   onAutoSubmit();
                 }
               }}
-              disabled={disabled}
             >
               <div className="flex w-full">
                 {Array.from({ length: OTP_LENGTH }).map((_, index) => (
@@ -65,4 +58,4 @@ const OtpInputField = ({
   );
 };
 
-export default OtpInputField;
+export default InputOtp;

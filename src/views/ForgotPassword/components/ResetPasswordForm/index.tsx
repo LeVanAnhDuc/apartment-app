@@ -1,20 +1,16 @@
 "use client";
 
 // libs
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 // types
 import type { ResetPasswordFormValues } from "@/types/ForgotPassword";
 // components
-import { Form } from "@/components/ui/form";
 import CustomButton from "@/components/CustomButton";
-import PasswordInputFields from "../PasswordInputFields";
+import InputNewPassword from "../InputNewPassword";
+import InputConfirmPassword from "../InputConfirmPassword";
 // forms
-import {
-  resetPasswordValidation,
-  initialResetPasswordFormData
-} from "@/forms/ForgotPassword";
+import { resetPasswordFormProps } from "@/forms/ForgotPassword";
 // services
 import { useResetPasswordMutation } from "@/services/auths";
 
@@ -26,33 +22,37 @@ const ResetPasswordForm = ({
   onSuccess: () => void;
 }) => {
   const t = useTranslations("forgotPassword");
-  const resetPasswordMutation = useResetPasswordMutation();
-
-  const form = useForm<ResetPasswordFormValues>({
-    resolver: zodResolver(resetPasswordValidation),
-    defaultValues: initialResetPasswordFormData
+  const methods = useForm<ResetPasswordFormValues>({
+    ...resetPasswordFormProps
   });
 
-  const onSubmit = async (values: ResetPasswordFormValues) => {
-    await resetPasswordMutation.mutateAsync({ ...values, email });
-    onSuccess();
+  const { mutate: resetPassword, isPending } = useResetPasswordMutation();
+
+  const onSubmit = (values: ResetPasswordFormValues) => {
+    resetPassword(
+      { ...values, email },
+      {
+        onSuccess
+      }
+    );
   };
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-        <PasswordInputFields disabled={resetPasswordMutation.isPending} />
+    <FormProvider {...methods}>
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-4">
+        <InputNewPassword />
+        <InputConfirmPassword />
 
         <CustomButton
           type="submit"
           fullWidth
-          loading={resetPasswordMutation.isPending}
-          disabled={resetPasswordMutation.isPending}
+          loading={isPending}
+          disabled={isPending}
         >
           {t("form.step3.button.resetPassword")}
         </CustomButton>
       </form>
-    </Form>
+    </FormProvider>
   );
 };
 

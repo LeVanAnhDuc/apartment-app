@@ -3,7 +3,7 @@
 // libs
 import { useTranslations } from "next-intl";
 // types
-import type { RequestResetFormValues } from "@/types/ForgotPassword";
+import type { ResetPasswordFormValues } from "@/types/ForgotPassword";
 // components
 import { Input } from "@/components/ui/input";
 import {
@@ -18,26 +18,25 @@ import { useFieldProps } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
 
-const { EMAIL } = CONSTANTS.FIELD_NAMES.FORGOT_PASSWORD_FIELD_NAMES;
+const { CONFIRM_PASSWORD } = CONSTANTS.FIELD_NAMES.FORGOT_PASSWORD_FIELD_NAMES;
 
-const EmailInputField = ({ disabled }: { disabled?: boolean }) => {
+const InputConfirmPassword = () => {
   const t = useTranslations("forgotPassword");
-  const { field, fieldState } = useFieldProps<RequestResetFormValues>(EMAIL);
+  const { field, fieldState } =
+    useFieldProps<ResetPasswordFormValues>(CONFIRM_PASSWORD);
 
   return (
     <FormField
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t("form.step1.input.labelEmail")}</FormLabel>
+          <FormLabel>{t("form.step3.input.labelConfirmPassword")}</FormLabel>
           <FormControl>
             <Input
               {...field}
-              type="email"
-              placeholder={t("form.step1.input.placeholderEmail")}
+              type="password"
+              placeholder={t("form.step3.input.placeholderConfirmPassword")}
               aria-invalid={fieldState.invalid}
-              disabled={disabled}
-              autoFocus
             />
           </FormControl>
           <FormMessage />
@@ -47,4 +46,4 @@ const EmailInputField = ({ disabled }: { disabled?: boolean }) => {
   );
 };
 
-export default EmailInputField;
+export default InputConfirmPassword;
