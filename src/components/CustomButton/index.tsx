@@ -8,15 +8,6 @@ import { Spinner } from "../ui/spinner";
 // others
 import { cn } from "@/libs/utils";
 
-interface ButtonProps
-  extends ComponentProps<"button">,
-    VariantProps<typeof buttonVariants> {
-  loading?: boolean;
-  iconRight?: ReactNode;
-  iconLeft?: ReactNode;
-  fullWidth?: boolean;
-}
-
 const CustomButton = ({
   className,
   loading,
@@ -25,7 +16,13 @@ const CustomButton = ({
   iconRight,
   iconLeft,
   ...props
-}: ButtonProps) => (
+}: ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & {
+    loading?: boolean;
+    iconRight?: ReactNode;
+    iconLeft?: ReactNode;
+    fullWidth?: boolean;
+  }) => (
   <ButtonUI
     className={cn(
       "hover:cursor-pointer",

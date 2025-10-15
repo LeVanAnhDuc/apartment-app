@@ -6,7 +6,9 @@ import type { useTranslations as useTranslationsType } from "next-intl";
 export const getTranslatedMenuItems = (
   t: ReturnType<typeof useTranslationsType<"common">>,
   toggleTheme?: () => void,
-  currentTheme?: string | undefined
+  currentTheme?: string | undefined,
+  onProfileClick?: () => void,
+  onSettingsClick?: () => void
 ) => {
   const isDarkMode = currentTheme === "dark";
 
@@ -16,14 +18,14 @@ export const getTranslatedMenuItems = (
       icon: User,
       label: t("avatarDropdown.profile"),
       description: t("avatarDropdown.profileDescription"),
-      action: () => console.log("Profile clicked")
+      action: onProfileClick || (() => {})
     },
     {
       key: "settings",
       icon: Settings,
       label: t("avatarDropdown.settings"),
       description: t("avatarDropdown.settingsDescription"),
-      action: () => console.log("Settings clicked")
+      action: onSettingsClick || (() => {})
     },
     {
       key: "themeToggle",

@@ -17,7 +17,23 @@ const MenuItems = () => {
   const handleToggleTheme = () =>
     setTheme((prev) => (prev === "light" ? "dark" : "light"));
 
-  const menuItems = getTranslatedMenuItems(t, handleToggleTheme, theme);
+  const handleProfileClick = () => {
+    // TODO: Implement profile navigation
+    // Example: router.push('/profile');
+  };
+
+  const handleSettingsClick = () => {
+    // TODO: Implement settings navigation
+    // Example: router.push('/settings');
+  };
+
+  const menuItems = getTranslatedMenuItems(
+    t,
+    handleToggleTheme,
+    theme,
+    handleProfileClick,
+    handleSettingsClick
+  );
 
   return (
     <>

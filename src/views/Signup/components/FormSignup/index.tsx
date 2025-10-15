@@ -18,13 +18,13 @@ import { signupFormProps } from "@/forms/Signup";
 const FormSignup = () => {
   const methods = useForm<SignupFormValues>({ ...signupFormProps });
 
+  // TODO: Implement signup mutation when backend is ready
+  // Example: const { mutate: signup } = useSignupMutation();
+  // const onSubmit = (data: SignupFormValues) => signup(data);
+
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit((data) =>
-          console.log("Form data:", data)
-        )}
-      >
+      <form onSubmit={methods.handleSubmit(() => {})}>
         <div className="flex flex-col gap-6">
           <InputFullName />
           <InputEmail />

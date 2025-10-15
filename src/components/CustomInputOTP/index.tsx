@@ -3,7 +3,14 @@ import { InputOTP as InputOTPUI } from "@/components/ui/input-otp";
 // others
 import { cn } from "@/libs/utils";
 
-interface CustomInputOTPProps {
+const CustomInputOTP = ({
+  className,
+  containerClassName,
+  fullWidth,
+  maxLength,
+  children,
+  ...props
+}: {
   fullWidth?: boolean;
   maxLength: number;
   value?: string;
@@ -12,16 +19,7 @@ interface CustomInputOTPProps {
   className?: string;
   containerClassName?: string;
   children?: React.ReactNode;
-}
-
-const CustomInputOTP = ({
-  className,
-  containerClassName,
-  fullWidth,
-  maxLength,
-  children,
-  ...props
-}: CustomInputOTPProps) => (
+}) => (
   <InputOTPUI
     maxLength={maxLength}
     data-slot="input-otp"

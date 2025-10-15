@@ -1,6 +1,6 @@
 // types
 import type { AuthState, AuthStore, UserAttributes } from "@/types/stores";
-import type { IToken } from "@/types/token";
+import type { Token } from "@/types/token";
 import type { StateCreator } from "zustand";
 // others
 import { decodeToken } from "@/utils";
@@ -14,7 +14,7 @@ const initialState: AuthState = {
 const createAuthSlice: StateCreator<AuthStore> = (set) => ({
   ...initialState,
 
-  setTokens: (tokens: IToken) => {
+  setTokens: (tokens: Token) => {
     const { idToken, accessToken } = tokens;
 
     const userAttributes = decodeToken<UserAttributes>(idToken);

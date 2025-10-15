@@ -10,7 +10,7 @@ import RequestResetStep from "./mains/RequestResetStep";
 import VerifyCodeStep from "./mains/VerifyCodeStep";
 import ResetPasswordStep from "./mains/ResetPasswordStep";
 // dataSources
-import { EForgotPasswordStep } from "@/dataSources/ForgotPassword/enums";
+import { ForgotPasswordStep } from "@/dataSources/ForgotPassword/enums";
 // others
 import CONSTANTS from "@/constants";
 
@@ -18,9 +18,9 @@ const { ANIMATION_DURATION } = CONSTANTS.FORGOT_PASSWORD;
 
 const ForgotPassword = () => {
   const router = useRouter();
-  const [currentStep, setCurrentStep] = useState<
-    UnionEnum<EForgotPasswordStep>
-  >(EForgotPasswordStep.REQUEST_RESET);
+  const [currentStep, setCurrentStep] = useState<UnionEnum<ForgotPasswordStep>>(
+    ForgotPasswordStep.REQUEST_RESET
+  );
   const [email, setEmail] = useState<string>("");
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -28,7 +28,7 @@ const ForgotPassword = () => {
     setEmail(values.email);
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentStep(EForgotPasswordStep.VERIFY_CODE);
+      setCurrentStep(ForgotPasswordStep.VERIFY_CODE);
       setIsAnimating(false);
     }, ANIMATION_DURATION);
   };
@@ -36,7 +36,7 @@ const ForgotPassword = () => {
   const handleVerifyCodeSuccess = () => {
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentStep(EForgotPasswordStep.RESET_PASSWORD);
+      setCurrentStep(ForgotPasswordStep.RESET_PASSWORD);
       setIsAnimating(false);
     }, ANIMATION_DURATION);
   };
@@ -48,13 +48,13 @@ const ForgotPassword = () => {
   const handleBackToRequestReset = () => {
     setIsAnimating(true);
     setTimeout(() => {
-      setCurrentStep(EForgotPasswordStep.REQUEST_RESET);
+      setCurrentStep(ForgotPasswordStep.REQUEST_RESET);
       setIsAnimating(false);
     }, ANIMATION_DURATION);
   };
 
   const renderStep = () => {
-    const { REQUEST_RESET, VERIFY_CODE, RESET_PASSWORD } = EForgotPasswordStep;
+    const { REQUEST_RESET, VERIFY_CODE, RESET_PASSWORD } = ForgotPasswordStep;
     switch (currentStep) {
       case REQUEST_RESET:
         return (

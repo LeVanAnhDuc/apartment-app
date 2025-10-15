@@ -1,5 +1,5 @@
 // types
-import type { IToken } from "../token";
+import type { Token } from "../token";
 
 export interface UserAttributes {
   _id: string;
@@ -15,12 +15,12 @@ export interface UserAttributes {
   updatedAt: string;
 }
 
-export interface AuthState extends Partial<IToken> {
+export interface AuthState extends Partial<Token> {
   userAttributes?: UserAttributes;
 }
 
 export interface AuthActions {
-  setTokens: (tokens: IToken) => void;
+  setTokens: (tokens: Token) => void;
   clearStorages: () => void;
 }
 

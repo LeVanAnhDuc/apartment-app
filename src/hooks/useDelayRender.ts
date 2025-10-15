@@ -5,9 +5,11 @@ const useDelayRender = (delay = 500) => {
   const [isDelayed, setDelayed] = useState(true);
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setDelayed(false);
     }, delay);
+
+    return () => clearTimeout(timer);
   }, [delay]);
 
   return isDelayed;
