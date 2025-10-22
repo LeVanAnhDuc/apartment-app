@@ -4,7 +4,7 @@ import { isAxiosError } from "axios";
 // others
 import { errorToast } from "@/utils";
 
-function getErrorMessage(error: unknown): string {
+const getErrorMessage = (error: unknown): string => {
   if (isAxiosError(error)) {
     const status = error.response?.status;
     const message = error.response?.data?.message;
@@ -24,9 +24,9 @@ function getErrorMessage(error: unknown): string {
   if (error instanceof Error) return error.message;
 
   return "An unknown error occurred.";
-}
+};
 
-function queryErrorHandler(error: unknown): void {
+const queryErrorHandler = (error: unknown): void => {
   if (isAxiosError(error)) {
     const status = error.response?.status;
 
@@ -48,7 +48,7 @@ function queryErrorHandler(error: unknown): void {
   const message = getErrorMessage(error);
 
   errorToast(message);
-}
+};
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({

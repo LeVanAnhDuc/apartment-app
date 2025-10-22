@@ -10,13 +10,13 @@ const { LOGIN, HOME } = CONSTANTS.ROUTES;
 
 const intlMiddleware = createMiddleware(routing);
 
-export function middleware(request: NextRequest) {
+export const middleware = (request: NextRequest) => {
   if (request.nextUrl.pathname === HOME) {
     return NextResponse.redirect(new URL(LOGIN, request.url));
   }
 
   return intlMiddleware(request);
-}
+};
 
 export const config = {
   matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
