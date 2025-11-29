@@ -15,5 +15,20 @@
     "darkModeDescription": "Chuyển đổi giao diện",
     "lightMode": "Chế độ sáng",
     "lightModeDescription": "Chuyển đổi giao diện"
+  },
+  "or": "hoặc",
+  "footer": {
+    "help": "Trợ giúp",
+    "privacy": "Quyền riêng tư",
+    "terms": "Điều khoản"
+  },
+  "validation": {
+    "email": {
+      "required": "Vui lòng nhập email",
+      "invalid": "Email không hợp lệ"
+    },
+    "password": {
+      "required": "Vui lòng nhập mật khẩu"
+    }
   }
 }

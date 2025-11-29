@@ -15,5 +15,20 @@
     "darkModeDescription": "Toggle theme",
     "lightMode": "Light Mode",
     "lightModeDescription": "Toggle theme"
+  },
+  "or": "or",
+  "footer": {
+    "help": "Help",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
+  "validation": {
+    "email": {
+      "required": "Please enter email",
+      "invalid": "Invalid email"
+    },
+    "password": {
+      "required": "Please enter password"
+    }
   }
 }

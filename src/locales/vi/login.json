@@ -2,19 +2,25 @@
   "title": "Trang đăng nhập",
   "form": {
     "title": "Đăng nhập",
-    "description": "Nhập email của bạn bên dưới để đăng nhập vào tài khoản của bạn.",
+    "titleWelcome": "Chào mừng",
+    "description": "Tiếp tục để sử dụng dịch vụ",
     "input": {
       "labelEmail": "Email",
-      "labelPassword": "Mật khẩu"
+      "labelPassword": "Mật khẩu",
+      "labelEnterPassword": "Nhập mật khẩu của bạn",
+      "placeholderPassword": "Nhập mật khẩu"
     },
     "button": {
       "login": "Đăng nhập",
-      "loginWithGoogle": "Đăng nhập bằng Google"
+      "loginWithGoogle": "Đăng nhập với Google",
+      "loginWithFacebook": "Đăng nhập với Facebook",
+      "next": "Tiếp theo",
+      "tryAnother": "Thử cách khác"
     }
   },
   "link": {
-    "forgotPassword": "Quên mật khẩu",
+    "forgotPassword": "Quên mật khẩu?",
     "descriptionSignUp": "Chưa có tài khoản",
-    "signUp": "Đăng ký"
+    "signUp": "Tạo tài khoản"
   }
 }
