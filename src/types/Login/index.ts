@@ -1,8 +1,13 @@
 // types
 import type { z } from "zod";
-import type { loginFormValidation } from "@/forms/Login/validations";
+import type {
+  emailStepValidation,
+  passwordStepValidation
+} from "@/forms/Login/validations";
 
-export type LoginFormValues = z.infer<typeof loginFormValidation>;
+export type EmailStepFormValues = z.infer<typeof emailStepValidation>;
+export type PasswordStepFormValues = z.infer<typeof passwordStepValidation>;
+export type LoginFormValues = EmailStepFormValues & PasswordStepFormValues;
 
 export interface LoginDataResponse {
   accessToken: string;

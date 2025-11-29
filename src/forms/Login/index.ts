@@ -2,12 +2,20 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 // types
 import type { UseFormProps } from "react-hook-form";
-import type { LoginFormValues } from "@/types/Login";
+import type {
+  EmailStepFormValues,
+  PasswordStepFormValues
+} from "@/types/Login";
 // forms
-import { initialLoginFormData } from "./data";
-import { loginFormValidation } from "./validations";
+import { initialEmailStepData, initialPasswordStepData } from "./data";
+import { emailStepValidation, passwordStepValidation } from "./validations";
 
-export const loginFormProps: UseFormProps<LoginFormValues> = {
-  defaultValues: initialLoginFormData,
-  resolver: zodResolver(loginFormValidation)
+export const emailStepFormProps: UseFormProps<EmailStepFormValues> = {
+  defaultValues: initialEmailStepData,
+  resolver: zodResolver(emailStepValidation)
+};
+
+export const passwordStepFormProps: UseFormProps<PasswordStepFormValues> = {
+  defaultValues: initialPasswordStepData,
+  resolver: zodResolver(passwordStepValidation)
 };
