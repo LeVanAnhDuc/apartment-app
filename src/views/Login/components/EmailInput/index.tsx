@@ -1,8 +1,8 @@
 // libs
 import { useTranslations } from "next-intl";
 // types
-import type { LoginFormValues } from "@/types/Login";
-// component
+import type { EmailStepFormValues } from "@/types/Login";
+// components
 import { Input } from "@/components/ui/input";
 import {
   FormControl,
@@ -18,22 +18,24 @@ import CONSTANTS from "@/constants";
 
 const { EMAIL } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 
-const InputEmail = () => {
+const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("login.form.input");
-  const { field, fieldState } = useFieldProps<LoginFormValues>(EMAIL);
+  const { field, fieldState } = useFieldProps<EmailStepFormValues>(EMAIL);
 
   return (
     <FormField
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t("labelEmail")}</FormLabel>
+          <FormLabel className="text-foreground">{t("labelEmail")}</FormLabel>
           <FormControl>
             <Input
               {...field}
-              placeholder="m@example.com"
+              type="email"
+              placeholder="example@gmail.com"
               aria-invalid={fieldState.invalid}
-              autoFocus
+              disabled={disabled}
+              className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 transition-all duration-200"
             />
           </FormControl>
           <FormMessage />
@@ -43,4 +45,4 @@ const InputEmail = () => {
   );
 };
 
-export default InputEmail;
+export default EmailInput;

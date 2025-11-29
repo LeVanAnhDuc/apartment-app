@@ -1,6 +1,6 @@
 // component
-import LoginBlock from "./mains/LoginBlock";
+import LoginStepSwitch from "./mains/LoginStepSwitch";
 
-const Login = () => <LoginBlock />;
+const Login = () => <LoginStepSwitch />;
 
 export default Login;
