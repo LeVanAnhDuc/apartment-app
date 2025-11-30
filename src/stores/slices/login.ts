@@ -14,6 +14,8 @@ const createLoginSlice: StateCreator<LoginStore> = (set) => ({
 
   goToPasswordStep: (email: string) => set({ email, step: "password" }),
 
+  goToAlternativeStep: () => set({ step: "alternative" }),
+
   goToEmailStep: () => set({ step: "email" }),
 
   reset: () => set(initialState)

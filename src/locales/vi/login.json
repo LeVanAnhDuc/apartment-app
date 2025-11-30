@@ -3,7 +3,9 @@
   "form": {
     "title": "Đăng nhập",
     "titleWelcome": "Chào mừng",
+    "titleChooseMethod": "Chọn cách đăng nhập",
     "description": "Tiếp tục để sử dụng dịch vụ",
+    "descriptionChooseMethod": "Chọn phương thức đăng nhập phù hợp với bạn",
     "input": {
       "labelEmail": "Email",
       "labelPassword": "Mật khẩu",
@@ -16,6 +18,24 @@
       "loginWithFacebook": "Đăng nhập với Facebook",
       "next": "Tiếp theo",
       "tryAnother": "Thử cách khác"
+    },
+    "alternative": {
+      "magicLink": {
+        "title": "Đăng nhập bằng Magic Link",
+        "description": "Nhận link đăng nhập qua email"
+      },
+      "otp": {
+        "title": "Đăng nhập bằng OTP",
+        "description": "Nhận mã xác thực qua email hoặc SMS"
+      },
+      "password": {
+        "title": "Đăng nhập bằng mật khẩu",
+        "description": "Sử dụng mật khẩu của bạn"
+      },
+      "contactAdmin": {
+        "title": "Liên hệ quản trị viên",
+        "description": "Yêu cầu hỗ trợ từ quản trị viên"
+      }
     }
   },
   "link": {

@@ -3,7 +3,9 @@
   "form": {
     "title": "Login",
     "titleWelcome": "Welcome",
+    "titleChooseMethod": "Choose login method",
     "description": "Continue to use the service",
+    "descriptionChooseMethod": "Choose the login method that suits you",
     "input": {
       "labelEmail": "Email",
       "labelPassword": "Password",
@@ -16,6 +18,24 @@
       "loginWithFacebook": "Sign in with Facebook",
       "next": "Next",
       "tryAnother": "Try another way"
+    },
+    "alternative": {
+      "magicLink": {
+        "title": "Login with Magic Link",
+        "description": "Receive login link via email"
+      },
+      "otp": {
+        "title": "Login with OTP",
+        "description": "Receive verification code via email or SMS"
+      },
+      "password": {
+        "title": "Login with password",
+        "description": "Use your password"
+      },
+      "contactAdmin": {
+        "title": "Contact administrator",
+        "description": "Request support from administrator"
+      }
     }
   },
   "link": {

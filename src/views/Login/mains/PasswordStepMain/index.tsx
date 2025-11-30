@@ -9,7 +9,7 @@ import type { PasswordStepFormValues } from "@/types/Login";
 // components
 import CustomButton from "@/components/CustomButton";
 import BackButton from "../../components/BackButton";
-import EmailBadge from "../../../../components/EmailBadge";
+import EmailBadge from "@/components/EmailBadge";
 import PasswordInput from "../../components/PasswordInput";
 import ForgotPasswordLink from "../../components/ForgotPasswordLink";
 import TryAnotherButton from "../../components/TryAnotherButton";
@@ -30,6 +30,9 @@ const PasswordStepMain = () => {
   const t = useTranslations("login.form");
   const email = useLoginStore((state) => state.email);
   const goToEmailStep = useLoginStore((state) => state.goToEmailStep);
+  const goToAlternativeStep = useLoginStore(
+    (state) => state.goToAlternativeStep
+  );
 
   const { mutate: login, isPending } = useLoginMutation();
 
@@ -40,7 +43,7 @@ const PasswordStepMain = () => {
   };
 
   const handleTryAnother = () => {
-    goToEmailStep();
+    goToAlternativeStep();
   };
 
   return (
