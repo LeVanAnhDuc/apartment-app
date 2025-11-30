@@ -21,6 +21,8 @@ const AlternativeLoginMain = () => {
   const tAlt = useTranslations("login.form.alternative");
   const email = useLoginStore((state) => state.email);
   const goToPasswordStep = useLoginStore((state) => state.goToPasswordStep);
+  const goToOtpStep = useLoginStore((state) => state.goToOtpStep);
+  const goToMagicLinkStep = useLoginStore((state) => state.goToMagicLinkStep);
   const goToEmailStep = useLoginStore((state) => state.goToEmailStep);
 
   const handleSelectPassword = useCallback(() => {
@@ -28,12 +30,12 @@ const AlternativeLoginMain = () => {
   }, [email, goToPasswordStep]);
 
   const handleSelectMagicLink = useCallback(() => {
-    // TODO: Implement magic link flow
-  }, []);
+    goToMagicLinkStep();
+  }, [goToMagicLinkStep]);
 
   const handleSelectOTP = useCallback(() => {
-    // TODO: Implement OTP flow
-  }, []);
+    goToOtpStep();
+  }, [goToOtpStep]);
 
   const handleContactAdmin = useCallback(() => {
     // TODO: Implement contact admin flow

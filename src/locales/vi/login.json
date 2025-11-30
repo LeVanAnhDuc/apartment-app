@@ -36,6 +36,38 @@
         "title": "Liên hệ quản trị viên",
         "description": "Yêu cầu hỗ trợ từ quản trị viên"
       }
+    },
+    "otp": {
+      "title": "Nhập mã xác thực",
+      "description": "Chúng tôi đã gửi mã OTP đến",
+      "instruction": "Vui lòng nhập mã 6 chữ số được gửi đến email của bạn",
+      "verifying": "Đang xác thực...",
+      "resendSuccess": "Mã OTP đã được gửi lại!",
+      "button": {
+        "resend": "Gửi lại mã OTP",
+        "resendIn": "Gửi lại sau {seconds}s",
+        "sending": "Đang gửi...",
+        "tryOther": "Thử phương thức khác"
+      }
+    },
+    "magicLink": {
+      "title": "Kiểm tra email của bạn",
+      "description": "Chúng tôi đã gửi magic link đến",
+      "instruction": {
+        "check": "Vui lòng kiểm tra hộp thư của bạn",
+        "detail": "Nhấp vào link trong email để đăng nhập ngay lập tức. Link này sẽ hết hạn sau 10 phút."
+      },
+      "hint": {
+        "title": "Không thấy email?",
+        "description": "Hãy kiểm tra thư mục spam hoặc thư rác"
+      },
+      "resendSuccess": "Magic link đã được gửi lại!",
+      "button": {
+        "resend": "Gửi lại magic link",
+        "resendIn": "Gửi lại sau {seconds}s",
+        "sending": "Đang gửi...",
+        "tryOther": "Thử phương thức khác"
+      }
     }
   },
   "link": {
