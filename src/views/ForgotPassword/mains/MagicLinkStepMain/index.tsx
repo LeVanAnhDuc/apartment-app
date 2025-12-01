@@ -8,39 +8,31 @@ import { motion } from "framer-motion";
 import BackButton from "@/views/Login/components/BackButton";
 import EmailBadge from "@/components/EmailBadge";
 import AuthFooter from "@/components/AuthFooter";
-import ForgotPasswordIcon from "../../components/ForgotPasswordIcon";
-import OtpInput from "../../components/OtpInput";
-import OtpVerifyingStatus from "../../components/OtpVerifyingStatus";
-import OtpInstructionBox from "../../components/OtpInstructionBox";
-import ResendOtpButton from "../../components/ResendOtpButton";
+import MagicLinkIcon from "../../components/MagicLinkIcon";
+import MagicLinkInstructions from "../../components/MagicLinkInstructions";
+import ResendMagicLinkButton from "../../components/ResendMagicLinkButton";
 // ghosts
-import CountdownEffect from "../../ghosts/CountdownEffect";
-import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
+import MagicLinkCountdownEffect from "../../ghosts/MagicLinkCountdownEffect";
 // stores
 import { useForgotPasswordStore } from "@/stores";
 // hooks
-import { useOtpVerification } from "../../hooks/useOtpVerification";
+import { useMagicLink } from "../../hooks/useMagicLink";
 
-const OtpStepMain = () => {
-  const t = useTranslations("forgotPassword.form.otp");
+const MagicLinkStepMain = () => {
+  const t = useTranslations("forgotPassword.form.magicLink");
   const email = useForgotPasswordStore((state) => state.email);
   const goToOptionsStep = useForgotPasswordStore(
     (state) => state.goToOptionsStep
   );
 
   const {
-    otpValue,
     countdown,
     canResend,
-    isVerifying,
     isResending,
-    handleOtpChange,
     handleResend,
-    verifyOtp,
     setCountdown,
-    setCanResend,
-    OTP_LENGTH
-  } = useOtpVerification();
+    setCanResend
+  } = useMagicLink();
 
   const handleBack = useCallback(() => {
     goToOptionsStep(email);
@@ -56,11 +48,11 @@ const OtpStepMain = () => {
         className="w-full max-w-md"
       >
         <div className="auth-card relative p-8 md:p-10">
-          <BackButton onClick={handleBack} disabled={isVerifying} />
+          <BackButton onClick={handleBack} />
 
           <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">
-              <ForgotPasswordIcon variant="lock" />
+              <MagicLinkIcon />
             </div>
 
             <motion.div
@@ -77,26 +69,12 @@ const OtpStepMain = () => {
 
           <EmailBadge email={email} />
 
-          <div className="mb-6">
-            <div className="mb-2">
-              <OtpInput
-                value={otpValue}
-                onChange={handleOtpChange}
-                disabled={isVerifying}
-                length={OTP_LENGTH}
-              />
-            </div>
+          <MagicLinkInstructions />
 
-            {isVerifying && <OtpVerifyingStatus />}
-          </div>
-
-          <OtpInstructionBox />
-
-          <ResendOtpButton
+          <ResendMagicLinkButton
             countdown={countdown}
             canResend={canResend}
             isResending={isResending}
-            isVerifying={isVerifying}
             onResend={handleResend}
             onTryOther={handleBack}
           />
@@ -105,18 +83,13 @@ const OtpStepMain = () => {
         <AuthFooter />
       </motion.div>
 
-      <CountdownEffect
+      <MagicLinkCountdownEffect
         countdown={countdown}
         setCountdown={setCountdown}
         setCanResend={setCanResend}
-      />
-      <AutoVerifyEffect
-        otpValue={otpValue}
-        otpLength={OTP_LENGTH}
-        onVerify={verifyOtp}
       />
     </main>
   );
 };
 
-export default OtpStepMain;
+export default MagicLinkStepMain;

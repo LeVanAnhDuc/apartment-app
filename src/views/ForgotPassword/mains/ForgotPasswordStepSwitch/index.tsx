@@ -3,6 +3,7 @@
 // components
 import OptionsStepMain from "../OptionsStepMain";
 import OtpStepMain from "../OtpStepMain";
+import MagicLinkStepMain from "../MagicLinkStepMain";
 import NewPasswordStepMain from "../NewPasswordStepMain";
 // stores
 import { useForgotPasswordStore } from "@/stores";
@@ -12,6 +13,10 @@ const ForgotPasswordStepSwitch = () => {
 
   if (step === "newPassword") {
     return <NewPasswordStepMain />;
+  }
+
+  if (step === "magicLink") {
+    return <MagicLinkStepMain />;
   }
 
   if (step === "otp") {

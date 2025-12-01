@@ -22,6 +22,8 @@ const createForgotPasswordSlice: StateCreator<ForgotPasswordStore> = (set) => ({
 
   goToOtpStep: () => set({ step: "otp" }),
 
+  goToMagicLinkStep: () => set({ step: "magicLink" }),
+
   goToNewPasswordStep: () => set({ step: "newPassword" }),
 
   reset: () => set(initialState)

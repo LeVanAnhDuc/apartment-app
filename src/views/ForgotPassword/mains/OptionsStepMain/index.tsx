@@ -29,6 +29,9 @@ const OptionsStepMain = ({ has2FAEnabled = false }: OptionsStepMainProps) => {
   const t = useTranslations("forgotPassword.form.options");
   const email = useForgotPasswordStore((state) => state.email);
   const goToOtpStep = useForgotPasswordStore((state) => state.goToOtpStep);
+  const goToMagicLinkStep = useForgotPasswordStore(
+    (state) => state.goToMagicLinkStep
+  );
 
   const handleBackToLogin = useCallback(() => {
     router.push(CONSTANTS.ROUTES.LOGIN);
@@ -39,8 +42,8 @@ const OptionsStepMain = ({ has2FAEnabled = false }: OptionsStepMainProps) => {
   }, [goToOtpStep]);
 
   const handleSelectMagicLink = useCallback(() => {
-    // TODO: Implement magic link recovery flow
-  }, []);
+    goToMagicLinkStep();
+  }, [goToMagicLinkStep]);
 
   const handleSelect2FA = useCallback(() => {
     // TODO: Implement 2FA recovery flow
