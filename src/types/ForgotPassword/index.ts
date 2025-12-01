@@ -1,31 +1,30 @@
 // types
 import type { z } from "zod";
-import type {
-  requestResetValidation,
-  verifyCodeValidation,
-  resetPasswordValidation
-} from "@/forms/ForgotPassword/validations";
+import type { newPasswordValidation } from "@/forms/ForgotPassword/validations";
 
-export type RequestResetFormValues = z.infer<typeof requestResetValidation>;
-export type VerifyCodeFormValues = z.infer<typeof verifyCodeValidation>;
-export type ResetPasswordFormValues = z.infer<typeof resetPasswordValidation>;
+export type NewPasswordFormValues = z.infer<typeof newPasswordValidation>;
 
-export interface RequestResetDataResponse {
-  message: string;
+// API Request types
+export interface RequestOtpPayload {
   email: string;
 }
 
-export interface VerifyCodeDataResponse {
-  message: string;
+export interface VerifyOtpPayload {
   email: string;
+  otp: string;
 }
 
-export interface ResetPasswordDataResponse {
+export interface ResetPasswordPayload {
+  email: string;
+  otp: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
+// API Response types
+export interface ForgotPasswordDataResponse {
   message: string;
 }
 
-export type RequestResetSuccessResponse =
-  ResponsePattern<RequestResetDataResponse>;
-export type VerifyCodeSuccessResponse = ResponsePattern<VerifyCodeDataResponse>;
-export type ResetPasswordSuccessResponse =
-  ResponsePattern<ResetPasswordDataResponse>;
+export type ForgotPasswordSuccessResponse =
+  ResponsePattern<ForgotPasswordDataResponse>;

@@ -4,12 +4,10 @@ import axiosInstance from "@/libs/axios";
 import type { LoginFormValues, LoginSuccessResponse } from "@/types/Login";
 import type { LogoutSuccessResponse } from "@/types/Login";
 import type {
-  RequestResetFormValues,
-  VerifyCodeFormValues,
-  ResetPasswordFormValues,
-  RequestResetSuccessResponse,
-  VerifyCodeSuccessResponse,
-  ResetPasswordSuccessResponse
+  RequestOtpPayload,
+  VerifyOtpPayload,
+  ResetPasswordPayload,
+  ForgotPasswordSuccessResponse
 } from "@/types/ForgotPassword";
 // constants
 import CONSTANTS from "@/constants";
@@ -34,10 +32,10 @@ export const logout = async (): Promise<LogoutSuccessResponse> => {
 };
 
 // Forgot Password API functions
-export const requestReset = async (
-  values: RequestResetFormValues
-): Promise<RequestResetSuccessResponse> => {
-  const { data } = await axiosInstance.post<RequestResetSuccessResponse>(
+export const requestOtp = async (
+  values: RequestOtpPayload
+): Promise<ForgotPasswordSuccessResponse> => {
+  const { data } = await axiosInstance.post<ForgotPasswordSuccessResponse>(
     CONSTANTS.END_POINTS.AUTH.FORGOT_PASSWORD.REQUEST_RESET,
     values
   );
@@ -45,10 +43,10 @@ export const requestReset = async (
   return data;
 };
 
-export const verifyCode = async (
-  values: VerifyCodeFormValues & { email: string }
-): Promise<VerifyCodeSuccessResponse> => {
-  const { data } = await axiosInstance.post<VerifyCodeSuccessResponse>(
+export const verifyOtp = async (
+  values: VerifyOtpPayload
+): Promise<ForgotPasswordSuccessResponse> => {
+  const { data } = await axiosInstance.post<ForgotPasswordSuccessResponse>(
     CONSTANTS.END_POINTS.AUTH.FORGOT_PASSWORD.VERIFY_CODE,
     values
   );
@@ -57,9 +55,9 @@ export const verifyCode = async (
 };
 
 export const resetPassword = async (
-  values: ResetPasswordFormValues & { email: string }
-): Promise<ResetPasswordSuccessResponse> => {
-  const { data } = await axiosInstance.post<ResetPasswordSuccessResponse>(
+  values: ResetPasswordPayload
+): Promise<ForgotPasswordSuccessResponse> => {
+  const { data } = await axiosInstance.post<ForgotPasswordSuccessResponse>(
     CONSTANTS.END_POINTS.AUTH.FORGOT_PASSWORD.RESET_PASSWORD,
     values
   );
@@ -67,10 +65,10 @@ export const resetPassword = async (
   return data;
 };
 
-export const resendCode = async (
+export const resendOtp = async (
   email: string
-): Promise<RequestResetSuccessResponse> => {
-  const { data } = await axiosInstance.post<RequestResetSuccessResponse>(
+): Promise<ForgotPasswordSuccessResponse> => {
+  const { data } = await axiosInstance.post<ForgotPasswordSuccessResponse>(
     CONSTANTS.END_POINTS.AUTH.FORGOT_PASSWORD.RESEND_CODE,
     { email }
   );

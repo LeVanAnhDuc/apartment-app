@@ -7,21 +7,19 @@ import type {
   LogoutSuccessResponse
 } from "@/types/Login";
 import type {
-  RequestResetFormValues,
-  VerifyCodeFormValues,
-  ResetPasswordFormValues,
-  RequestResetSuccessResponse,
-  VerifyCodeSuccessResponse,
-  ResetPasswordSuccessResponse
+  RequestOtpPayload,
+  VerifyOtpPayload,
+  ResetPasswordPayload,
+  ForgotPasswordSuccessResponse
 } from "@/types/ForgotPassword";
 // apis
 import {
   login,
   logout,
-  requestReset,
-  verifyCode,
+  requestOtp,
+  verifyOtp,
   resetPassword,
-  resendCode
+  resendOtp
 } from "./fetchers";
 // stores
 import { authStoreState } from "@/stores";
@@ -36,8 +34,6 @@ export const useLoginMutation = () =>
         idToken: data.data.idToken
       });
     }
-    // The global onError handler in QueryClient will catch errors,
-    // but you can add component-specific error handling here if needed.
   });
 
 export const useLogoutMutation = () =>
@@ -47,35 +43,25 @@ export const useLogoutMutation = () =>
       const { clearStorages } = authStoreState();
       clearStorages();
     }
-    // The global onError handler in QueryClient will catch errors,
-    // but you can add component-specific error handling here if needed.
   });
 
 // Forgot Password Mutations
-export const useRequestResetMutation = () =>
-  useMutation<RequestResetSuccessResponse, Error, RequestResetFormValues>({
-    mutationFn: requestReset
+export const useRequestOtpMutation = () =>
+  useMutation<ForgotPasswordSuccessResponse, Error, RequestOtpPayload>({
+    mutationFn: requestOtp
   });
 
-export const useVerifyCodeMutation = () =>
-  useMutation<
-    VerifyCodeSuccessResponse,
-    Error,
-    VerifyCodeFormValues & { email: string }
-  >({
-    mutationFn: verifyCode
+export const useVerifyOtpMutation = () =>
+  useMutation<ForgotPasswordSuccessResponse, Error, VerifyOtpPayload>({
+    mutationFn: verifyOtp
   });
 
 export const useResetPasswordMutation = () =>
-  useMutation<
-    ResetPasswordSuccessResponse,
-    Error,
-    ResetPasswordFormValues & { email: string }
-  >({
+  useMutation<ForgotPasswordSuccessResponse, Error, ResetPasswordPayload>({
     mutationFn: resetPassword
   });
 
-export const useResendCodeMutation = () =>
-  useMutation<RequestResetSuccessResponse, Error, string>({
-    mutationFn: resendCode
+export const useResendOtpMutation = () =>
+  useMutation<ForgotPasswordSuccessResponse, Error, string>({
+    mutationFn: resendOtp
   });

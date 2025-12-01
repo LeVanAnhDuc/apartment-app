@@ -2,34 +2,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 // types
 import type { UseFormProps } from "react-hook-form";
-import type {
-  RequestResetFormValues,
-  VerifyCodeFormValues,
-  ResetPasswordFormValues
-} from "@/types/ForgotPassword";
+import type { NewPasswordFormValues } from "@/types/ForgotPassword";
 // forms
-import {
-  initialRequestResetFormData,
-  initialVerifyCodeFormData,
-  initialResetPasswordFormData
-} from "./data";
-import {
-  requestResetValidation,
-  verifyCodeValidation,
-  resetPasswordValidation
-} from "./validations";
+import { initialNewPasswordFormData } from "./data";
+import { newPasswordValidation } from "./validations";
 
-export const requestResetFormProps: UseFormProps<RequestResetFormValues> = {
-  defaultValues: initialRequestResetFormData,
-  resolver: zodResolver(requestResetValidation)
-};
-
-export const verifyCodeFormProps: UseFormProps<VerifyCodeFormValues> = {
-  defaultValues: initialVerifyCodeFormData,
-  resolver: zodResolver(verifyCodeValidation)
-};
-
-export const resetPasswordFormProps: UseFormProps<ResetPasswordFormValues> = {
-  defaultValues: initialResetPasswordFormData,
-  resolver: zodResolver(resetPasswordValidation)
+export const newPasswordFormProps: UseFormProps<NewPasswordFormValues> = {
+  defaultValues: initialNewPasswordFormData,
+  resolver: zodResolver(newPasswordValidation)
 };
