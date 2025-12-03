@@ -1,7 +1,7 @@
 // types
 import type { ReactNode } from "react";
 // components
-import ModalSelectAndAvatar from "@/components/ModalSelectAndAvatar";
+import AuthHeader from "@/components/AuthHeader";
 
 export default function Layout({
   children
@@ -10,7 +10,7 @@ export default function Layout({
 }>) {
   return (
     <div className="min-h-screen">
-      <ModalSelectAndAvatar />
+      <AuthHeader />
       {children}
     </div>
   );
