@@ -23,6 +23,8 @@ import { newPasswordFormProps } from "@/forms/ForgotPassword";
 import { useForgotPasswordStore } from "@/stores";
 // services
 import { useResetPasswordMutation } from "@/services/auths";
+// hooks
+import { useEmailGuard } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
 
@@ -34,6 +36,8 @@ const NewPasswordStepMain = () => {
   const otp = useForgotPasswordStore((state) => state.otp);
   const goToOtpStep = useForgotPasswordStore((state) => state.goToOtpStep);
   const resetStore = useForgotPasswordStore((state) => state.reset);
+
+  const { hasEmail } = useEmailGuard({ email });
 
   const methods = useForm<NewPasswordFormValues>({ ...newPasswordFormProps });
 
@@ -66,6 +70,8 @@ const NewPasswordStepMain = () => {
   const handleBack = useCallback(() => {
     goToOtpStep();
   }, [goToOtpStep]);
+
+  if (!hasEmail) return null;
 
   return (
     <main className="auth-background flex min-h-screen items-center justify-center p-4">

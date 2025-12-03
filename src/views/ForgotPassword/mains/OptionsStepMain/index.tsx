@@ -2,7 +2,7 @@
 
 // libs
 import { useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { Smartphone, Mail, ShieldCheck, Headset } from "lucide-react";
@@ -14,23 +14,34 @@ import ForgotPasswordIcon from "../../components/ForgotPasswordIcon";
 import RecoveryOptionCard from "../../components/RecoveryOptionCard";
 import RecoveryOptionsInfo from "../../components/RecoveryOptionsInfo";
 // stores
-import { useForgotPasswordStore } from "@/stores";
+import { useForgotPasswordStore, useContactAdminStore } from "@/stores";
+// hooks
+import { useEmailGuard } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
 
-interface OptionsStepMainProps {
+const OptionsStepMain = ({
+  has2FAEnabled = false
+}: {
   has2FAEnabled?: boolean;
-}
-
-const OptionsStepMain = ({ has2FAEnabled = false }: OptionsStepMainProps) => {
+}) => {
   const router = useRouter();
+  const pathname = usePathname();
   const t = useTranslations("forgotPassword.form.options");
+
   const email = useForgotPasswordStore((state) => state.email);
+
+  const { hasEmail } = useEmailGuard({ email });
   const goToOtpStep = useForgotPasswordStore((state) => state.goToOtpStep);
   const goToMagicLinkStep = useForgotPasswordStore(
     (state) => state.goToMagicLinkStep
+  );
+
+  const setContactAdminEmail = useContactAdminStore((state) => state.setEmail);
+  const setContactAdminReferrer = useContactAdminStore(
+    (state) => state.setReferrerPath
   );
 
   const handleBackToLogin = useCallback(() => {
@@ -50,8 +61,12 @@ const OptionsStepMain = ({ has2FAEnabled = false }: OptionsStepMainProps) => {
   }, []);
 
   const handleContactAdmin = useCallback(() => {
-    // TODO: Implement contact admin flow
-  }, []);
+    setContactAdminEmail(email, true);
+    setContactAdminReferrer(pathname);
+    router.push(CONSTANTS.ROUTES.CONTACT_ADMIN);
+  }, [email, pathname, router, setContactAdminEmail, setContactAdminReferrer]);
+
+  if (!hasEmail) return null;
 
   return (
     <main className="auth-background flex min-h-screen items-center justify-center p-4">

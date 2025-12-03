@@ -21,6 +21,8 @@ import { passwordStepFormProps } from "@/forms/Login";
 import { useLoginMutation } from "@/services/auths";
 // stores
 import { useLoginStore } from "@/stores";
+// hooks
+import { useEmailGuard } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
 
@@ -29,6 +31,8 @@ const { EMAIL, PASSWORD } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 const PasswordStepMain = () => {
   const t = useTranslations("login.form");
   const email = useLoginStore((state) => state.email);
+
+  const { hasEmail } = useEmailGuard({ email });
   const goToEmailStep = useLoginStore((state) => state.goToEmailStep);
   const goToAlternativeStep = useLoginStore(
     (state) => state.goToAlternativeStep
@@ -45,6 +49,8 @@ const PasswordStepMain = () => {
   const handleTryAnother = () => {
     goToAlternativeStep();
   };
+
+  if (!hasEmail) return null;
 
   return (
     <main className="auth-background flex min-h-screen items-center justify-center p-4">
