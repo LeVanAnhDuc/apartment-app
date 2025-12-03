@@ -1,27 +1,17 @@
-// types
-import type { Token } from "../token";
+export type { UserAttributes, AuthState, AuthActions, AuthStore } from "./auth";
 
-export interface UserAttributes {
-  _id: string;
-  email: string;
-  fullName: string;
-  phone: string;
-  userName: string;
-  dateOfBirth: string;
-  gender: string;
-  avatar: string;
-  address: string;
-  createdAt: string;
-  updatedAt: string;
-}
+export type { LoginStep, LoginState, LoginActions, LoginStore } from "./login";
 
-export interface AuthState extends Partial<Token> {
-  userAttributes?: UserAttributes;
-}
+export type {
+  ForgotPasswordStep,
+  ForgotPasswordState,
+  ForgotPasswordActions,
+  ForgotPasswordStore
+} from "./forgotPassword";
 
-export interface AuthActions {
-  setTokens: (tokens: Token) => void;
-  clearStorages: () => void;
-}
-
-export type AuthStore = AuthState & AuthActions;
+export type {
+  ContactAdminStep,
+  ContactAdminState,
+  ContactAdminActions,
+  ContactAdminStore
+} from "./contactAdmin";
