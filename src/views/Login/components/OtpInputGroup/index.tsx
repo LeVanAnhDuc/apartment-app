@@ -11,19 +11,17 @@ import { cn } from "@/libs/utils";
 
 const OTP_LENGTH = 6;
 
-interface OtpInputGroupProps {
-  value: string;
-  onChange: (value: string) => void;
-  disabled?: boolean;
-  isVerifying?: boolean;
-}
-
 const OtpInputGroup = ({
   value,
   onChange,
   disabled = false,
   isVerifying = false
-}: OtpInputGroupProps) => {
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+  isVerifying?: boolean;
+}) => {
   const t = useTranslations("login.form.otp");
 
   return (

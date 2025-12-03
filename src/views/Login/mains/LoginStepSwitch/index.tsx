@@ -12,21 +12,13 @@ import { useLoginStore } from "@/stores";
 const LoginStepSwitch = () => {
   const step = useLoginStore((state) => state.step);
 
-  if (step === "magicLink") {
-    return <MagicLinkStepMain />;
-  }
+  if (step === "magicLink") return <MagicLinkStepMain />;
 
-  if (step === "otp") {
-    return <OtpStepMain />;
-  }
+  if (step === "otp") return <OtpStepMain />;
 
-  if (step === "alternative") {
-    return <AlternativeLoginMain />;
-  }
+  if (step === "alternative") return <AlternativeLoginMain />;
 
-  if (step === "password") {
-    return <PasswordStepMain />;
-  }
+  if (step === "password") return <PasswordStepMain />;
 
   return <EmailStepMain />;
 };

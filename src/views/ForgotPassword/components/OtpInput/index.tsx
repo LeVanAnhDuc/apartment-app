@@ -7,19 +7,17 @@ import {
   InputOTPSlot
 } from "@/components/ui/input-otp";
 
-interface OtpInputProps {
-  value: string;
-  onChange: (value: string) => void;
-  disabled?: boolean;
-  length?: number;
-}
-
 const OtpInput = ({
   value,
   onChange,
   disabled = false,
   length = 6
-}: OtpInputProps) => (
+}: {
+  value: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+  length?: number;
+}) => (
   <div className="flex justify-center">
     <InputOTP
       maxLength={length}

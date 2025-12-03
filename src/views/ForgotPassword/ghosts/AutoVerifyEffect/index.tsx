@@ -2,17 +2,15 @@
 
 import { useEffect } from "react";
 
-interface AutoVerifyEffectProps {
-  otpValue: string;
-  otpLength: number;
-  onVerify: (otp: string) => void;
-}
-
 const AutoVerifyEffect = ({
   otpValue,
   otpLength,
   onVerify
-}: AutoVerifyEffectProps) => {
+}: {
+  otpValue: string;
+  otpLength: number;
+  onVerify: (otp: string) => void;
+}) => {
   useEffect(() => {
     if (otpValue.length === otpLength) {
       onVerify(otpValue);

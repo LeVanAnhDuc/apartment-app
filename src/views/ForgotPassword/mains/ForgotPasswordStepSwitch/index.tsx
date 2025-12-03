@@ -11,17 +11,11 @@ import { useForgotPasswordStore } from "@/stores";
 const ForgotPasswordStepSwitch = () => {
   const step = useForgotPasswordStore((state) => state.step);
 
-  if (step === "newPassword") {
-    return <NewPasswordStepMain />;
-  }
+  if (step === "newPassword") return <NewPasswordStepMain />;
 
-  if (step === "magicLink") {
-    return <MagicLinkStepMain />;
-  }
+  if (step === "magicLink") return <MagicLinkStepMain />;
 
-  if (step === "otp") {
-    return <OtpStepMain />;
-  }
+  if (step === "otp") return <OtpStepMain />;
 
   return <OptionsStepMain />;
 };

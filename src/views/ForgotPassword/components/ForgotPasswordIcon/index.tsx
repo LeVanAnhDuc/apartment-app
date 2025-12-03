@@ -3,11 +3,11 @@
 // libs
 import { motion } from "framer-motion";
 
-interface ForgotPasswordIconProps {
+const ForgotPasswordIcon = ({
+  variant = "key"
+}: {
   variant?: "key" | "lock";
-}
-
-const ForgotPasswordIcon = ({ variant = "key" }: ForgotPasswordIconProps) => (
+}) => (
   <motion.div
     initial={{ scale: 0 }}
     animate={{ scale: 1 }}

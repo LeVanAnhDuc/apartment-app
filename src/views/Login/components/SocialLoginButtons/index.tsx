@@ -3,12 +3,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 
-interface SocialLoginButtonsProps {
-  onGoogleLogin?: () => void;
-  onFacebookLogin?: () => void;
-  isLoading?: boolean;
-}
-
 const GoogleIcon = () => (
   <svg className="mr-3 h-5 w-5" viewBox="0 0 24 24">
     <path
@@ -40,7 +34,11 @@ const SocialLoginButtons = ({
   onGoogleLogin,
   onFacebookLogin,
   isLoading = false
-}: SocialLoginButtonsProps) => {
+}: {
+  onGoogleLogin?: () => void;
+  onFacebookLogin?: () => void;
+  isLoading?: boolean;
+}) => {
   const t = useTranslations("login.form.button");
 
   return (
