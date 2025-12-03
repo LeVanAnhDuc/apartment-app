@@ -5,29 +5,11 @@ import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 // types
 import type { LucideIcon } from "lucide-react";
+import type { ColorVariant } from "@/dataSources/Common";
+// dataSources
+import { COLOR_VARIANT_CLASSES, DISABLED_CLASSES } from "@/dataSources/Common";
 // others
 import { cn } from "@/libs/utils";
-
-type ColorVariant = "orange" | "blue" | "green" | "purple";
-
-interface RecoveryOptionCardProps {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  colorVariant: ColorVariant;
-  onClick: () => void;
-  animationDelay?: number;
-  disabled?: boolean;
-}
-
-const COLOR_CLASSES: Record<ColorVariant, string> = {
-  orange: "bg-orange-100 group-hover:bg-orange-200 text-orange-600",
-  blue: "bg-blue-100 group-hover:bg-blue-200 text-blue-600",
-  green: "bg-green-100 group-hover:bg-green-200 text-green-600",
-  purple: "bg-purple-100 group-hover:bg-purple-200 text-purple-600"
-};
-
-const DISABLED_CLASSES = "bg-gray-200 text-gray-400";
 
 const RecoveryOptionCard = ({
   icon: Icon,
@@ -37,7 +19,15 @@ const RecoveryOptionCard = ({
   onClick,
   animationDelay = 0,
   disabled = false
-}: RecoveryOptionCardProps) => {
+}: {
+  icon: LucideIcon;
+  title: string;
+  description: string;
+  colorVariant: ColorVariant;
+  onClick: () => void;
+  animationDelay?: number;
+  disabled?: boolean;
+}) => {
   const t = useTranslations("forgotPassword");
 
   return (
@@ -60,7 +50,7 @@ const RecoveryOptionCard = ({
         className={cn(
           "flex h-12 w-12 items-center justify-center rounded-lg",
           "transition-colors duration-200",
-          disabled ? DISABLED_CLASSES : COLOR_CLASSES[colorVariant]
+          disabled ? DISABLED_CLASSES : COLOR_VARIANT_CLASSES[colorVariant]
         )}
       >
         <Icon className="h-6 w-6" />
