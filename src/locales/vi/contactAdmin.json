@@ -1,0 +1,97 @@
+{
+  "title": "Liên hệ quản trị viên",
+  "form": {
+    "title": "Liên hệ hỗ trợ",
+    "description": "Chúng tôi luôn sẵn sàng hỗ trợ bạn 24/7",
+    "responseTime": {
+      "title": "Thời gian phản hồi trung bình",
+      "description": "Chúng tôi sẽ phản hồi trong vòng {hours} giờ làm việc"
+    },
+    "input": {
+      "labelEmail": "Email liên hệ",
+      "labelSubject": "Tiêu đề",
+      "labelCategory": "Danh mục",
+      "labelPriority": "Mức độ ưu tiên",
+      "labelMessage": "Mô tả chi tiết",
+      "placeholderSubject": "Tóm tắt vấn đề của bạn...",
+      "placeholderCategory": "Chọn danh mục",
+      "placeholderMessage": "Vui lòng mô tả chi tiết vấn đề của bạn. Bao gồm các bước tái hiện lỗi nếu có..."
+    },
+    "category": {
+      "account": "Vấn đề tài khoản",
+      "technical": "Lỗi kỹ thuật",
+      "feature": "Yêu cầu tính năng",
+      "billing": "Thanh toán",
+      "security": "Bảo mật",
+      "other": "Khác"
+    },
+    "priority": {
+      "low": "Thấp",
+      "medium": "Trung bình",
+      "high": "Cao"
+    },
+    "button": {
+      "submit": "Gửi yêu cầu hỗ trợ",
+      "submitting": "Đang gửi...",
+      "back": "Quay lại"
+    },
+    "hint": {
+      "minChars": "Tối thiểu {count} ký tự",
+      "charCount": "{count} ký tự"
+    },
+    "footerNote": "Bạn sẽ nhận được email xác nhận sau khi gửi yêu cầu"
+  },
+  "success": {
+    "title": "Gửi yêu cầu thành công!",
+    "subtitle": "Cảm ơn bạn đã liên hệ với chúng tôi",
+    "description": "Chúng tôi đã nhận được yêu cầu hỗ trợ của bạn",
+    "ticketInfo": {
+      "title": "Mã yêu cầu",
+      "labelSubject": "Tiêu đề:",
+      "labelCategory": "Danh mục:",
+      "labelPriority": "Mức độ:"
+    },
+    "nextSteps": {
+      "title": "Điều gì xảy ra tiếp theo?",
+      "step1": {
+        "title": "Email xác nhận",
+        "description": "Chúng tôi đã gửi email xác nhận đến {email}"
+      },
+      "step2": {
+        "title": "Xem xét yêu cầu",
+        "description": "Đội ngũ hỗ trợ sẽ xem xét yêu cầu của bạn"
+      },
+      "step3": {
+        "title": "Phản hồi",
+        "description": "Bạn sẽ nhận được phản hồi trong vòng 24 giờ làm việc"
+      }
+    },
+    "importantNotes": {
+      "title": "Lưu ý quan trọng",
+      "note1": "Vui lòng lưu lại mã yêu cầu {ticketNumber}",
+      "note2": "Kiểm tra cả hộp thư spam nếu không thấy email xác nhận",
+      "note3": "Bạn có thể trả lời trực tiếp email để bổ sung thông tin"
+    },
+    "button": {
+      "backToDashboard": "Quay về Dashboard",
+      "print": "In thông tin"
+    }
+  },
+  "validation": {
+    "email": {
+      "required": "Vui lòng nhập email",
+      "invalid": "Email không hợp lệ"
+    },
+    "subject": {
+      "required": "Vui lòng nhập tiêu đề",
+      "minLength": "Tiêu đề phải có ít nhất 5 ký tự"
+    },
+    "category": {
+      "required": "Vui lòng chọn danh mục"
+    },
+    "message": {
+      "required": "Vui lòng mô tả vấn đề của bạn",
+      "minLength": "Mô tả phải có ít nhất 20 ký tự"
+    }
+  }
+}
