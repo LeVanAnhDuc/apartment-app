@@ -17,9 +17,9 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import CustomSelectTrigger from "@/components/CustomSelectTrigger";
 // dataSources
 import { CATEGORIES } from "@/dataSources/ContactAdmin";
 // others
@@ -48,9 +48,9 @@ const CategorySelect = ({ disabled = false }: { disabled?: boolean }) => {
             disabled={disabled}
           >
             <FormControl>
-              <SelectTrigger className="h-12 w-full">
+              <CustomSelectTrigger>
                 <SelectValue placeholder={t("input.placeholderCategory")} />
-              </SelectTrigger>
+              </CustomSelectTrigger>
             </FormControl>
             <SelectContent>
               {CATEGORIES.map((category) => (

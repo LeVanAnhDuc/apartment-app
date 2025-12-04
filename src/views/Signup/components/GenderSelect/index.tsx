@@ -16,9 +16,9 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import CustomSelectTrigger from "@/components/CustomSelectTrigger";
 // hooks
 import { useFieldProps } from "@/hooks";
 // others
@@ -46,12 +46,9 @@ const GenderSelect = ({ disabled = false }: { disabled?: boolean }) => {
             disabled={disabled}
           >
             <FormControl>
-              <SelectTrigger
-                className="border-input bg-background focus:border-ring focus:ring-ring !h-12 w-full rounded-lg px-4 transition-all duration-200"
-                aria-invalid={fieldState.invalid}
-              >
+              <CustomSelectTrigger aria-invalid={fieldState.invalid}>
                 <SelectValue placeholder={t("placeholderGender")} />
-              </SelectTrigger>
+              </CustomSelectTrigger>
             </FormControl>
             <SelectContent>
               {GENDER_OPTIONS.map((option) => (

@@ -16,9 +16,9 @@ import {
   Select,
   SelectContent,
   SelectItem,
-  SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import CustomSelectTrigger from "@/components/CustomSelectTrigger";
 // dataSources
 import { PRIORITIES } from "@/dataSources/ContactAdmin";
 // others
@@ -43,9 +43,9 @@ const PrioritySelect = ({ disabled = false }: { disabled?: boolean }) => {
             disabled={disabled}
           >
             <FormControl>
-              <SelectTrigger className="h-12 w-full">
+              <CustomSelectTrigger>
                 <SelectValue />
-              </SelectTrigger>
+              </CustomSelectTrigger>
             </FormControl>
             <SelectContent>
               {PRIORITIES.map((priority) => (
