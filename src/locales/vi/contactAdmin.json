@@ -42,8 +42,7 @@
   },
   "success": {
     "title": "Gửi yêu cầu thành công!",
-    "subtitle": "Cảm ơn bạn đã liên hệ với chúng tôi",
-    "description": "Chúng tôi đã nhận được yêu cầu hỗ trợ của bạn",
+    "description": "Cảm ơn bạn đã liên hệ với chúng tôi",
     "ticketInfo": {
       "title": "Mã yêu cầu",
       "labelSubject": "Tiêu đề:",

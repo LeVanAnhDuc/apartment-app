@@ -4,14 +4,13 @@
 import { useCallback, useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { Headset } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
+import AuthStepLayout from "@/components/AuthStepLayout";
 import AuthIcon from "@/components/AuthIcon";
-import BackButton from "../../components/BackButton";
 import ResponseTimeAlert from "../../components/ResponseTimeAlert";
 import EmailInput from "../../components/EmailInput";
 import SubjectInput from "../../components/SubjectInput";
@@ -82,54 +81,43 @@ const FormStepMain = () => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.3 }}
-      className="w-full max-w-2xl"
+    <AuthStepLayout
+      icon={<AuthIcon Icon={Headset} variant="purple" animated />}
+      title={t("title")}
+      description={t("description")}
+      onBack={handleBack}
+      backDisabled={isSubmitting}
+      maxWidth="2xl"
+      ghostComponents={<InitEffect onEmailInit={handleEmailInit} />}
     >
-      <div className="auth-card relative p-8 md:p-10">
-        <BackButton onClick={handleBack} disabled={isSubmitting} />
+      <ResponseTimeAlert />
 
-        <div className="mb-8 text-center">
-          <AuthIcon Icon={Headset} variant="purple" animated />
-          <h1 className="text-foreground mb-2 text-2xl font-medium">
-            {t("title")}
-          </h1>
-          <p className="text-muted-foreground">{t("description")}</p>
-        </div>
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
+          <EmailInput
+            disabled={isSubmitting}
+            isFromRedirect={isEmailFromRedirect}
+          />
 
-        <ResponseTimeAlert />
+          <SubjectInput disabled={isSubmitting} />
 
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
-            <EmailInput
-              disabled={isSubmitting}
-              isFromRedirect={isEmailFromRedirect}
-            />
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <CategorySelect disabled={isSubmitting} />
+            <PrioritySelect disabled={isSubmitting} />
+          </div>
 
-            <SubjectInput disabled={isSubmitting} />
+          <MessageTextarea disabled={isSubmitting} />
 
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              <CategorySelect disabled={isSubmitting} />
-              <PrioritySelect disabled={isSubmitting} />
-            </div>
+          <SubmitButton isSubmitting={isSubmitting} />
+        </form>
+      </FormProvider>
 
-            <MessageTextarea disabled={isSubmitting} />
-
-            <SubmitButton isSubmitting={isSubmitting} />
-          </form>
-        </FormProvider>
-
-        <div className="bg-muted mt-6 rounded-lg p-4">
-          <p className="text-muted-foreground text-center text-sm">
-            {t("footerNote")}
-          </p>
-        </div>
+      <div className="bg-muted mt-6 rounded-lg p-4">
+        <p className="text-muted-foreground text-center text-sm">
+          {t("footerNote")}
+        </p>
       </div>
-
-      <InitEffect onEmailInit={handleEmailInit} />
-    </motion.div>
+    </AuthStepLayout>
   );
 };
 

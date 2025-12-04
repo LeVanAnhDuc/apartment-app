@@ -7,14 +7,12 @@ import { KeyRound } from "lucide-react";
 // types
 import type { PasswordStepFormValues } from "@/types/Login";
 // components
+import AuthStepLayout from "@/components/AuthStepLayout";
 import CustomButton from "@/components/CustomButton";
-import BackButton from "../../components/BackButton";
-import EmailBadge from "@/components/EmailBadge";
 import PasswordInput from "@/components/PasswordInput";
 import ForgotPasswordLink from "../../components/ForgotPasswordLink";
 import TryAnotherButton from "../../components/TryAnotherButton";
 import AuthIcon from "@/components/AuthIcon";
-import AuthFooter from "@/components/AuthFooter";
 // forms
 import { passwordStepFormProps } from "@/forms/Login";
 // services
@@ -53,53 +51,35 @@ const PasswordStepMain = () => {
   if (!hasEmail) return null;
 
   return (
-    <main className="auth-background flex min-h-screen items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="auth-card relative p-8 md:p-10">
-          <BackButton onClick={goToEmailStep} disabled={isPending} />
-
-          <div className="mb-8 text-center">
-            <div className="mb-4 flex justify-center">
-              <AuthIcon Icon={KeyRound} />
-            </div>
-            <h1 className="text-foreground mb-2 text-2xl font-medium">
-              {t("titleWelcome")}
-            </h1>
-          </div>
-
-          <FormProvider {...methods}>
-            <EmailBadge email={email} />
-            <form
-              onSubmit={methods.handleSubmit(onSubmit)}
-              className="space-y-6"
+    <AuthStepLayout
+      icon={<AuthIcon Icon={KeyRound} />}
+      title={t("titleWelcome")}
+      email={email}
+      onBack={goToEmailStep}
+      backDisabled={isPending}
+    >
+      <FormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
+          <PasswordInput
+            name={PASSWORD}
+            label={t("input.labelEnterPassword")}
+            placeholder={t("input.placeholderPassword")}
+            disabled={isPending}
+          />
+          <ForgotPasswordLink />
+          <div className="flex gap-3">
+            <TryAnotherButton onClick={handleTryAnother} disabled={isPending} />
+            <CustomButton
+              type="submit"
+              loading={isPending}
+              className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 flex-1 rounded-lg transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
             >
-              <PasswordInput
-                name={PASSWORD}
-                label={t("input.labelEnterPassword")}
-                placeholder={t("input.placeholderPassword")}
-                disabled={isPending}
-              />
-              <ForgotPasswordLink />
-              <div className="flex gap-3">
-                <TryAnotherButton
-                  onClick={handleTryAnother}
-                  disabled={isPending}
-                />
-                <CustomButton
-                  type="submit"
-                  loading={isPending}
-                  className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 flex-1 rounded-lg transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {t("button.next")}
-                </CustomButton>
-              </div>
-            </form>
-          </FormProvider>
-        </div>
-
-        <AuthFooter />
-      </div>
-    </main>
+              {t("button.next")}
+            </CustomButton>
+          </div>
+        </form>
+      </FormProvider>
+    </AuthStepLayout>
   );
 };
 

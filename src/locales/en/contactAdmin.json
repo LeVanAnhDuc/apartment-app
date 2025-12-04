@@ -42,8 +42,7 @@
   },
   "success": {
     "title": "Request submitted successfully!",
-    "subtitle": "Thank you for contacting us",
-    "description": "We have received your support request",
+    "description": "Thank you for contacting us",
     "ticketInfo": {
       "title": "Request code",
       "labelSubject": "Subject:",

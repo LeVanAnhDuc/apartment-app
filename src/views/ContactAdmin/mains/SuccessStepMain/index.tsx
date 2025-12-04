@@ -7,6 +7,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Printer } from "lucide-react";
 // components
+import AuthStepLayout from "@/components/AuthStepLayout";
 import CustomButton from "@/components/CustomButton";
 import SuccessIcon from "../../components/SuccessIcon";
 import TicketInfo from "../../components/TicketInfo";
@@ -40,60 +41,42 @@ const SuccessStepMain = () => {
   if (!formData || !ticketNumber) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
-      className="w-full max-w-2xl"
+    <AuthStepLayout
+      icon={<SuccessIcon />}
+      title={t("title")}
+      description={t("description")}
+      maxWidth="2xl"
     >
-      <div className="auth-card p-8 md:p-10">
-        <div className="mb-8 text-center">
-          <SuccessIcon />
+      <TicketInfo ticketNumber={ticketNumber} formData={formData} />
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <h1 className="mb-3 text-2xl font-medium text-green-600">
-              {t("title")}
-            </h1>
-            <p className="text-foreground mb-2 text-lg">{t("subtitle")}</p>
-            <p className="text-muted-foreground text-sm">{t("description")}</p>
-          </motion.div>
-        </div>
+      <NextSteps email={formData.email} />
 
-        <TicketInfo ticketNumber={ticketNumber} formData={formData} />
+      <ImportantNotes ticketNumber={ticketNumber} />
 
-        <NextSteps email={formData.email} />
-
-        <ImportantNotes ticketNumber={ticketNumber} />
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1 }}
-          className="flex flex-col gap-3 sm:flex-row"
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="flex flex-col gap-3 sm:flex-row"
+      >
+        <CustomButton
+          onClick={handleBackToDashboard}
+          iconLeft={<ArrowLeft className="mr-2 h-5 w-5" />}
+          className="h-12 flex-1 bg-blue-600 transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
         >
-          <CustomButton
-            onClick={handleBackToDashboard}
-            iconLeft={<ArrowLeft className="mr-2 h-5 w-5" />}
-            className="h-12 flex-1 bg-blue-600 transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
-          >
-            {t("button.backToDashboard")}
-          </CustomButton>
+          {t("button.backToDashboard")}
+        </CustomButton>
 
-          <CustomButton
-            variant="outline"
-            onClick={handlePrint}
-            iconLeft={<Printer className="mr-2 h-5 w-5" />}
-            className="hover:bg-muted h-12 flex-1 transition-all duration-200"
-          >
-            {t("button.print")}
-          </CustomButton>
-        </motion.div>
-      </div>
-    </motion.div>
+        <CustomButton
+          variant="outline"
+          onClick={handlePrint}
+          iconLeft={<Printer className="mr-2 h-5 w-5" />}
+          className="hover:bg-muted h-12 flex-1 transition-all duration-200"
+        >
+          {t("button.print")}
+        </CustomButton>
+      </motion.div>
+    </AuthStepLayout>
   );
 };
 
