@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 // stores
@@ -19,14 +18,11 @@ const ForgotPasswordLink = () => {
     (state) => state.goToOptionsStep
   );
 
-  const handleClick = useCallback(
-    (e: React.MouseEvent<HTMLAnchorElement>) => {
-      e.preventDefault();
-      goToOptionsStep(loginEmail);
-      router.push(FORGOT_PASSWORD);
-    },
-    [loginEmail, goToOptionsStep, router]
-  );
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    goToOptionsStep(loginEmail);
+    router.push(FORGOT_PASSWORD);
+  };
 
   return (
     <div className="flex items-center justify-between text-sm">

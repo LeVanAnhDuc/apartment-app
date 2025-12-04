@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -25,18 +24,18 @@ const SuccessStepMain = () => {
   const referrerPath = useContactAdminStore((state) => state.referrerPath);
   const reset = useContactAdminStore((state) => state.reset);
 
-  const handleBackToDashboard = useCallback(() => {
+  const handleBackToDashboard = () => {
     reset();
     if (referrerPath) {
       router.push(referrerPath);
     } else {
       router.push("/");
     }
-  }, [referrerPath, router, reset]);
+  };
 
-  const handlePrint = useCallback(() => {
+  const handlePrint = () => {
     window.print();
-  }, []);
+  };
 
   if (!formData || !ticketNumber) return null;
 

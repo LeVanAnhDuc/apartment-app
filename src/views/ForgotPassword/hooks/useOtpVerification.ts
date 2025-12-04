@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 // stores
@@ -34,28 +34,25 @@ export const useOtpVerification = () => {
   const { mutate: resendOtpMutation, isPending: isResending } =
     useResendOtpMutation();
 
-  const verifyOtp = useCallback(
-    (otp: string) => {
-      if (otp.length !== OTP_LENGTH) return;
+  const verifyOtp = (otp: string) => {
+    if (otp.length !== OTP_LENGTH) return;
 
-      verifyOtpMutation(
-        { email, otp },
-        {
-          onSuccess: () => {
-            setResetPasswordCredentials(email, otp);
-            router.push(RESET_PASSWORD);
-          },
-          onError: () => {
-            toast.error(tMessage("error.invalidOtp"));
-            setOtpValue("");
-          }
+    verifyOtpMutation(
+      { email, otp },
+      {
+        onSuccess: () => {
+          setResetPasswordCredentials(email, otp);
+          router.push(RESET_PASSWORD);
+        },
+        onError: () => {
+          toast.error(tMessage("error.invalidOtp"));
+          setOtpValue("");
         }
-      );
-    },
-    [email, verifyOtpMutation, setResetPasswordCredentials, router, tMessage]
-  );
+      }
+    );
+  };
 
-  const handleResend = useCallback(() => {
+  const handleResend = () => {
     resendOtpMutation(email, {
       onSuccess: () => {
         toast.success(t("resendSuccess"));
@@ -67,11 +64,11 @@ export const useOtpVerification = () => {
         toast.error(tMessage("error.generic"));
       }
     });
-  }, [email, resendOtpMutation, t, tMessage]);
+  };
 
-  const handleOtpChange = useCallback((value: string) => {
+  const handleOtpChange = (value: string) => {
     setOtpValue(value);
-  }, []);
+  };
 
   return {
     otpValue,

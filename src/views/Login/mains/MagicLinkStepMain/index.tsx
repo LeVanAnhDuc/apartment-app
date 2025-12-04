@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { Mail } from "lucide-react";
@@ -35,7 +35,7 @@ const MagicLinkStepMain = () => {
   const [canResend, setCanResend] = useState(false);
   const [isResending, setIsResending] = useState(false);
 
-  const handleResend = useCallback(async () => {
+  const handleResend = async () => {
     setIsResending(true);
 
     // TODO: Implement actual resend API call
@@ -45,7 +45,7 @@ const MagicLinkStepMain = () => {
     setCountdown(COUNTDOWN_SECONDS);
     setCanResend(false);
     setIsResending(false);
-  }, [t]);
+  };
 
   if (!hasEmail) return null;
 

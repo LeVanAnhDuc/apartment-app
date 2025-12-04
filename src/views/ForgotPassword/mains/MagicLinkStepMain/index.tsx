@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Mail } from "lucide-react";
 // components
@@ -39,9 +38,9 @@ const MagicLinkStepMain = () => {
     setCanResend
   } = useMagicLink();
 
-  const handleBack = useCallback(() => {
+  const handleBack = () => {
     goToOptionsStep(email);
-  }, [email, goToOptionsStep]);
+  };
 
   if (!hasEmail) return null;
 

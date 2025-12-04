@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
 import { ShieldCheck } from "lucide-react";
@@ -39,7 +39,7 @@ const OtpStepMain = () => {
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
 
-  const handleVerify = useCallback(async () => {
+  const handleVerify = async () => {
     if (otp.length !== OTP_LENGTH) return;
 
     setIsVerifying(true);
@@ -50,9 +50,9 @@ const OtpStepMain = () => {
     setIsVerifying(false);
     // After OTP verified, go to info step
     goToInfoStep();
-  }, [otp, goToInfoStep]);
+  };
 
-  const handleResend = useCallback(async () => {
+  const handleResend = async () => {
     setIsResending(true);
 
     // TODO: Implement actual resend API call
@@ -63,15 +63,15 @@ const OtpStepMain = () => {
     setCanResend(false);
     setIsResending(false);
     setOtp("");
-  }, [t]);
+  };
 
-  const handleOtpChange = useCallback((value: string) => {
+  const handleOtpChange = (value: string) => {
     setOtp(value);
-  }, []);
+  };
 
-  const handleChangeEmail = useCallback(() => {
+  const handleChangeEmail = () => {
     goToEmailStep();
-  }, [goToEmailStep]);
+  };
 
   if (!hasEmail) return null;
 

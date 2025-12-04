@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FormProvider, useForm } from "react-hook-form";
@@ -46,23 +45,20 @@ const ResetPasswordMain = () => {
   const { formState } = methods;
   const { isSubmitting } = formState;
 
-  const onSubmit = useCallback(
-    async (data: ResetPasswordFormValues) => {
-      // TODO: Call API to reset password with email, token, and newPassword
-      console.log("Reset password:", {
-        email,
-        token,
-        newPassword: data.newPassword
-      });
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+  const onSubmit = async (data: ResetPasswordFormValues) => {
+    // TODO: Call API to reset password with email, token, and newPassword
+    console.log("Reset password:", {
+      email,
+      token,
+      newPassword: data.newPassword
+    });
+    await new Promise((resolve) => setTimeout(resolve, 1500));
 
-      toast.success(tMessage("success"));
-      resetStore();
-      resetStoreForgot();
-      router.push(LOGIN);
-    },
-    [email, token, resetStore, resetStoreForgot, router, tMessage]
-  );
+    toast.success(tMessage("success"));
+    resetStore();
+    resetStoreForgot();
+    router.push(LOGIN);
+  };
 
   if (!hasEmail) return null;
 

@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { Lock } from "lucide-react";
 // components
@@ -47,9 +46,9 @@ const OtpStepMain = () => {
     OTP_LENGTH
   } = useOtpVerification();
 
-  const handleBack = useCallback(() => {
+  const handleBack = () => {
     goToOptionsStep(email);
-  }, [email, goToOptionsStep]);
+  };
 
   if (!hasEmail) return null;
 

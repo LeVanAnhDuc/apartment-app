@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useCallback, useEffect } from "react";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
@@ -53,21 +53,18 @@ const FormStepMain = () => {
     }
   }, [email, setValue]);
 
-  const handleEmailInit = useCallback(
-    (emailValue: string, isFromRedirect: boolean) => {
-      setEmail(emailValue, isFromRedirect);
-      setValue(EMAIL, emailValue);
-    },
-    [setEmail, setValue]
-  );
+  const handleEmailInit = (emailValue: string, isFromRedirect: boolean) => {
+    setEmail(emailValue, isFromRedirect);
+    setValue(EMAIL, emailValue);
+  };
 
-  const handleBack = useCallback(() => {
+  const handleBack = () => {
     if (referrerPath) {
       router.push(referrerPath);
     } else {
       router.back();
     }
-  }, [referrerPath, router]);
+  };
 
   const generateTicketNumber = () =>
     `TICKET-${Date.now().toString().slice(-8)}`;

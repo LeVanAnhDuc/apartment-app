@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Smartphone, Mail, ShieldCheck, Headset, KeyRound } from "lucide-react";
@@ -42,27 +41,27 @@ const OptionsStepMain = ({
     (state) => state.setReferrerPath
   );
 
-  const handleBackToLogin = useCallback(() => {
+  const handleBackToLogin = () => {
     router.push(CONSTANTS.ROUTES.LOGIN);
-  }, [router]);
+  };
 
-  const handleSelectOtp = useCallback(() => {
+  const handleSelectOtp = () => {
     goToOtpStep();
-  }, [goToOtpStep]);
+  };
 
-  const handleSelectMagicLink = useCallback(() => {
+  const handleSelectMagicLink = () => {
     goToMagicLinkStep();
-  }, [goToMagicLinkStep]);
+  };
 
-  const handleSelect2FA = useCallback(() => {
+  const handleSelect2FA = () => {
     // TODO: Implement 2FA recovery flow
-  }, []);
+  };
 
-  const handleContactAdmin = useCallback(() => {
+  const handleContactAdmin = () => {
     setContactAdminEmail(email, true);
     setContactAdminReferrer(pathname);
     router.push(CONSTANTS.ROUTES.CONTACT_ADMIN);
-  }, [email, pathname, router, setContactAdminEmail, setContactAdminReferrer]);
+  };
 
   if (!hasEmail) return null;
 

@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useState, useCallback } from "react";
+import { useState } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 // stores
@@ -23,7 +23,7 @@ export const useMagicLink = () => {
   const { mutate: sendMagicLinkMutation, isPending: isResending } =
     useRequestOtpMutation();
 
-  const handleResend = useCallback(() => {
+  const handleResend = () => {
     sendMagicLinkMutation(
       { email },
       {
@@ -37,7 +37,7 @@ export const useMagicLink = () => {
         }
       }
     );
-  }, [email, sendMagicLinkMutation, t, tMessage]);
+  };
 
   return {
     countdown,
