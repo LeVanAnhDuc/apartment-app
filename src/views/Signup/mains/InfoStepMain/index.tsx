@@ -31,15 +31,14 @@ const { SIGNUP } = CONSTANTS.ROUTES;
 const InfoStepMain = () => {
   const t = useTranslations("signup.infoStep");
   const email = useSignupStore((state) => state.email);
-  const goToOtpStep = useSignupStore((state) => state.goToOtpStep);
+  const goToEmailStep = useSignupStore((state) => state.goToEmailStep);
 
   const { hasEmail } = useEmailGuard({ email, redirectTo: SIGNUP });
 
   const methods = useForm<SignupInfoFormValues>({ ...signupInfoFormProps });
 
   const handleBack = () => {
-    // Go back to OTP step (user already verified OTP)
-    goToOtpStep(email);
+    goToEmailStep();
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
