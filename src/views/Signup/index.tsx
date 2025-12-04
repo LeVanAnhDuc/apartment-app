@@ -1,6 +1,6 @@
-// component
-import SignupBlock from "./mains/SignupBlock";
+// components
+import SignupStepSwitch from "./mains/SignupStepSwitch";
 
-const Signup = () => <SignupBlock />;
+const Signup = () => <SignupStepSwitch />;
 
 export default Signup;

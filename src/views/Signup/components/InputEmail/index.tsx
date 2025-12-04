@@ -1,7 +1,7 @@
 // libs
 import { useTranslations } from "next-intl";
 // types
-import type { SignupFormValues } from "@/types/Signup";
+import type { SignupEmailFormValues } from "@/types/Signup";
 // components
 import { Input } from "@/components/ui/input";
 import {
@@ -18,21 +18,24 @@ import CONSTANTS from "@/constants";
 
 const { EMAIL } = CONSTANTS.FIELD_NAMES.SIGNUP_FIELD_NAMES;
 
-const InputEmail = () => {
-  const t = useTranslations("signup.form.input");
-  const { field, fieldState } = useFieldProps<SignupFormValues>(EMAIL);
+const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
+  const t = useTranslations("signup.emailStep.input");
+  const { field, fieldState } = useFieldProps<SignupEmailFormValues>(EMAIL);
 
   return (
     <FormField
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t("labelEmail")}</FormLabel>
+          <FormLabel className="text-foreground">{t("labelEmail")}</FormLabel>
           <FormControl>
             <Input
               {...field}
-              placeholder="m@example.com"
+              type="email"
+              placeholder="example@gmail.com"
               aria-invalid={fieldState.invalid}
+              disabled={disabled}
+              className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 transition-all duration-200"
             />
           </FormControl>
           <FormMessage />
@@ -42,4 +45,4 @@ const InputEmail = () => {
   );
 };
 
-export default InputEmail;
+export default EmailInput;

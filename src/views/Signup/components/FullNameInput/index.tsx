@@ -1,7 +1,7 @@
 // libs
 import { useTranslations } from "next-intl";
 // types
-import type { SignupFormValues } from "@/types/Signup";
+import type { SignupInfoFormValues } from "@/types/Signup";
 // components
 import { Input } from "@/components/ui/input";
 import {
@@ -18,22 +18,25 @@ import CONSTANTS from "@/constants";
 
 const { FULL_NAME } = CONSTANTS.FIELD_NAMES.SIGNUP_FIELD_NAMES;
 
-const InputFullName = () => {
-  const t = useTranslations("signup.form.input");
-  const { field, fieldState } = useFieldProps<SignupFormValues>(FULL_NAME);
+const FullNameInput = ({ disabled = false }: { disabled?: boolean }) => {
+  const t = useTranslations("signup.infoStep.input");
+  const { field, fieldState } = useFieldProps<SignupInfoFormValues>(FULL_NAME);
 
   return (
     <FormField
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel>{t("labelFullName")}</FormLabel>
+          <FormLabel className="text-foreground">
+            {t("labelFullName")} <span className="text-destructive">*</span>
+          </FormLabel>
           <FormControl>
             <Input
               {...field}
-              placeholder="John Doe"
+              placeholder={t("placeholderFullName")}
               aria-invalid={fieldState.invalid}
-              autoFocus
+              disabled={disabled}
+              className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 transition-all duration-200"
             />
           </FormControl>
           <FormMessage />
@@ -43,4 +46,4 @@ const InputFullName = () => {
   );
 };
 
-export default InputFullName;
+export default FullNameInput;
