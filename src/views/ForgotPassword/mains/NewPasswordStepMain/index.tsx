@@ -9,14 +9,14 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 // types
 import type { NewPasswordFormValues } from "@/types/ForgotPassword";
+import { KeyRound } from "lucide-react";
 // components
 import BackButton from "@/views/Login/components/BackButton";
 import AuthFooter from "@/components/AuthFooter";
 import CustomButton from "@/components/CustomButton";
-import ForgotPasswordIcon from "../../components/ForgotPasswordIcon";
+import AuthIcon from "@/components/AuthIcon";
+import PasswordInput from "@/components/PasswordInput";
 import PasswordRequirements from "../../components/PasswordRequirements";
-import NewPasswordInput from "../../components/NewPasswordInput";
-import ConfirmPasswordInput from "../../components/ConfirmPasswordInput";
 // forms
 import { newPasswordFormProps } from "@/forms/ForgotPassword";
 // stores
@@ -27,6 +27,9 @@ import { useResetPasswordMutation } from "@/services/auths";
 import { useEmailGuard } from "@/hooks";
 // others
 import CONSTANTS from "@/constants";
+
+const { NEW_PASSWORD, CONFIRM_PASSWORD } =
+  CONSTANTS.FIELD_NAMES.FORGOT_PASSWORD_FIELD_NAMES;
 
 const NewPasswordStepMain = () => {
   const router = useRouter();
@@ -87,7 +90,7 @@ const NewPasswordStepMain = () => {
 
           <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">
-              <ForgotPasswordIcon variant="key" />
+              <AuthIcon Icon={KeyRound} variant="orange" animated />
             </div>
 
             <motion.div
@@ -107,8 +110,18 @@ const NewPasswordStepMain = () => {
               onSubmit={methods.handleSubmit(onSubmit)}
               className="space-y-5"
             >
-              <NewPasswordInput disabled={isPending} />
-              <ConfirmPasswordInput disabled={isPending} />
+              <PasswordInput
+                name={NEW_PASSWORD}
+                label={t("input.labelNewPassword")}
+                placeholder={t("input.placeholderNewPassword")}
+                disabled={isPending}
+              />
+              <PasswordInput
+                name={CONFIRM_PASSWORD}
+                label={t("input.labelConfirmPassword")}
+                placeholder={t("input.placeholderConfirmPassword")}
+                disabled={isPending}
+              />
               <PasswordRequirements />
 
               <CustomButton

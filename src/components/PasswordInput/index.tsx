@@ -1,11 +1,9 @@
 "use client";
 
 // libs
-import { useTranslations } from "next-intl";
 import { useCallback, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
-// types
-import type { NewPasswordFormValues } from "@/types/ForgotPassword";
+import { useFormContext } from "react-hook-form";
 // components
 import { Input } from "@/components/ui/input";
 import {
@@ -15,17 +13,21 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
-// hooks
-import { useFieldProps } from "@/hooks";
-// others
-import CONSTANTS from "@/constants";
 
-const { CONFIRM_PASSWORD } = CONSTANTS.FIELD_NAMES.FORGOT_PASSWORD_FIELD_NAMES;
-
-const ConfirmPasswordInput = ({ disabled = false }: { disabled?: boolean }) => {
-  const t = useTranslations("forgotPassword.form.newPassword.input");
-  const { field, fieldState } =
-    useFieldProps<NewPasswordFormValues>(CONFIRM_PASSWORD);
+const PasswordInput = ({
+  name,
+  label,
+  placeholder,
+  disabled = false,
+  required = false
+}: {
+  name: string;
+  label: string;
+  placeholder?: string;
+  disabled?: boolean;
+  required?: boolean;
+}) => {
+  const { control } = useFormContext();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = useCallback(() => {
@@ -34,18 +36,20 @@ const ConfirmPasswordInput = ({ disabled = false }: { disabled?: boolean }) => {
 
   return (
     <FormField
-      {...field}
-      render={({ field }) => (
+      control={control}
+      name={name}
+      render={({ field, fieldState }) => (
         <FormItem>
           <FormLabel className="text-foreground">
-            {t("labelConfirmPassword")}
+            {label}
+            {required && <span className="text-destructive"> *</span>}
           </FormLabel>
           <FormControl>
             <div className="relative w-full">
               <Input
                 {...field}
                 type={showPassword ? "text" : "password"}
-                placeholder={t("placeholderConfirmPassword")}
+                placeholder={placeholder}
                 aria-invalid={fieldState.invalid}
                 disabled={disabled}
                 className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 pr-12 transition-all duration-200"
@@ -72,4 +76,4 @@ const ConfirmPasswordInput = ({ disabled = false }: { disabled?: boolean }) => {
   );
 };
 
-export default ConfirmPasswordInput;
+export default PasswordInput;

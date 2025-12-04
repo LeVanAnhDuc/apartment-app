@@ -10,7 +10,7 @@ import type { PasswordStepFormValues } from "@/types/Login";
 import CustomButton from "@/components/CustomButton";
 import BackButton from "../../components/BackButton";
 import EmailBadge from "@/components/EmailBadge";
-import PasswordInput from "../../components/PasswordInput";
+import PasswordInput from "@/components/PasswordInput";
 import ForgotPasswordLink from "../../components/ForgotPasswordLink";
 import TryAnotherButton from "../../components/TryAnotherButton";
 import AuthIcon from "@/components/AuthIcon";
@@ -73,7 +73,12 @@ const PasswordStepMain = () => {
               onSubmit={methods.handleSubmit(onSubmit)}
               className="space-y-6"
             >
-              <PasswordInput disabled={isPending} />
+              <PasswordInput
+                name={PASSWORD}
+                label={t("input.labelEnterPassword")}
+                placeholder={t("input.placeholderPassword")}
+                disabled={isPending}
+              />
               <ForgotPasswordLink />
               <div className="flex gap-3">
                 <TryAnotherButton
