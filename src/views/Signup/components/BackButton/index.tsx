@@ -1,7 +1,7 @@
 // libs
 import { ChevronLeft } from "lucide-react";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 
 const BackButton = ({
   onClick,
@@ -10,16 +10,15 @@ const BackButton = ({
   onClick: () => void;
   disabled?: boolean;
 }) => (
-  <Button
+  <CustomButton
     onClick={onClick}
     variant="ghost"
-    size="icon"
     disabled={disabled}
-    className="hover:bg-accent absolute top-6 left-6 rounded-full transition-all duration-200 md:top-8 md:left-8"
+    className="hover:bg-accent absolute top-6 left-6 h-10 w-10 rounded-full p-0 transition-all duration-200 md:top-8 md:left-8"
     type="button"
   >
     <ChevronLeft className="text-muted-foreground h-5 w-5" />
-  </Button>
+  </CustomButton>
 );
 
 export default BackButton;

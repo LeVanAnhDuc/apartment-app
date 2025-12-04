@@ -8,7 +8,7 @@ import { UserPlus, ChevronLeft } from "lucide-react";
 // types
 import type { SignupEmailFormValues } from "@/types/Signup";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 import NextButton from "../../components/NextButton";
 import AuthIcon from "@/components/AuthIcon";
 import SocialSignupButtons from "../../components/SocialSignupButtons";
@@ -53,15 +53,14 @@ const EmailStepMain = () => {
     <main className="auth-background flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="auth-card relative p-8 md:p-10">
-          <Button
+          <CustomButton
             onClick={handleBackToLogin}
             variant="ghost"
-            size="icon"
             type="button"
-            className="hover:bg-accent absolute top-6 left-6 rounded-full transition-all duration-200 md:top-8 md:left-8"
+            className="hover:bg-accent absolute top-6 left-6 h-10 w-10 rounded-full p-0 transition-all duration-200 md:top-8 md:left-8"
           >
             <ChevronLeft className="text-muted-foreground h-5 w-5" />
-          </Button>
+          </CustomButton>
 
           <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">

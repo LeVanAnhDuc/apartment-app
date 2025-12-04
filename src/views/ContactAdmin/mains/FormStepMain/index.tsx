@@ -10,7 +10,7 @@ import { ArrowLeft, Headset } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 import AuthIcon from "@/components/AuthIcon";
 import ResponseTimeAlert from "../../components/ResponseTimeAlert";
 import EmailInput from "../../components/EmailInput";
@@ -90,16 +90,15 @@ const FormStepMain = () => {
     >
       <div className="auth-card p-8 md:p-10">
         <div className="mb-6">
-          <Button
+          <CustomButton
             onClick={handleBack}
             variant="ghost"
-            size="sm"
             disabled={isSubmitting}
-            className="text-muted-foreground hover:text-foreground hover:bg-muted"
+            iconLeft={<ArrowLeft className="mr-2 h-4 w-4" />}
+            className="text-muted-foreground hover:text-foreground hover:bg-muted h-9 px-3"
           >
-            <ArrowLeft className="mr-2 h-4 w-4" />
             {t("button.back")}
-          </Button>
+          </CustomButton>
         </div>
 
         <div className="mb-8 text-center">

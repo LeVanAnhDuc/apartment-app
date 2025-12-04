@@ -8,7 +8,7 @@ import { CalendarIcon } from "lucide-react";
 // types
 import type { SignupInfoFormValues } from "@/types/Signup";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -52,16 +52,17 @@ const BirthdayInput = ({ disabled = false }: { disabled?: boolean }) => {
             <Popover>
               <PopoverTrigger asChild>
                 <FormControl>
-                  <Button
+                  <CustomButton
                     variant="outline"
                     disabled={disabled}
                     aria-invalid={fieldState.invalid}
+                    fullWidth
+                    iconLeft={<CalendarIcon className="mr-2 h-4 w-4" />}
                     className={cn(
-                      "border-input bg-background focus:border-ring focus:ring-ring h-12 w-full justify-start rounded-lg px-4 text-left font-normal transition-all duration-200",
+                      "border-input bg-background focus:border-ring focus:ring-ring h-12 justify-start rounded-lg px-4 text-left font-normal transition-all duration-200",
                       !field.value && "text-muted-foreground"
                     )}
                   >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
                     {field.value ? (
                       format(selectedDate!, "dd/MM/yyyy", {
                         locale: dateLocale
@@ -69,7 +70,7 @@ const BirthdayInput = ({ disabled = false }: { disabled?: boolean }) => {
                     ) : (
                       <span>{t("placeholderBirthday")}</span>
                     )}
-                  </Button>
+                  </CustomButton>
                 </FormControl>
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0" align="start">

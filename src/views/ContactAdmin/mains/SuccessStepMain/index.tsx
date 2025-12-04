@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
 import { ArrowLeft, Printer } from "lucide-react";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 import SuccessIcon from "../../components/SuccessIcon";
 import TicketInfo from "../../components/TicketInfo";
 import NextSteps from "../../components/NextSteps";
@@ -75,22 +75,22 @@ const SuccessStepMain = () => {
           transition={{ delay: 1 }}
           className="flex flex-col gap-3 sm:flex-row"
         >
-          <Button
+          <CustomButton
             onClick={handleBackToDashboard}
+            iconLeft={<ArrowLeft className="mr-2 h-5 w-5" />}
             className="h-12 flex-1 bg-blue-600 transition-all duration-200 hover:bg-blue-700 hover:shadow-lg"
           >
-            <ArrowLeft className="mr-2 h-5 w-5" />
             {t("button.backToDashboard")}
-          </Button>
+          </CustomButton>
 
-          <Button
+          <CustomButton
             variant="outline"
             onClick={handlePrint}
+            iconLeft={<Printer className="mr-2 h-5 w-5" />}
             className="hover:bg-muted h-12 flex-1 transition-all duration-200"
           >
-            <Printer className="mr-2 h-5 w-5" />
             {t("button.print")}
-          </Button>
+          </CustomButton>
         </motion.div>
       </div>
     </motion.div>

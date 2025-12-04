@@ -3,7 +3,7 @@
 // libs
 import { useTranslations } from "next-intl";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 
 const GoogleIcon = () => (
   <svg className="mr-3 h-5 w-5" viewBox="0 0 24 24">
@@ -45,27 +45,29 @@ const SocialSignupButtons = ({
 
   return (
     <div className="space-y-3">
-      <Button
+      <CustomButton
         type="button"
         variant="outline"
         onClick={onGoogleSignup}
         disabled={isLoading}
-        className="border-input hover:bg-accent h-12 w-full transition-all duration-200"
+        fullWidth
+        iconLeft={<GoogleIcon />}
+        className="border-input hover:bg-accent h-12 transition-all duration-200"
       >
-        <GoogleIcon />
         {t("signupWithGoogle")}
-      </Button>
+      </CustomButton>
 
-      <Button
+      <CustomButton
         type="button"
         variant="outline"
         onClick={onFacebookSignup}
         disabled={isLoading}
-        className="border-input hover:bg-accent h-12 w-full transition-all duration-200"
+        fullWidth
+        iconLeft={<FacebookIcon />}
+        className="border-input hover:bg-accent h-12 transition-all duration-200"
       >
-        <FacebookIcon />
         {t("signupWithFacebook")}
-      </Button>
+      </CustomButton>
     </div>
   );
 };

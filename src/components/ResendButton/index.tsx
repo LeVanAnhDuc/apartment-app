@@ -3,7 +3,7 @@
 // libs
 import { motion } from "framer-motion";
 // components
-import { Button } from "@/components/ui/button";
+import CustomButton from "@/components/CustomButton";
 
 const ResendButton = ({
   countdown,
@@ -33,23 +33,20 @@ const ResendButton = ({
     transition={{ delay: 0.4 }}
     className="space-y-3"
   >
-    <Button
+    <CustomButton
       onClick={onResend}
-      disabled={!canResend || isResending || isProcessing}
+      disabled={!canResend || isProcessing}
+      loading={isResending}
       variant="outline"
-      className="h-12 w-full border-gray-300 transition-all duration-200 hover:border-gray-400 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+      fullWidth
+      className="h-12 border-gray-300 transition-all duration-200 hover:border-gray-400 hover:bg-gray-50"
     >
-      {isResending ? (
-        <span className="flex items-center justify-center gap-2">
-          <span className="h-4 w-4 animate-spin rounded-full border-2 border-orange-600 border-t-transparent" />
-          <span>{labels.sending}</span>
-        </span>
-      ) : canResend ? (
-        labels.resend
-      ) : (
-        labels.resendIn.replace("{seconds}", String(countdown))
-      )}
-    </Button>
+      {isResending
+        ? labels.sending
+        : canResend
+          ? labels.resend
+          : labels.resendIn.replace("{seconds}", String(countdown))}
+    </CustomButton>
 
     <div className="text-center">
       <button
