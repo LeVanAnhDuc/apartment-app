@@ -4,10 +4,11 @@
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { Lock } from "lucide-react";
 // components
 import AuthStepLayout from "@/components/AuthStepLayout";
 import ResendButton from "@/components/ResendButton";
-import OtpIcon from "@/components/OtpIcon";
+import AuthIcon from "@/components/AuthIcon";
 import OtpInputGroup from "../../components/OtpInputGroup";
 import OtpInstruction from "../../components/OtpInstruction";
 // ghosts
@@ -69,7 +70,15 @@ const OtpStepMain = () => {
 
   return (
     <AuthStepLayout
-      icon={<OtpIcon />}
+      icon={
+        <AuthIcon
+          Icon={Lock}
+          variant="blue"
+          shape="circle"
+          size="lg"
+          animated
+        />
+      }
       title={t("title")}
       description={t("description")}
       email={email}

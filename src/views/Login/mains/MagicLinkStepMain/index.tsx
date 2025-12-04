@@ -4,10 +4,11 @@
 import { useState, useCallback } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "sonner";
+import { Mail } from "lucide-react";
 // components
 import AuthStepLayout from "@/components/AuthStepLayout";
 import ResendButton from "@/components/ResendButton";
-import MagicLinkIcon from "@/components/MagicLinkIcon";
+import AuthIcon from "@/components/AuthIcon";
 import MagicLinkInstructions from "../../components/MagicLinkInstructions";
 // ghosts
 import CountdownEffect from "@/ghosts/CountdownEffect";
@@ -47,7 +48,15 @@ const MagicLinkStepMain = () => {
 
   return (
     <AuthStepLayout
-      icon={<MagicLinkIcon />}
+      icon={
+        <AuthIcon
+          Icon={Mail}
+          variant="orange"
+          shape="circle"
+          size="lg"
+          animated
+        />
+      }
       title={t("title")}
       description={t("description")}
       email={email}

@@ -3,10 +3,11 @@
 // libs
 import { useCallback } from "react";
 import { useTranslations } from "next-intl";
+import { Lock } from "lucide-react";
 // components
 import AuthStepLayout from "@/components/AuthStepLayout";
 import ResendButton from "@/components/ResendButton";
-import ForgotPasswordIcon from "../../components/ForgotPasswordIcon";
+import AuthIcon from "@/components/AuthIcon";
 import OtpInput from "../../components/OtpInput";
 import OtpVerifyingStatus from "../../components/OtpVerifyingStatus";
 import OtpInstructionBox from "../../components/OtpInstructionBox";
@@ -50,7 +51,7 @@ const OtpStepMain = () => {
 
   return (
     <AuthStepLayout
-      icon={<ForgotPasswordIcon variant="lock" />}
+      icon={<AuthIcon Icon={Lock} variant="orange" animated />}
       title={t("title")}
       description={t("description")}
       email={email}

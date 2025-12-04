@@ -6,12 +6,12 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Headset } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
 import { Button } from "@/components/ui/button";
-import ContactAdminIcon from "../../components/ContactAdminIcon";
+import AuthIcon from "@/components/AuthIcon";
 import ResponseTimeAlert from "../../components/ResponseTimeAlert";
 import EmailInput from "../../components/EmailInput";
 import SubjectInput from "../../components/SubjectInput";
@@ -28,8 +28,7 @@ import { useContactAdminStore } from "@/stores";
 // others
 import CONSTANTS from "@/constants";
 
-const { EMAIL, SUBJECT, CATEGORY, PRIORITY, MESSAGE } =
-  CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
+const { EMAIL } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
 
 const FormStepMain = () => {
   const t = useTranslations("contactAdmin.form");
@@ -104,7 +103,7 @@ const FormStepMain = () => {
         </div>
 
         <div className="mb-8 text-center">
-          <ContactAdminIcon />
+          <AuthIcon Icon={Headset} variant="purple" animated />
           <h1 className="text-foreground mb-2 text-2xl font-medium">
             {t("title")}
           </h1>

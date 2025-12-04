@@ -5,12 +5,12 @@ import { useCallback } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { Smartphone, Mail, ShieldCheck, Headset } from "lucide-react";
+import { Smartphone, Mail, ShieldCheck, Headset, KeyRound } from "lucide-react";
 // components
 import BackButton from "@/views/Login/components/BackButton";
 import EmailBadge from "@/components/EmailBadge";
 import AuthFooter from "@/components/AuthFooter";
-import ForgotPasswordIcon from "../../components/ForgotPasswordIcon";
+import AuthIcon from "@/components/AuthIcon";
 import RecoveryOptionCard from "../../components/RecoveryOptionCard";
 import RecoveryOptionsInfo from "../../components/RecoveryOptionsInfo";
 // stores
@@ -82,7 +82,7 @@ const OptionsStepMain = ({
 
           <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">
-              <ForgotPasswordIcon variant="key" />
+              <AuthIcon Icon={KeyRound} variant="orange" animated />
             </div>
             <h1 className="text-foreground mb-2 text-2xl font-medium">
               {t("title")}
