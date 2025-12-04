@@ -5,7 +5,7 @@ import { useCallback, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 // components
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput";
 import {
   FormControl,
   FormField,
@@ -46,13 +46,13 @@ const PasswordInput = ({
           </FormLabel>
           <FormControl>
             <div className="relative w-full">
-              <Input
+              <CustomInput
                 {...field}
                 type={showPassword ? "text" : "password"}
                 placeholder={placeholder}
                 aria-invalid={fieldState.invalid}
                 disabled={disabled}
-                className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 pr-12 transition-all duration-200"
+                className="pr-12"
               />
               <button
                 type="button"

@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput";
 // others
 import CONSTANTS from "@/constants";
 
@@ -34,12 +34,11 @@ const SubjectInput = ({ disabled = false }: { disabled?: boolean }) => {
             {t("labelSubject")} <span className="text-destructive">*</span>
           </FormLabel>
           <FormControl>
-            <Input
+            <CustomInput
               {...field}
               type="text"
               placeholder={t("placeholderSubject")}
               disabled={disabled}
-              className="h-12"
             />
           </FormControl>
           {fieldState.error?.message && (

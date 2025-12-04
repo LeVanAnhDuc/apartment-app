@@ -13,7 +13,7 @@ import {
   FormLabel,
   FormMessage
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput";
 // others
 import CONSTANTS from "@/constants";
 
@@ -40,12 +40,12 @@ const EmailInput = ({
         <FormItem>
           <FormLabel>{t("labelEmail")}</FormLabel>
           <FormControl>
-            <Input
+            <CustomInput
               {...field}
               type="email"
               placeholder="email@example.com"
               disabled={isEmailDisabled}
-              className={`h-12 ${isEmailDisabled ? "bg-muted" : ""}`}
+              className={isEmailDisabled ? "bg-muted" : ""}
             />
           </FormControl>
           {fieldState.error?.message && (

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 // types
 import type { SignupInfoFormValues } from "@/types/Signup";
 // components
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput";
 import {
   FormControl,
   FormField,
@@ -31,12 +31,11 @@ const FullNameInput = ({ disabled = false }: { disabled?: boolean }) => {
             {t("labelFullName")} <span className="text-destructive">*</span>
           </FormLabel>
           <FormControl>
-            <Input
+            <CustomInput
               {...field}
               placeholder={t("placeholderFullName")}
               aria-invalid={fieldState.invalid}
               disabled={disabled}
-              className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 transition-all duration-200"
             />
           </FormControl>
           <FormMessage />

@@ -3,7 +3,7 @@ import { useTranslations } from "next-intl";
 // types
 import type { EmailStepFormValues } from "@/types/Login";
 // components
-import { Input } from "@/components/ui/input";
+import CustomInput from "@/components/CustomInput";
 import {
   FormControl,
   FormField,
@@ -29,13 +29,12 @@ const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
         <FormItem>
           <FormLabel className="text-foreground">{t("labelEmail")}</FormLabel>
           <FormControl>
-            <Input
+            <CustomInput
               {...field}
               type="email"
               placeholder="example@gmail.com"
               aria-invalid={fieldState.invalid}
               disabled={disabled}
-              className="border-input bg-background focus:border-ring focus:ring-ring h-12 rounded-lg px-4 transition-all duration-200"
             />
           </FormControl>
           <FormMessage />
