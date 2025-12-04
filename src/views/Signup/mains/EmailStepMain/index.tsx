@@ -3,13 +3,12 @@
 // libs
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { UserPlus, ChevronLeft } from "lucide-react";
+import { UserPlus } from "lucide-react";
 // types
 import type { SignupEmailFormValues } from "@/types/Signup";
 // components
-import CustomButton from "@/components/CustomButton";
 import NextButton from "../../components/NextButton";
+import LoginLink from "../../components/LoginLink";
 import AuthIcon from "@/components/AuthIcon";
 import SocialSignupButtons from "../../components/SocialSignupButtons";
 import AuthFooter from "@/components/AuthFooter";
@@ -27,7 +26,6 @@ const { EMAIL } = CONSTANTS.FIELD_NAMES.SIGNUP_FIELD_NAMES;
 
 const EmailStepMain = () => {
   const t = useTranslations("signup.emailStep");
-  const router = useRouter();
   const goToOtpStep = useSignupStore((state) => state.goToOtpStep);
 
   const methods = useForm<SignupEmailFormValues>({ ...signupEmailFormProps });
@@ -35,10 +33,6 @@ const EmailStepMain = () => {
   const onSubmit = (data: SignupEmailFormValues) => {
     // TODO: Call API to send OTP to email
     goToOtpStep(data[EMAIL]);
-  };
-
-  const handleBackToLogin = () => {
-    router.push(CONSTANTS.ROUTES.LOGIN);
   };
 
   const handleGoogleSignup = () => {
@@ -52,16 +46,7 @@ const EmailStepMain = () => {
   return (
     <main className="auth-background flex min-h-screen items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <div className="auth-card relative p-8 md:p-10">
-          <CustomButton
-            onClick={handleBackToLogin}
-            variant="ghost"
-            type="button"
-            className="hover:bg-accent absolute top-6 left-6 h-10 w-10 rounded-full p-0 transition-all duration-200 md:top-8 md:left-8"
-          >
-            <ChevronLeft className="text-muted-foreground h-5 w-5" />
-          </CustomButton>
-
+        <div className="auth-card p-8 md:p-10">
           <div className="mb-8 text-center">
             <div className="mb-4 flex justify-center">
               <AuthIcon Icon={UserPlus} variant="green" />
@@ -86,6 +71,7 @@ const EmailStepMain = () => {
               <NextButton />
             </form>
             <TermsNotice />
+            <LoginLink />
           </FormProvider>
         </div>
 
