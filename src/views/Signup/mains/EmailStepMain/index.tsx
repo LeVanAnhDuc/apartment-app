@@ -13,7 +13,6 @@ import AuthIcon from "@/components/AuthIcon";
 import SocialSignupButtons from "../../components/SocialSignupButtons";
 import AuthFooter from "@/components/AuthFooter";
 import AuthDivider from "@/components/AuthDivider";
-import TermsNotice from "../../components/TermsNotice";
 import EmailInput from "../../components/InputEmail";
 // forms
 import { signupEmailFormProps } from "@/forms/Signup";
@@ -70,7 +69,6 @@ const EmailStepMain = () => {
               <EmailInput />
               <NextButton />
             </form>
-            <TermsNotice />
             <LoginLink />
           </FormProvider>
         </div>

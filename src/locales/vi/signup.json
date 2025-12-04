@@ -12,12 +12,6 @@
       "loading": "Đang xử lý...",
       "signupWithGoogle": "Đăng ký với Google",
       "signupWithFacebook": "Đăng ký với Facebook"
-    },
-    "termsNotice": {
-      "prefix": "Bằng việc đăng ký, bạn đồng ý với",
-      "terms": "Điều khoản dịch vụ",
-      "and": "và",
-      "privacy": "Chính sách bảo mật"
     }
   },
   "infoStep": {

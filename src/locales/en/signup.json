@@ -12,12 +12,6 @@
       "loading": "Processing...",
       "signupWithGoogle": "Sign up with Google",
       "signupWithFacebook": "Sign up with Facebook"
-    },
-    "termsNotice": {
-      "prefix": "By signing up, you agree to our",
-      "terms": "Terms of Service",
-      "and": "and",
-      "privacy": "Privacy Policy"
     }
   },
   "infoStep": {
