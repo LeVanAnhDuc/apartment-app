@@ -19,6 +19,10 @@ import { useForgotPasswordStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
 import { useOtpVerification } from "../../hooks/useOtpVerification";
+// others
+import CONSTANTS from "@/constants";
+
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const OtpStepMain = () => {
   const t = useTranslations("forgotPassword.form.otp");
@@ -27,7 +31,7 @@ const OtpStepMain = () => {
     (state) => state.goToOptionsStep
   );
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const {
     otpValue,

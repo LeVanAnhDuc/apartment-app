@@ -16,8 +16,11 @@ import CountdownEffect from "@/ghosts/CountdownEffect";
 import { useLoginStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
+// others
+import CONSTANTS from "@/constants";
 
 const COUNTDOWN_SECONDS = 60;
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const MagicLinkStepMain = () => {
   const t = useTranslations("login.form.magicLink");
@@ -26,7 +29,7 @@ const MagicLinkStepMain = () => {
     (state) => state.goToAlternativeStep
   );
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
   const [canResend, setCanResend] = useState(false);

@@ -18,9 +18,12 @@ import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
 import { useLoginStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
+// others
+import CONSTANTS from "@/constants";
 
 const OTP_LENGTH = 6;
 const COUNTDOWN_SECONDS = 60;
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const OtpStepMain = () => {
   const t = useTranslations("login.form.otp");
@@ -29,7 +32,7 @@ const OtpStepMain = () => {
     (state) => state.goToAlternativeStep
   );
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const [otp, setOtp] = useState("");
   const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);

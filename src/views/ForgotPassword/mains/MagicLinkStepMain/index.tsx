@@ -16,6 +16,10 @@ import { useForgotPasswordStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
 import { useMagicLink } from "../../hooks/useMagicLink";
+// others
+import CONSTANTS from "@/constants";
+
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const MagicLinkStepMain = () => {
   const t = useTranslations("forgotPassword.form.magicLink");
@@ -24,7 +28,7 @@ const MagicLinkStepMain = () => {
     (state) => state.goToOptionsStep
   );
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const {
     countdown,

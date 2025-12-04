@@ -18,6 +18,7 @@ import { useEmailGuard } from "@/hooks";
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const OptionsStepMain = ({
   has2FAEnabled = false
@@ -30,7 +31,7 @@ const OptionsStepMain = ({
 
   const email = useForgotPasswordStore((state) => state.email);
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
   const goToOtpStep = useForgotPasswordStore((state) => state.goToOtpStep);
   const goToMagicLinkStep = useForgotPasswordStore(
     (state) => state.goToMagicLinkStep

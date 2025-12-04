@@ -22,3 +22,9 @@ export type {
   SignupActions,
   SignupStore
 } from "./signup";
+
+export type {
+  ResetPasswordState,
+  ResetPasswordActions,
+  ResetPasswordStore
+} from "./resetPassword";

@@ -4,7 +4,7 @@
 import { useTranslations } from "next-intl";
 
 const PasswordRequirements = () => {
-  const t = useTranslations("forgotPassword.form.newPassword.requirements");
+  const t = useTranslations("resetPassword.form.requirements");
 
   return (
     <div className="rounded-lg bg-amber-50 p-4">

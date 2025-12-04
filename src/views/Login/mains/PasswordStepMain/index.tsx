@@ -25,12 +25,13 @@ import { useEmailGuard } from "@/hooks";
 import CONSTANTS from "@/constants";
 
 const { EMAIL, PASSWORD } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
+const { LOGIN } = CONSTANTS.ROUTES;
 
 const PasswordStepMain = () => {
   const t = useTranslations("login.form");
   const email = useLoginStore((state) => state.email);
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
   const goToEmailStep = useLoginStore((state) => state.goToEmailStep);
   const goToAlternativeStep = useLoginStore(
     (state) => state.goToAlternativeStep

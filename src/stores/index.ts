@@ -4,10 +4,12 @@ import { create } from "zustand";
 import type { AuthStore, ContactAdminStore, SignupStore } from "@/types/stores";
 import type { LoginStore } from "@/types/stores/login";
 import type { ForgotPasswordStore } from "@/types/stores/forgotPassword";
+import type { ResetPasswordStore } from "@/types/stores/resetPassword";
 // slices
 import createAuthSlice from "./slices/auth";
 import createLoginSlice from "./slices/login";
 import createForgotPasswordSlice from "./slices/forgotPassword";
+import createResetPasswordSlice from "./slices/resetPassword";
 import createContactAdminSlice from "./slices/contactAdmin";
 import createSignupSlice from "./slices/signup";
 
@@ -22,6 +24,12 @@ export const useLoginStore = create<LoginStore>()((...props) => ({
 export const useForgotPasswordStore = create<ForgotPasswordStore>()(
   (...props) => ({
     ...createForgotPasswordSlice(...props)
+  })
+);
+
+export const useResetPasswordStore = create<ResetPasswordStore>()(
+  (...props) => ({
+    ...createResetPasswordSlice(...props)
   })
 );
 

@@ -1,8 +1,4 @@
-export type ForgotPasswordStep =
-  | "options"
-  | "otp"
-  | "magicLink"
-  | "newPassword";
+export type ForgotPasswordStep = "options" | "otp" | "magicLink";
 
 export interface ForgotPasswordState {
   step: ForgotPasswordStep;
@@ -16,7 +12,6 @@ export interface ForgotPasswordActions {
   goToOptionsStep: (email: string) => void;
   goToOtpStep: () => void;
   goToMagicLinkStep: () => void;
-  goToNewPasswordStep: () => void;
   reset: () => void;
 }
 

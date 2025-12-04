@@ -5,20 +5,24 @@ import { useState, useCallback } from "react";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
 // stores
-import { useForgotPasswordStore } from "@/stores";
+import { useForgotPasswordStore, useResetPasswordStore } from "@/stores";
 // services
 import { useVerifyOtpMutation, useResendOtpMutation } from "@/services/auths";
+// others
+import CONSTANTS from "@/constants";
+import { useRouter } from "@/i18n/navigation";
 
 const COUNTDOWN_SECONDS = 60;
 const OTP_LENGTH = 6;
+const { RESET_PASSWORD } = CONSTANTS.ROUTES;
 
 export const useOtpVerification = () => {
+  const router = useRouter();
   const t = useTranslations("forgotPassword.form.otp");
   const tMessage = useTranslations("forgotPassword.message");
   const email = useForgotPasswordStore((state) => state.email);
-  const setOtp = useForgotPasswordStore((state) => state.setOtp);
-  const goToNewPasswordStep = useForgotPasswordStore(
-    (state) => state.goToNewPasswordStep
+  const setResetPasswordCredentials = useResetPasswordStore(
+    (state) => state.setCredentials
   );
 
   const [otpValue, setOtpValue] = useState("");
@@ -38,8 +42,8 @@ export const useOtpVerification = () => {
         { email, otp },
         {
           onSuccess: () => {
-            setOtp(otp);
-            goToNewPasswordStep();
+            setResetPasswordCredentials(email, otp);
+            router.push(RESET_PASSWORD);
           },
           onError: () => {
             toast.error(tMessage("error.invalidOtp"));
@@ -48,7 +52,7 @@ export const useOtpVerification = () => {
         }
       );
     },
-    [email, verifyOtpMutation, setOtp, goToNewPasswordStep, tMessage]
+    [email, verifyOtpMutation, setResetPasswordCredentials, router, tMessage]
   );
 
   const handleResend = useCallback(() => {

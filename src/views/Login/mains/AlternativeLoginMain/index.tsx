@@ -19,7 +19,7 @@ import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
 
-const { CONTACT_ADMIN } = CONSTANTS.ROUTES;
+const { CONTACT_ADMIN, LOGIN } = CONSTANTS.ROUTES;
 
 const AlternativeLoginMain = () => {
   const t = useTranslations("login.form");
@@ -29,7 +29,7 @@ const AlternativeLoginMain = () => {
 
   const email = useLoginStore((state) => state.email);
 
-  const { hasEmail } = useEmailGuard({ email });
+  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
   const goToPasswordStep = useLoginStore((state) => state.goToPasswordStep);
   const goToOtpStep = useLoginStore((state) => state.goToOtpStep);
   const goToMagicLinkStep = useLoginStore((state) => state.goToMagicLinkStep);
