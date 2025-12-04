@@ -32,8 +32,7 @@
     },
     "button": {
       "submit": "Gửi yêu cầu hỗ trợ",
-      "submitting": "Đang gửi...",
-      "back": "Quay lại"
+      "submitting": "Đang gửi..."
     },
     "hint": {
       "minChars": "Tối thiểu {count} ký tự",

@@ -32,8 +32,7 @@
     },
     "button": {
       "submit": "Submit support request",
-      "submitting": "Submitting...",
-      "back": "Back"
+      "submitting": "Submitting..."
     },
     "hint": {
       "minChars": "Minimum {count} characters",

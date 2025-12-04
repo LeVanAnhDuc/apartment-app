@@ -6,12 +6,12 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Headset } from "lucide-react";
+import { Headset } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
-import CustomButton from "@/components/CustomButton";
 import AuthIcon from "@/components/AuthIcon";
+import BackButton from "../../components/BackButton";
 import ResponseTimeAlert from "../../components/ResponseTimeAlert";
 import EmailInput from "../../components/EmailInput";
 import SubjectInput from "../../components/SubjectInput";
@@ -88,18 +88,8 @@ const FormStepMain = () => {
       transition={{ duration: 0.3 }}
       className="w-full max-w-2xl"
     >
-      <div className="auth-card p-8 md:p-10">
-        <div className="mb-6">
-          <CustomButton
-            onClick={handleBack}
-            variant="ghost"
-            disabled={isSubmitting}
-            iconLeft={<ArrowLeft className="mr-2 h-4 w-4" />}
-            className="text-muted-foreground hover:text-foreground hover:bg-muted h-9 px-3"
-          >
-            {t("button.back")}
-          </CustomButton>
-        </div>
+      <div className="auth-card relative p-8 md:p-10">
+        <BackButton onClick={handleBack} disabled={isSubmitting} />
 
         <div className="mb-8 text-center">
           <AuthIcon Icon={Headset} variant="purple" animated />
