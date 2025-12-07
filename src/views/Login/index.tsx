@@ -7,9 +7,9 @@ import type { LoginMessages } from "@/types/libs";
 import AuthStepLayout from "@/components/AuthStepLayout";
 import AuthIcon from "@/components/AuthIcon";
 import AuthDivider from "@/components/AuthDivider";
+import SocialAuthenButtons from "@/components/SocialAuthenButtons";
 import EmailStepForm from "./mains/EmailStepForm";
 import SignUpLink from "./components/SignUpLink";
-import SocialLoginButtons from "./components/SocialLoginButtons";
 
 const Login = async () => {
   const messages = await getMessages();
@@ -22,10 +22,10 @@ const Login = async () => {
       title={form.title}
       description={form.description}
     >
-      <SocialLoginButtons
+      <SocialAuthenButtons
         labels={{
-          loginWithGoogle: form.button.loginWithGoogle,
-          loginWithFacebook: form.button.loginWithFacebook
+          google: form.button.loginWithGoogle,
+          facebook: form.button.loginWithFacebook
         }}
       />
       <AuthDivider />
