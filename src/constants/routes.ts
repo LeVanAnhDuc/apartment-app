@@ -1,5 +1,7 @@
 const ROUTES = {
   FORGOT_PASSWORD: "/forgot-password",
+  FORGOT_PASSWORD_OTP: "/forgot-password/otp",
+  FORGOT_PASSWORD_MAGIC_LINK: "/forgot-password/magic-link",
   RESET_PASSWORD: "/reset-password",
   LOGIN: "/login",
   LOGIN_PASSWORD: "/login/password",
