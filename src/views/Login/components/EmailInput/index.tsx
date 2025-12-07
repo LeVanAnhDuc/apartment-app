@@ -1,3 +1,5 @@
+"use client";
+
 // types
 import type { EmailStepFormValues } from "@/types/Login";
 // components
