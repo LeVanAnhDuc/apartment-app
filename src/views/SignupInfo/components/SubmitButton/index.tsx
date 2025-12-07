@@ -1,7 +1,7 @@
 // components
 import CustomButton from "@/components/CustomButton";
 
-const NextButton = ({
+const SubmitButton = ({
   label,
   loading = false,
   fullWidth = true
@@ -20,4 +20,4 @@ const NextButton = ({
   </CustomButton>
 );
 
-export default NextButton;
+export default SubmitButton;

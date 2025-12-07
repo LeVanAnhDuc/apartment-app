@@ -7,6 +7,8 @@ const ROUTES = {
   LOGIN_MAGIC_LINK: "/login/magic-link",
   LOGIN_ALTERNATIVE: "/login/alternative",
   SIGNUP: "/signup",
+  SIGNUP_OTP: "/signup/otp",
+  SIGNUP_INFO: "/signup/info",
   HOME: "/",
   CONTACT_ADMIN: "/contact-admin"
 };
