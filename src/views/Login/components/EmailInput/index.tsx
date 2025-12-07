@@ -1,5 +1,3 @@
-// libs
-import { useTranslations } from "next-intl";
 // types
 import type { EmailStepFormValues } from "@/types/Login";
 // components
@@ -18,8 +16,13 @@ import CONSTANTS from "@/constants";
 
 const { EMAIL } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 
-const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
-  const t = useTranslations("login.form.input");
+const EmailInput = ({
+  label,
+  disabled = false
+}: {
+  label: string;
+  disabled?: boolean;
+}) => {
   const { field, fieldState } = useFieldProps<EmailStepFormValues>(EMAIL);
 
   return (
@@ -27,7 +30,7 @@ const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
       {...field}
       render={({ field }) => (
         <FormItem>
-          <FormLabel className="text-foreground">{t("labelEmail")}</FormLabel>
+          <FormLabel className="text-foreground">{label}</FormLabel>
           <FormControl>
             <CustomInput
               {...field}

@@ -1,6 +1,3 @@
-"use client";
-
-import { useTranslations } from "next-intl";
 import CustomButton from "@/components/CustomButton";
 
 const GoogleIcon = () => (
@@ -33,41 +30,42 @@ const FacebookIcon = () => (
 const SocialLoginButtons = ({
   onGoogleLogin,
   onFacebookLogin,
-  isLoading = false
+  isLoading = false,
+  labels
 }: {
   onGoogleLogin?: () => void;
   onFacebookLogin?: () => void;
   isLoading?: boolean;
-}) => {
-  const t = useTranslations("login.form.button");
+  labels: {
+    loginWithGoogle: string;
+    loginWithFacebook: string;
+  };
+}) => (
+  <div className="space-y-3">
+    <CustomButton
+      type="button"
+      variant="outline"
+      onClick={onGoogleLogin}
+      disabled={isLoading}
+      fullWidth
+      iconLeft={<GoogleIcon />}
+      className="border-input hover:bg-accent h-12 transition-all duration-200"
+    >
+      {labels.loginWithGoogle}
+    </CustomButton>
 
-  return (
-    <div className="space-y-3">
-      <CustomButton
-        type="button"
-        variant="outline"
-        onClick={onGoogleLogin}
-        disabled={isLoading}
-        fullWidth
-        iconLeft={<GoogleIcon />}
-        className="border-input hover:bg-accent h-12 transition-all duration-200"
-      >
-        {t("loginWithGoogle")}
-      </CustomButton>
-
-      <CustomButton
-        type="button"
-        variant="outline"
-        onClick={onFacebookLogin}
-        disabled={isLoading}
-        fullWidth
-        iconLeft={<FacebookIcon />}
-        className="border-input hover:bg-accent h-12 transition-all duration-200"
-      >
-        {t("loginWithFacebook")}
-      </CustomButton>
-    </div>
-  );
-};
+    <CustomButton
+      type="button"
+      variant="outline"
+      onClick={onFacebookLogin}
+      disabled={isLoading}
+      fullWidth
+      iconLeft={<FacebookIcon />}
+      className="border-input hover:bg-accent h-12 transition-all duration-200"
+    >
+      {labels.loginWithFacebook}
+    </CustomButton>
+  </div>
+);
 
 export default SocialLoginButtons;
