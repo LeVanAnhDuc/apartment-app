@@ -9,11 +9,19 @@ const { EMAIL, SUBJECT, CATEGORY, PRIORITY, MESSAGE } =
 export const contactAdminValidation = z.object({
   [EMAIL]: z
     .string()
-    .min(1, "required")
-    .email("invalid")
-    .refine((value) => CONSTANTS.REGEX_EMAIL.test(value), "invalid"),
-  [SUBJECT]: z.string().min(1, "required").min(5, "minLength"),
-  [CATEGORY]: z.string().min(1, "required"),
+    .min(1, { message: "required" })
+    .email({ message: "invalid" })
+    .refine((value) => CONSTANTS.REGEX_EMAIL.test(value), {
+      message: "invalid"
+    }),
+  [SUBJECT]: z
+    .string()
+    .min(1, { message: "required" })
+    .min(5, { message: "minLength" }),
+  [CATEGORY]: z.string().min(1, { message: "required" }),
   [PRIORITY]: z.string(),
-  [MESSAGE]: z.string().min(1, "required").min(20, "minLength")
+  [MESSAGE]: z
+    .string()
+    .min(1, { message: "required" })
+    .min(20, { message: "minLength" })
 });

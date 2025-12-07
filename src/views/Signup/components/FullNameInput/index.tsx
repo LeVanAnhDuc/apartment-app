@@ -4,12 +4,12 @@ import { useTranslations } from "next-intl";
 import type { SignupInfoFormValues } from "@/types/Signup";
 // components
 import CustomInput from "@/components/CustomInput";
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 // hooks
 import { useFieldProps } from "@/hooks";
@@ -38,7 +38,7 @@ const FullNameInput = ({ disabled = false }: { disabled?: boolean }) => {
               disabled={disabled}
             />
           </FormControl>
-          <FormMessage />
+          <FormFieldMessage />
         </FormItem>
       )}
     />

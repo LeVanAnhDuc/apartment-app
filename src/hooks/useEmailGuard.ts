@@ -2,7 +2,8 @@
 
 // libs
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+// others
+import { useRouter } from "@/i18n/navigation";
 
 const useEmailGuard = ({
   email,
@@ -15,7 +16,7 @@ const useEmailGuard = ({
 
   useEffect(() => {
     if (!email) router.replace(redirectTo);
-  }, [email, redirectTo, router]);
+  }, []);
 
   return { hasEmail: !!email };
 };

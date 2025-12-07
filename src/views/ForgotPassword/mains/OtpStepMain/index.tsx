@@ -16,12 +16,7 @@ import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
 // stores
 import { useForgotPasswordStore } from "@/stores";
 // hooks
-import { useEmailGuard } from "@/hooks";
 import { useOtpVerification } from "../../hooks/useOtpVerification";
-// others
-import CONSTANTS from "@/constants";
-
-const { LOGIN } = CONSTANTS.ROUTES;
 
 const OtpStepMain = () => {
   const t = useTranslations("forgotPassword.form.otp");
@@ -29,8 +24,6 @@ const OtpStepMain = () => {
   const goToOptionsStep = useForgotPasswordStore(
     (state) => state.goToOptionsStep
   );
-
-  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const {
     otpValue,
@@ -49,8 +42,6 @@ const OtpStepMain = () => {
   const handleBack = () => {
     goToOptionsStep(email);
   };
-
-  if (!hasEmail) return null;
 
   return (
     <AuthStepLayout

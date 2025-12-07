@@ -4,12 +4,12 @@ import { useTranslations } from "next-intl";
 import type { EmailStepFormValues } from "@/types/Login";
 // components
 import CustomInput from "@/components/CustomInput";
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 // hooks
 import { useFieldProps } from "@/hooks";
@@ -37,7 +37,7 @@ const EmailInput = ({ disabled = false }: { disabled?: boolean }) => {
               disabled={disabled}
             />
           </FormControl>
-          <FormMessage />
+          <FormFieldMessage />
         </FormItem>
       )}
     />

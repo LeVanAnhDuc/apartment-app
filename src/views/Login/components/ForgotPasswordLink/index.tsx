@@ -1,11 +1,11 @@
 "use client";
 
 // libs
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 // stores
 import { useLoginStore, useForgotPasswordStore } from "@/stores";
 // others
+import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const { FORGOT_PASSWORD } = CONSTANTS.ROUTES;

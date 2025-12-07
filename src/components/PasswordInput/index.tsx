@@ -6,12 +6,12 @@ import { Eye, EyeOff } from "lucide-react";
 import { useFormContext } from "react-hook-form";
 // components
 import CustomInput from "@/components/CustomInput";
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 
 const PasswordInput = ({
@@ -69,7 +69,7 @@ const PasswordInput = ({
               </button>
             </div>
           </FormControl>
-          <FormMessage />
+          <FormFieldMessage />
         </FormItem>
       )}
     />

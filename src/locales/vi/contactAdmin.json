@@ -74,22 +74,5 @@
       "backToDashboard": "Quay về Dashboard",
       "print": "In thông tin"
     }
-  },
-  "validation": {
-    "email": {
-      "required": "Vui lòng nhập email",
-      "invalid": "Email không hợp lệ"
-    },
-    "subject": {
-      "required": "Vui lòng nhập tiêu đề",
-      "minLength": "Tiêu đề phải có ít nhất 5 ký tự"
-    },
-    "category": {
-      "required": "Vui lòng chọn danh mục"
-    },
-    "message": {
-      "required": "Vui lòng mô tả vấn đề của bạn",
-      "minLength": "Mô tả phải có ít nhất 20 ký tự"
-    }
   }
 }

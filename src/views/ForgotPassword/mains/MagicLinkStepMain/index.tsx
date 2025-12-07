@@ -13,12 +13,7 @@ import CountdownEffect from "@/ghosts/CountdownEffect";
 // stores
 import { useForgotPasswordStore } from "@/stores";
 // hooks
-import { useEmailGuard } from "@/hooks";
 import { useMagicLink } from "../../hooks/useMagicLink";
-// others
-import CONSTANTS from "@/constants";
-
-const { LOGIN } = CONSTANTS.ROUTES;
 
 const MagicLinkStepMain = () => {
   const t = useTranslations("forgotPassword.form.magicLink");
@@ -26,8 +21,6 @@ const MagicLinkStepMain = () => {
   const goToOptionsStep = useForgotPasswordStore(
     (state) => state.goToOptionsStep
   );
-
-  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
 
   const {
     countdown,
@@ -41,8 +34,6 @@ const MagicLinkStepMain = () => {
   const handleBack = () => {
     goToOptionsStep(email);
   };
-
-  if (!hasEmail) return null;
 
   return (
     <AuthStepLayout

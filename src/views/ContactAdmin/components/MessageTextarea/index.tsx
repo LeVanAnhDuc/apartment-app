@@ -6,23 +6,44 @@ import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textarea";
+// hooks
+import { useFormField } from "@/components/ui/form";
 // others
 import CONSTANTS from "@/constants";
 
 const { MESSAGE } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
 const MIN_CHARS = 20;
 
+const MessageHint = ({ charCount }: { charCount: number }) => {
+  const t = useTranslations("contactAdmin.form");
+  const { error } = useFormField();
+
+  return (
+    <div className="flex items-center justify-between">
+      {error?.message ? (
+        <FormFieldMessage />
+      ) : (
+        <p className="text-muted-foreground text-xs">
+          {t("hint.minChars", { count: MIN_CHARS })}
+        </p>
+      )}
+      <p className="text-muted-foreground text-xs">
+        {t("hint.charCount", { count: charCount })}
+      </p>
+    </div>
+  );
+};
+
 const MessageTextarea = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("contactAdmin.form");
-  const tValidation = useTranslations("contactAdmin.validation.message");
   const { control } = useFormContext<ContactAdminFormValues>();
   const messageValue = useWatch({ control, name: MESSAGE });
 
@@ -30,7 +51,7 @@ const MessageTextarea = ({ disabled = false }: { disabled?: boolean }) => {
     <FormField
       control={control}
       name={MESSAGE}
-      render={({ field, fieldState }) => (
+      render={({ field }) => (
         <FormItem>
           <FormLabel>
             {t("input.labelMessage")}{" "}
@@ -45,22 +66,7 @@ const MessageTextarea = ({ disabled = false }: { disabled?: boolean }) => {
               className="resize-none"
             />
           </FormControl>
-          <div className="flex items-center justify-between">
-            {fieldState.error?.message ? (
-              <FormMessage>
-                {tValidation(
-                  fieldState.error.message as "required" | "minLength"
-                )}
-              </FormMessage>
-            ) : (
-              <p className="text-muted-foreground text-xs">
-                {t("hint.minChars", { count: MIN_CHARS })}
-              </p>
-            )}
-            <p className="text-muted-foreground text-xs">
-              {t("hint.charCount", { count: messageValue?.length || 0 })}
-            </p>
-          </div>
+          <MessageHint charCount={messageValue?.length || 0} />
         </FormItem>
       )}
     />

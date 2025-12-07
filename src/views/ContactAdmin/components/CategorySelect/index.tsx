@@ -6,12 +6,12 @@ import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 import {
   Select,
@@ -29,14 +29,13 @@ const { CATEGORY } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
 
 const CategorySelect = ({ disabled = false }: { disabled?: boolean }) => {
   const t = useTranslations("contactAdmin.form");
-  const tValidation = useTranslations("contactAdmin.validation.category");
   const { control } = useFormContext<ContactAdminFormValues>();
 
   return (
     <FormField
       control={control}
       name={CATEGORY}
-      render={({ field, fieldState }) => (
+      render={({ field }) => (
         <FormItem>
           <FormLabel>
             {t("input.labelCategory")}{" "}
@@ -60,11 +59,7 @@ const CategorySelect = ({ disabled = false }: { disabled?: boolean }) => {
               ))}
             </SelectContent>
           </Select>
-          {fieldState.error?.message && (
-            <FormMessage>
-              {tValidation(fieldState.error.message as "required")}
-            </FormMessage>
-          )}
+          <FormFieldMessage />
         </FormItem>
       )}
     />

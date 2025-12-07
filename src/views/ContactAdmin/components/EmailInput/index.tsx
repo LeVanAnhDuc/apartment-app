@@ -6,12 +6,12 @@ import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 import CustomInput from "@/components/CustomInput";
 // others
@@ -27,7 +27,6 @@ const EmailInput = ({
   isFromRedirect?: boolean;
 }) => {
   const t = useTranslations("contactAdmin.form.input");
-  const tValidation = useTranslations("contactAdmin.validation.email");
   const { control } = useFormContext<ContactAdminFormValues>();
 
   const isEmailDisabled = disabled || isFromRedirect;
@@ -36,7 +35,7 @@ const EmailInput = ({
     <FormField
       control={control}
       name={EMAIL}
-      render={({ field, fieldState }) => (
+      render={({ field }) => (
         <FormItem>
           <FormLabel>{t("labelEmail")}</FormLabel>
           <FormControl>
@@ -48,11 +47,7 @@ const EmailInput = ({
               className={isEmailDisabled ? "bg-muted" : ""}
             />
           </FormControl>
-          {fieldState.error?.message && (
-            <FormMessage>
-              {tValidation(fieldState.error.message as "required" | "invalid")}
-            </FormMessage>
-          )}
+          <FormFieldMessage />
         </FormItem>
       )}
     />

@@ -9,6 +9,7 @@ import { CalendarIcon } from "lucide-react";
 import type { SignupInfoFormValues } from "@/types/Signup";
 // components
 import CustomButton from "@/components/CustomButton";
+import FormFieldMessage from "@/components/FormFieldMessage";
 import { Calendar } from "@/components/ui/calendar";
 import {
   Popover,
@@ -19,8 +20,7 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 // hooks
 import { useFieldProps } from "@/hooks";
@@ -89,7 +89,7 @@ const BirthdayInput = ({ disabled = false }: { disabled?: boolean }) => {
                 />
               </PopoverContent>
             </Popover>
-            <FormMessage />
+            <FormFieldMessage />
           </FormItem>
         );
       }}

@@ -5,12 +5,12 @@ import { useTranslations } from "next-intl";
 // types
 import type { SignupInfoFormValues } from "@/types/Signup";
 // components
+import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
-  FormMessage
+  FormLabel
 } from "@/components/ui/form";
 import {
   Select,
@@ -58,7 +58,7 @@ const GenderSelect = ({ disabled = false }: { disabled?: boolean }) => {
               ))}
             </SelectContent>
           </Select>
-          <FormMessage />
+          <FormFieldMessage />
         </FormItem>
       )}
     />

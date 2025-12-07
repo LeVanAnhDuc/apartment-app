@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Mail, Smartphone, KeyRound, Headset } from "lucide-react";
 // components
@@ -14,6 +14,7 @@ import { useLoginStore, useContactAdminStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
 // others
+import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;

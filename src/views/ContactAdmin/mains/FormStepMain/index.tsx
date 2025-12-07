@@ -4,7 +4,6 @@
 import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { Headset } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
@@ -25,6 +24,7 @@ import { contactAdminFormProps } from "@/forms/ContactAdmin";
 // stores
 import { useContactAdminStore } from "@/stores";
 // others
+import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const { EMAIL } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;

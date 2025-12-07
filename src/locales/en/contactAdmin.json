@@ -74,22 +74,5 @@
       "backToDashboard": "Back to Dashboard",
       "print": "Print information"
     }
-  },
-  "validation": {
-    "email": {
-      "required": "Please enter your email",
-      "invalid": "Invalid email format"
-    },
-    "subject": {
-      "required": "Please enter a subject",
-      "minLength": "Subject must be at least 5 characters"
-    },
-    "category": {
-      "required": "Please select a category"
-    },
-    "message": {
-      "required": "Please describe your issue",
-      "minLength": "Description must be at least 20 characters"
-    }
   }
 }

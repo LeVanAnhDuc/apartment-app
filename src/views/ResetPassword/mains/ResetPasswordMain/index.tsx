@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -21,6 +20,7 @@ import { useForgotPasswordStore, useResetPasswordStore } from "@/stores";
 // hooks
 import { useEmailGuard } from "@/hooks";
 // others
+import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const { NEW_PASSWORD, CONFIRM_PASSWORD } =

@@ -9,31 +9,30 @@ const { EMAIL, FULL_NAME, GENDER, BIRTHDAY, PASSWORD, PASSWORD_CONFIRM } =
 export const signupEmailFormValidation = z.object({
   [EMAIL]: z
     .string()
-    .min(1, "Email is required")
-    .email("Email is invalid")
-    .refine((value) => CONSTANTS.REGEX_EMAIL.test(value), "Email is invalid")
+    .min(1, { message: "required" })
+    .email({ message: "invalid" })
+    .refine((value) => CONSTANTS.REGEX_EMAIL.test(value), {
+      message: "invalid"
+    })
 });
 
 export const signupInfoFormValidation = z
   .object({
     [FULL_NAME]: z
       .string()
-      .min(1, "Full name is required")
-      .min(2, "Full name must be at least 2 characters"),
-    [GENDER]: z.string().min(1, "Gender is required"),
-    [BIRTHDAY]: z.string().min(1, "Birthday is required"),
+      .min(1, { message: "required" })
+      .min(2, { message: "minLength" }),
+    [GENDER]: z.string().min(1, { message: "required" }),
+    [BIRTHDAY]: z.string().min(1, { message: "required" }),
     [PASSWORD]: z
       .string()
-      .min(1, "Password is required")
-      .min(8, "Password must be at least 8 characters")
-      .max(100, "Password must not exceed 100 characters")
-      .regex(
-        /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain uppercase, lowercase and number"
-      ),
-    [PASSWORD_CONFIRM]: z.string().min(1, "Password confirm is required")
+      .min(1, { message: "required" })
+      .min(8, { message: "minLength" })
+      .max(100, { message: "maxLength" })
+      .regex(/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/, { message: "requirements" }),
+    [PASSWORD_CONFIRM]: z.string().min(1, { message: "required" })
   })
   .refine((data) => data[PASSWORD] === data[PASSWORD_CONFIRM], {
-    message: "Passwords do not match",
+    message: "mismatch",
     path: [PASSWORD_CONFIRM]
   });

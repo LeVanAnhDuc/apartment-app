@@ -3,7 +3,6 @@
 // libs
 import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, Printer } from "lucide-react";
 // components
 import AuthStepLayout from "@/components/AuthStepLayout";
@@ -14,6 +13,8 @@ import NextSteps from "../../components/NextSteps";
 import ImportantNotes from "../../components/ImportantNotes";
 // stores
 import { useContactAdminStore } from "@/stores";
+// others
+import { useRouter } from "@/i18n/navigation";
 
 const SuccessStepMain = () => {
   const t = useTranslations("contactAdmin.success");

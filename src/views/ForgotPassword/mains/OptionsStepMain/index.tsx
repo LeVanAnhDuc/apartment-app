@@ -1,7 +1,7 @@
 "use client";
 
 // libs
-import { useRouter, usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Smartphone, Mail, ShieldCheck, Headset, KeyRound } from "lucide-react";
 // components
@@ -11,13 +11,11 @@ import RecoveryOptionCard from "../../components/RecoveryOptionCard";
 import RecoveryOptionsInfo from "../../components/RecoveryOptionsInfo";
 // stores
 import { useForgotPasswordStore, useContactAdminStore } from "@/stores";
-// hooks
-import { useEmailGuard } from "@/hooks";
 // others
+import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
-const { LOGIN } = CONSTANTS.ROUTES;
 
 const OptionsStepMain = ({
   has2FAEnabled = false
@@ -29,8 +27,6 @@ const OptionsStepMain = ({
   const t = useTranslations("forgotPassword.form.options");
 
   const email = useForgotPasswordStore((state) => state.email);
-
-  const { hasEmail } = useEmailGuard({ email, redirectTo: LOGIN });
   const goToOtpStep = useForgotPasswordStore((state) => state.goToOtpStep);
   const goToMagicLinkStep = useForgotPasswordStore(
     (state) => state.goToMagicLinkStep
@@ -62,8 +58,6 @@ const OptionsStepMain = ({
     setContactAdminReferrer(pathname);
     router.push(CONSTANTS.ROUTES.CONTACT_ADMIN);
   };
-
-  if (!hasEmail) return null;
 
   return (
     <AuthStepLayout
