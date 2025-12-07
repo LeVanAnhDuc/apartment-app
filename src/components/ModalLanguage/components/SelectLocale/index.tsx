@@ -2,6 +2,7 @@
 // libs
 import { Check } from "lucide-react";
 import { hasLocale, useLocale } from "next-intl";
+import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 // types
 import { localeNames, type Locale } from "@/i18n/config";
@@ -16,6 +17,7 @@ const SelectLocale = () => {
   const localActive = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [pending, startTransition] = useTransition();
   const [pendingLocale, setPendingLocale] = useState<Locale | null>(null);
 
@@ -25,8 +27,11 @@ const SelectLocale = () => {
 
     setPendingLocale(newLocale);
 
+    const search = searchParams.toString();
+    const fullPath = search ? `${pathname}?${search}` : pathname;
+
     startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
+      router.replace(fullPath, { locale: newLocale });
     });
   };
 
