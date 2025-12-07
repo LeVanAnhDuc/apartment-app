@@ -1,26 +1,20 @@
-"use client";
-
 // libs
 import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/libs/utils";
 // components
-import BackButton from "@/views/Login/components/BackButton";
 import EmailBadge from "@/components/EmailBadge";
 import AuthFooter from "@/components/AuthFooter";
+import AnimatedCard from "./components/AnimatedCard";
+import AnimatedText from "./components/AnimatedText";
+import BackButtonClient from "./components/BackButtonClient";
 
 type MaxWidth = "md" | "2xl";
-
-const maxWidthClasses: Record<MaxWidth, string> = {
-  md: "max-w-md",
-  "2xl": "max-w-2xl"
-};
 
 const AuthStepLayout = ({
   icon,
   title,
   description,
   email,
+  backButton,
   onBack,
   backDisabled = false,
   maxWidth = "md",
@@ -31,6 +25,7 @@ const AuthStepLayout = ({
   title: string;
   description?: string;
   email?: string;
+  backButton?: ReactNode;
   onBack?: () => void;
   backDisabled?: boolean;
   maxWidth?: MaxWidth;
@@ -38,31 +33,25 @@ const AuthStepLayout = ({
   ghostComponents?: ReactNode;
 }) => (
   <main className="auth-background flex min-h-screen items-center justify-center p-4">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.3 }}
-      className={cn("w-full", maxWidthClasses[maxWidth])}
-    >
+    <AnimatedCard maxWidth={maxWidth}>
       <div className="auth-card relative p-8 md:p-10">
-        {onBack && <BackButton onClick={onBack} disabled={backDisabled} />}
+        {backButton}
+
+        {onBack && !backButton && (
+          <BackButtonClient onBack={onBack} disabled={backDisabled} />
+        )}
 
         <div className="mb-8 text-center">
           <div className="mb-4 flex justify-center">{icon}</div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-          >
+          <AnimatedText>
             <h1 className="text-foreground mb-2 text-2xl font-medium">
               {title}
             </h1>
             {description && (
               <p className="text-muted-foreground mb-4">{description}</p>
             )}
-          </motion.div>
+          </AnimatedText>
         </div>
 
         {email && <EmailBadge email={email} />}
@@ -71,7 +60,7 @@ const AuthStepLayout = ({
       </div>
 
       <AuthFooter />
-    </motion.div>
+    </AnimatedCard>
 
     {ghostComponents}
   </main>

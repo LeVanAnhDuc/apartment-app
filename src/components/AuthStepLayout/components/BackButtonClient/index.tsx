@@ -1,0 +1,26 @@
+"use client";
+
+// libs
+import { ArrowLeft } from "lucide-react";
+// components
+import { Button } from "@/components/ui/button";
+
+const BackButtonClient = ({
+  onBack,
+  disabled = false
+}: {
+  onBack: () => void;
+  disabled?: boolean;
+}) => (
+  <Button
+    variant="ghost"
+    size="icon"
+    onClick={onBack}
+    disabled={disabled}
+    className="absolute top-4 left-4 rounded-full"
+  >
+    <ArrowLeft className="h-5 w-5" />
+  </Button>
+);
+
+export default BackButtonClient;
