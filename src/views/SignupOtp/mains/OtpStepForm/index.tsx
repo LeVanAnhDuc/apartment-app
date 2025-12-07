@@ -20,9 +20,11 @@ const { SIGNUP_INFO } = CONSTANTS.ROUTES;
 
 const OtpStepForm = ({
   email,
+  changeEmailHref,
   labels
 }: {
   email: string;
+  changeEmailHref: string;
   labels: {
     verifying: string;
     instruction: string;
@@ -72,10 +74,6 @@ const OtpStepForm = ({
     setOtp(value);
   };
 
-  const handleChangeEmail = () => {
-    router.back();
-  };
-
   return (
     <>
       <OtpInputGroup
@@ -94,7 +92,7 @@ const OtpStepForm = ({
         isResending={isResending}
         isProcessing={isVerifying}
         onResend={handleResend}
-        onTryOther={handleChangeEmail}
+        tryOtherHref={changeEmailHref}
         labels={{
           resend: labels.resend,
           resendIn: labels.resendIn,

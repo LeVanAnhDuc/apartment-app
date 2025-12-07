@@ -13,7 +13,7 @@ import BackButton from "./components/BackButton";
 // others
 import CONSTANTS from "@/constants";
 
-const { LOGIN } = CONSTANTS.ROUTES;
+const { LOGIN, LOGIN_ALTERNATIVE } = CONSTANTS.ROUTES;
 
 const LoginOtp = async ({
   searchParams
@@ -27,6 +27,9 @@ const LoginOtp = async ({
   }
 
   const decodedEmail = decodeURIComponent(email);
+  const encodedEmail = encodeURIComponent(decodedEmail);
+  const tryOtherHref = `${LOGIN_ALTERNATIVE}?email=${encodedEmail}`;
+
   const messages = await getMessages();
   const translations = messages.login as LoginMessages;
   const { form } = translations;
@@ -49,7 +52,7 @@ const LoginOtp = async ({
       backButton={<BackButton email={decodedEmail} />}
     >
       <OtpStepForm
-        email={decodedEmail}
+        tryOtherHref={tryOtherHref}
         labels={{
           instruction: otp.instruction,
           verifying: otp.verifying,

@@ -7,17 +7,14 @@ import { toast } from "sonner";
 import ResendButton from "@/components/ResendButton";
 // ghosts
 import CountdownEffect from "@/ghosts/CountdownEffect";
-// others
-import CONSTANTS from "@/constants";
 
 const COUNTDOWN_SECONDS = 60;
-const { LOGIN_ALTERNATIVE } = CONSTANTS.ROUTES;
 
 const MagicLinkForm = ({
-  email,
+  tryOtherHref,
   labels
 }: {
-  email: string;
+  tryOtherHref: string;
   labels: {
     resendSuccess: string;
     resend: string;
@@ -42,11 +39,6 @@ const MagicLinkForm = ({
     setIsResending(false);
   };
 
-  const handleTryOther = () => {
-    const encodedEmail = encodeURIComponent(email);
-    window.location.href = `${LOGIN_ALTERNATIVE}?email=${encodedEmail}`;
-  };
-
   return (
     <>
       <ResendButton
@@ -54,7 +46,7 @@ const MagicLinkForm = ({
         canResend={canResend}
         isResending={isResending}
         onResend={handleResend}
-        onTryOther={handleTryOther}
+        tryOtherHref={tryOtherHref}
         labels={{
           resend: labels.resend,
           resendIn: labels.resendIn,

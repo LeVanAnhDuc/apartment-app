@@ -14,10 +14,10 @@ const OTP_LENGTH = 6;
 const COUNTDOWN_SECONDS = 60;
 
 const OtpStepForm = ({
-  email,
+  tryOtherHref,
   labels
 }: {
-  email: string;
+  tryOtherHref: string;
   labels: {
     instruction: string;
     verifying: string;
@@ -78,10 +78,7 @@ const OtpStepForm = ({
         isResending={isResending}
         isProcessing={isVerifying}
         onResend={handleResend}
-        onTryOther={() => {
-          const encodedEmail = encodeURIComponent(email);
-          window.location.href = `/login/alternative?email=${encodedEmail}`;
-        }}
+        tryOtherHref={tryOtherHref}
         labels={{
           resend: labels.resend,
           resendIn: labels.resendIn,

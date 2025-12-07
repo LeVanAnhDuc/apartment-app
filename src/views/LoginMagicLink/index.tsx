@@ -13,7 +13,7 @@ import BackButton from "./components/BackButton";
 // others
 import CONSTANTS from "@/constants";
 
-const { LOGIN } = CONSTANTS.ROUTES;
+const { LOGIN, LOGIN_ALTERNATIVE } = CONSTANTS.ROUTES;
 
 const LoginMagicLink = async ({
   searchParams
@@ -27,6 +27,9 @@ const LoginMagicLink = async ({
   }
 
   const decodedEmail = decodeURIComponent(email);
+  const encodedEmail = encodeURIComponent(decodedEmail);
+  const tryOtherHref = `${LOGIN_ALTERNATIVE}?email=${encodedEmail}`;
+
   const messages = await getMessages();
   const translations = messages.login as LoginMessages;
   const { form } = translations;
@@ -57,7 +60,7 @@ const LoginMagicLink = async ({
         }}
       />
       <MagicLinkForm
-        email={decodedEmail}
+        tryOtherHref={tryOtherHref}
         labels={{
           resendSuccess: magicLink.resendSuccess,
           resend: magicLink.button.resend,

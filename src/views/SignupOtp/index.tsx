@@ -46,6 +46,7 @@ const SignupOtp = async ({
     >
       <OtpStepForm
         email={decodedEmail}
+        changeEmailHref={SIGNUP}
         labels={{
           verifying: otpStep.verifying,
           instruction: otpStep.instruction,

@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 // components
 import CustomButton from "@/components/CustomButton";
+import { Link } from "@/i18n/navigation";
 
 const ResendButton = ({
   countdown,
@@ -11,7 +12,7 @@ const ResendButton = ({
   isResending,
   isProcessing = false,
   onResend,
-  onTryOther,
+  tryOtherHref,
   labels
 }: {
   countdown: number;
@@ -19,7 +20,7 @@ const ResendButton = ({
   isResending: boolean;
   isProcessing?: boolean;
   onResend: () => void;
-  onTryOther: () => void;
+  tryOtherHref: string;
   labels: {
     resend: string;
     resendIn: string;
@@ -49,14 +50,13 @@ const ResendButton = ({
     </CustomButton>
 
     <div className="text-center">
-      <button
-        type="button"
-        onClick={onTryOther}
-        disabled={isProcessing}
-        className="text-primary hover:text-primary/80 text-sm transition-colors duration-200 hover:underline disabled:opacity-50"
+      <Link
+        href={tryOtherHref}
+        aria-disabled={isProcessing}
+        className="text-primary hover:text-primary/80 text-sm transition-colors duration-200 hover:underline aria-disabled:pointer-events-none aria-disabled:opacity-50"
       >
         {labels.tryOther}
-      </button>
+      </Link>
     </div>
   </motion.div>
 );
