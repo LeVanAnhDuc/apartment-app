@@ -1,10 +1,7 @@
-"use client";
-
-// libs
-import { motion } from "framer-motion";
 // types
-import type { LucideProps } from "lucide-react";
-import type { ForwardRefExoticComponent, RefAttributes } from "react";
+import type { LucideIcon } from "lucide-react";
+// components
+import AnimatedWrapper from "./components/AnimatedWrapper";
 // others
 import { cn } from "@/libs/utils";
 
@@ -38,9 +35,7 @@ const AuthIcon = ({
   animated = false,
   className
 }: {
-  Icon: ForwardRefExoticComponent<
-    Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
-  >;
+  Icon: LucideIcon;
   variant?: AuthIconVariant;
   shape?: AuthIconShape;
   size?: AuthIconSize;
@@ -49,7 +44,7 @@ const AuthIcon = ({
 }) => {
   const sizeClasses = SIZE_CLASSES[size];
 
-  const content = (
+  const iconElement = (
     <div
       className={cn(
         "inline-flex items-center justify-center bg-gradient-to-br",
@@ -64,23 +59,10 @@ const AuthIcon = ({
   );
 
   if (animated) {
-    return (
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{
-          type: "spring",
-          stiffness: 260,
-          damping: 20,
-          delay: 0.1
-        }}
-      >
-        {content}
-      </motion.div>
-    );
+    return <AnimatedWrapper>{iconElement}</AnimatedWrapper>;
   }
 
-  return content;
+  return iconElement;
 };
 
 export default AuthIcon;
