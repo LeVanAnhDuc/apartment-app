@@ -1,19 +1,18 @@
 "use client";
 
-// libs
-import { useFormContext } from "react-hook-form";
-import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
 import FormFieldMessage from "@/components/FormFieldMessage";
 import {
   FormControl,
-  FormField,
   FormItem,
-  FormLabel
+  FormLabel,
+  FormDescription
 } from "@/components/ui/form";
 import CustomInput from "@/components/CustomInput";
+// hooks
+import useFieldProps from "@/hooks/useFieldProps";
 // others
 import CONSTANTS from "@/constants";
 
@@ -21,36 +20,39 @@ const { EMAIL } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
 
 const EmailInput = ({
   disabled = false,
-  isFromRedirect = false
+  hint,
+  labels
 }: {
   disabled?: boolean;
-  isFromRedirect?: boolean;
+  hint?: string;
+  labels: {
+    label: string;
+    labelNote?: string;
+  };
 }) => {
-  const t = useTranslations("contactAdmin.form.input");
-  const { control } = useFormContext<ContactAdminFormValues>();
-
-  const isEmailDisabled = disabled || isFromRedirect;
+  const { field } = useFieldProps<ContactAdminFormValues>(EMAIL);
 
   return (
-    <FormField
-      control={control}
-      name={EMAIL}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>{t("labelEmail")}</FormLabel>
-          <FormControl>
-            <CustomInput
-              {...field}
-              type="email"
-              placeholder="email@example.com"
-              disabled={isEmailDisabled}
-              className={isEmailDisabled ? "bg-muted" : ""}
-            />
-          </FormControl>
-          <FormFieldMessage />
-        </FormItem>
-      )}
-    />
+    <FormItem>
+      <FormLabel>
+        {labels.label}
+        {labels.labelNote && (
+          <span className="text-muted-foreground ml-1 text-xs font-normal">
+            {labels.labelNote}
+          </span>
+        )}
+      </FormLabel>
+      <FormControl>
+        <CustomInput
+          {...field}
+          type="email"
+          placeholder="email@example.com"
+          disabled={disabled}
+        />
+      </FormControl>
+      {hint && <FormDescription>{hint}</FormDescription>}
+      <FormFieldMessage />
+    </FormItem>
   );
 };
 

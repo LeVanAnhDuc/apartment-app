@@ -12,7 +12,8 @@ const ROUTES = {
   SIGNUP_OTP: "/signup/otp",
   SIGNUP_INFO: "/signup/info",
   HOME: "/",
-  CONTACT_ADMIN: "/contact-admin"
+  CONTACT_ADMIN: "/contact-admin",
+  CONTACT_ADMIN_SUCCESS: "/contact-admin/success"
 };
 
 export default ROUTES;

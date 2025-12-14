@@ -1,49 +1,45 @@
 "use client";
 
-// libs
-import { useFormContext } from "react-hook-form";
-import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 // components
 import FormFieldMessage from "@/components/FormFieldMessage";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel
-} from "@/components/ui/form";
+import { FormControl, FormItem, FormLabel } from "@/components/ui/form";
 import CustomInput from "@/components/CustomInput";
+// hooks
+import useFieldProps from "@/hooks/useFieldProps";
 // others
 import CONSTANTS from "@/constants";
 
 const { SUBJECT } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
 
-const SubjectInput = ({ disabled = false }: { disabled?: boolean }) => {
-  const t = useTranslations("contactAdmin.form.input");
-  const { control } = useFormContext<ContactAdminFormValues>();
+const SubjectInput = ({
+  disabled = false,
+  labels
+}: {
+  disabled?: boolean;
+  labels: {
+    label: string;
+    placeholder: string;
+  };
+}) => {
+  const { field } = useFieldProps<ContactAdminFormValues>(SUBJECT);
 
   return (
-    <FormField
-      control={control}
-      name={SUBJECT}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel>
-            {t("labelSubject")} <span className="text-destructive">*</span>
-          </FormLabel>
-          <FormControl>
-            <CustomInput
-              {...field}
-              type="text"
-              placeholder={t("placeholderSubject")}
-              disabled={disabled}
-            />
-          </FormControl>
-          <FormFieldMessage />
-        </FormItem>
-      )}
-    />
+    <FormItem>
+      <FormLabel>
+        {labels.label} <span className="text-destructive">*</span>
+      </FormLabel>
+      <FormControl>
+        <CustomInput
+          {...field}
+          type="text"
+          placeholder={labels.placeholder}
+          disabled={disabled}
+        />
+      </FormControl>
+      <FormFieldMessage />
+    </FormItem>
   );
 };
 

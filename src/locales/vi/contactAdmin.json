@@ -9,13 +9,16 @@
     },
     "input": {
       "labelEmail": "Email liên hệ",
+      "labelEmailNote": "(khuyến khích)",
       "labelSubject": "Tiêu đề",
       "labelCategory": "Danh mục",
       "labelPriority": "Mức độ ưu tiên",
       "labelMessage": "Mô tả chi tiết",
       "placeholderSubject": "Tóm tắt vấn đề của bạn...",
       "placeholderCategory": "Chọn danh mục",
-      "placeholderMessage": "Vui lòng mô tả chi tiết vấn đề của bạn. Bao gồm các bước tái hiện lỗi nếu có..."
+      "placeholderMessage": "Vui lòng mô tả chi tiết vấn đề của bạn. Bao gồm các bước tái hiện lỗi nếu có...",
+      "emailHint": "Nhập email để nhận phản hồi từ chúng tôi",
+      "emailAutoFillHint": "Email được điền tự động, bạn có thể thay đổi nếu cần"
     },
     "category": {
       "account": "Vấn đề tài khoản",
@@ -70,8 +73,15 @@
       "note2": "Kiểm tra cả hộp thư spam nếu không thấy email xác nhận",
       "note3": "Bạn có thể trả lời trực tiếp email để bổ sung thông tin"
     },
+    "response": {
+      "withEmail": "Chúng tôi sẽ phản hồi qua email: {email}",
+      "withEmailTime": "Thời gian dự kiến: 24-48 giờ",
+      "anonymous": "Bạn đã gửi mà không cung cấp email",
+      "anonymousNote": "Chúng tôi sẽ không thể liên hệ lại với bạn",
+      "anonymousSaveTicket": "Vui lòng lưu mã ticket để theo dõi trạng thái"
+    },
     "button": {
-      "backToDashboard": "Quay về Dashboard",
+      "back": "Quay lại",
       "print": "In thông tin"
     }
   }

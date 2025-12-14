@@ -1,30 +1,35 @@
 // libs
-import type { StateCreator } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 // types
-import type { ContactAdminStore } from "@/types/stores";
+import type { StateCreator } from "zustand";
+import type { ContactAdminState, ContactAdminStore } from "@/types/stores";
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 
-const initialState = {
-  step: "form" as const,
-  email: "",
-  isEmailFromRedirect: false,
+const initialState: ContactAdminState = {
   formData: null,
   ticketNumber: null,
   referrerPath: null
 };
 
-const createContactAdminSlice: StateCreator<ContactAdminStore> = (set) => ({
-  ...initialState,
+const createContactAdminSlice: StateCreator<
+  ContactAdminStore,
+  [],
+  [["zustand/persist", unknown]]
+> = persist(
+  (set) => ({
+    ...initialState,
 
-  setEmail: (email: string, isFromRedirect: boolean) =>
-    set({ email, isEmailFromRedirect: isFromRedirect }),
+    setReferrerPath: (path: string) => set({ referrerPath: path }),
 
-  setReferrerPath: (path: string) => set({ referrerPath: path }),
+    setSuccessData: (formData: ContactAdminFormValues, ticketNumber: string) =>
+      set({ formData, ticketNumber }),
 
-  goToSuccessStep: (formData: ContactAdminFormValues, ticketNumber: string) =>
-    set({ step: "success", formData, ticketNumber }),
-
-  reset: () => set(initialState)
-});
+    reset: () => set(initialState)
+  }),
+  {
+    name: "contact-admin-storage",
+    storage: createJSONStorage(() => sessionStorage)
+  }
+);
 
 export default createContactAdminSlice;
