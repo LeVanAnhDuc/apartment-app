@@ -8,7 +8,6 @@ import type { LoginMessages } from "@/types/libs";
 import AuthStepLayout from "@/components/AuthStepLayout";
 import AuthIcon from "@/components/AuthIcon";
 import OtpStepForm from "./mains/OtpStepForm";
-import OtpInstruction from "./components/OtpInstruction";
 import BackButton from "./components/BackButton";
 // others
 import CONSTANTS from "@/constants";
@@ -63,7 +62,6 @@ const LoginOtp = async ({
           tryOther: otp.button.tryOther
         }}
       />
-      <OtpInstruction label={otp.instruction} />
     </AuthStepLayout>
   );
 };
