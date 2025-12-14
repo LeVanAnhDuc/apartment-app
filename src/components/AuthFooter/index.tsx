@@ -1,10 +1,10 @@
-"use client";
+// libs
+import { getTranslations } from "next-intl/server";
+// others
+import { Link } from "@/i18n/navigation";
 
-import Link from "next/link";
-import { useTranslations } from "next-intl";
-
-const AuthFooter = () => {
-  const t = useTranslations("common.footer");
+const AuthFooter = async () => {
+  const t = await getTranslations("common.footer");
 
   return (
     <div className="mt-6 text-center">
