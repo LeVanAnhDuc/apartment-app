@@ -1,3 +1,5 @@
+"use client";
+
 // libs
 import { LogOut } from "lucide-react";
 import { useTranslations } from "next-intl";
