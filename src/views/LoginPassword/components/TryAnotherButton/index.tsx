@@ -1,10 +1,8 @@
-"use client";
-
 // components
 import CustomButton from "@/components/CustomButton";
 // others
-import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
+import { Link } from "@/i18n/navigation";
 
 const { LOGIN_ALTERNATIVE } = CONSTANTS.ROUTES;
 
@@ -17,23 +15,25 @@ const TryAnotherButton = ({
   disabled?: boolean;
   label: string;
 }) => {
-  const router = useRouter();
+  const encodedEmail = encodeURIComponent(email);
+  const href = `${LOGIN_ALTERNATIVE}?email=${encodedEmail}`;
+  const className =
+    "border-input hover:bg-accent h-12 flex-1 rounded-lg transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50";
 
-  const handleClick = () => {
-    const encodedEmail = encodeURIComponent(email);
-    router.push(`${LOGIN_ALTERNATIVE}?email=${encodedEmail}`);
-  };
+  if (disabled) {
+    return (
+      <CustomButton variant="outline" disabled className={className}>
+        {label}
+      </CustomButton>
+    );
+  }
 
   return (
-    <CustomButton
-      type="button"
-      variant="outline"
-      onClick={handleClick}
-      disabled={disabled}
-      className="border-input hover:bg-accent h-12 flex-1 rounded-lg transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50"
-    >
-      {label}
-    </CustomButton>
+    <Link href={href}>
+      <CustomButton variant="outline" className={className}>
+        {label}
+      </CustomButton>
+    </Link>
   );
 };
 
