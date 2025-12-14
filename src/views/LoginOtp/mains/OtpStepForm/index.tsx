@@ -3,17 +3,20 @@
 // libs
 import { useState } from "react";
 import { toast } from "sonner";
+import { useRouter } from "@/i18n/navigation";
 // components
 import ResendButton from "@/components/ResendButton";
-import OtpInputGroup from "../../components/OtpInputGroup";
+import OtpInputGroup from "@/components/OtpInputGroup";
 import OtpInstruction from "../../components/OtpInstruction";
+// hooks
+import { useCountdown } from "@/hooks";
 // ghosts
-import CountdownEffect from "@/ghosts/CountdownEffect";
-import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
+import AutoVerifyOTPEffect from "@/ghosts/AutoVerifyOTPEffect";
 // others
 import CONSTANTS from "@/constants";
 
 const { OTP_LENGTH, RESEND_COUNTDOWN } = CONSTANTS.FORGOT_PASSWORD;
+const { HOME } = CONSTANTS.ROUTES;
 
 const OtpStepForm = ({
   tryOtherHref,
@@ -30,9 +33,14 @@ const OtpStepForm = ({
     tryOther: string;
   };
 }) => {
+  const router = useRouter();
+  const {
+    seconds: countdown,
+    isFinished: canResend,
+    reset: resetCountdown
+  } = useCountdown(RESEND_COUNTDOWN);
+
   const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(RESEND_COUNTDOWN);
-  const [canResend, setCanResend] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
 
@@ -45,6 +53,9 @@ const OtpStepForm = ({
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setIsVerifying(false);
+
+    // After OTP verified, go to home/dashboard
+    router.push(HOME);
   };
 
   const handleResend = async () => {
@@ -54,8 +65,7 @@ const OtpStepForm = ({
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast.success(labels.resendSuccess);
-    setCountdown(RESEND_COUNTDOWN);
-    setCanResend(false);
+    resetCountdown();
     setIsResending(false);
     setOtp("");
   };
@@ -63,6 +73,8 @@ const OtpStepForm = ({
   const handleOtpChange = (value: string) => {
     setOtp(value);
   };
+
+  console.log("check");
 
   return (
     <>
@@ -91,12 +103,7 @@ const OtpStepForm = ({
         }}
       />
 
-      <CountdownEffect
-        countdown={countdown}
-        setCountdown={setCountdown}
-        setCanResend={setCanResend}
-      />
-      <AutoVerifyEffect
+      <AutoVerifyOTPEffect
         otpValue={otp}
         otpLength={OTP_LENGTH}
         onVerify={handleVerify}

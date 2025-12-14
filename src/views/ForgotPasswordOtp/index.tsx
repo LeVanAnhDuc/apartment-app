@@ -30,7 +30,6 @@ const ForgotPasswordOtp = async ({
   const messages = await getMessages();
   const translations = messages.forgotPassword as ForgotPasswordMessages;
   const { otp } = translations.form;
-  const { message } = translations;
 
   return (
     <AuthStepLayout
@@ -50,9 +49,7 @@ const ForgotPasswordOtp = async ({
           resendIn: otp.button.resendIn,
           sending: otp.button.sending,
           tryOther: otp.button.tryOther,
-          resendSuccess: otp.resendSuccess,
-          errorInvalidOtp: message.error.invalidOtp,
-          errorGeneric: message.error.generic
+          resendSuccess: otp.resendSuccess
         }}
       />
     </AuthStepLayout>

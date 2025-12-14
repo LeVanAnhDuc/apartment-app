@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const AutoVerifyEffect = ({
+const AutoVerifyOTPEffect = ({
   otpValue,
   otpLength,
   onVerify
@@ -15,9 +15,9 @@ const AutoVerifyEffect = ({
     if (otpValue.length === otpLength) {
       onVerify();
     }
-  }, [otpValue, otpLength, onVerify]);
+  }, [otpValue]);
 
   return null;
 };
 
-export default AutoVerifyEffect;
+export default AutoVerifyOTPEffect;

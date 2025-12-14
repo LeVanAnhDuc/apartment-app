@@ -3,12 +3,15 @@
 // libs
 import { motion } from "framer-motion";
 // components
-import CustomInputOTP from "@/components/CustomInputOTP";
-import { InputOTPGroup, InputOTPSlot } from "@/components/ui/input-otp";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot
+} from "@/components/ui/input-otp";
 // others
-import { cn } from "@/libs/utils";
+import CONSTANTS from "@/constants";
 
-const OTP_LENGTH = 6;
+const { OTP_LENGTH } = CONSTANTS.FORGOT_PASSWORD;
 
 const OtpInputGroup = ({
   value,
@@ -30,7 +33,7 @@ const OtpInputGroup = ({
     className="mb-6"
   >
     <div className="mb-2 flex justify-center">
-      <CustomInputOTP
+      <InputOTP
         maxLength={OTP_LENGTH}
         value={value}
         onChange={onChange}
@@ -41,11 +44,11 @@ const OtpInputGroup = ({
             <InputOTPSlot
               key={index}
               index={index}
-              className={cn("h-14 w-12 text-xl")}
+              className="h-14 w-12 text-xl"
             />
           ))}
         </InputOTPGroup>
-      </CustomInputOTP>
+      </InputOTP>
     </div>
 
     {isVerifying && verifyingLabel && (

@@ -5,8 +5,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 // components
 import ResendButton from "@/components/ResendButton";
-// ghosts
-import CountdownEffect from "@/ghosts/CountdownEffect";
+// hooks
+import { useCountdown } from "@/hooks";
 
 const COUNTDOWN_SECONDS = 60;
 
@@ -23,8 +23,11 @@ const MagicLinkForm = ({
     tryOther: string;
   };
 }) => {
-  const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
-  const [canResend, setCanResend] = useState(false);
+  const {
+    seconds: countdown,
+    isFinished: canResend,
+    reset: resetCountdown
+  } = useCountdown(COUNTDOWN_SECONDS);
   const [isResending, setIsResending] = useState(false);
 
   const handleResend = async () => {
@@ -34,33 +37,24 @@ const MagicLinkForm = ({
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast.success(labels.resendSuccess);
-    setCountdown(COUNTDOWN_SECONDS);
-    setCanResend(false);
+    resetCountdown();
     setIsResending(false);
   };
 
   return (
-    <>
-      <ResendButton
-        countdown={countdown}
-        canResend={canResend}
-        isResending={isResending}
-        onResend={handleResend}
-        tryOtherHref={tryOtherHref}
-        labels={{
-          resend: labels.resend,
-          resendIn: labels.resendIn,
-          sending: labels.sending,
-          tryOther: labels.tryOther
-        }}
-      />
-
-      <CountdownEffect
-        countdown={countdown}
-        setCountdown={setCountdown}
-        setCanResend={setCanResend}
-      />
-    </>
+    <ResendButton
+      countdown={countdown}
+      canResend={canResend}
+      isResending={isResending}
+      onResend={handleResend}
+      tryOtherHref={tryOtherHref}
+      labels={{
+        resend: labels.resend,
+        resendIn: labels.resendIn,
+        sending: labels.sending,
+        tryOther: labels.tryOther
+      }}
+    />
   );
 };
 

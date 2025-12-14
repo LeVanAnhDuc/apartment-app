@@ -3,8 +3,6 @@
 // components
 import ResendButton from "@/components/ResendButton";
 import MagicLinkInstructions from "../../components/MagicLinkInstructions";
-// ghosts
-import CountdownEffect from "@/ghosts/CountdownEffect";
 // hooks
 import { useMagicLink } from "../../hooks/useMagicLink";
 
@@ -27,14 +25,7 @@ const MagicLinkForm = ({
     errorGeneric: string;
   };
 }) => {
-  const {
-    countdown,
-    canResend,
-    isResending,
-    handleResend,
-    setCountdown,
-    setCanResend
-  } = useMagicLink({
+  const { countdown, canResend, isResending, handleResend } = useMagicLink({
     email,
     messages: {
       resendSuccess: labels.resendSuccess,
@@ -64,12 +55,6 @@ const MagicLinkForm = ({
           sending: labels.sending,
           tryOther: labels.tryOther
         }}
-      />
-
-      <CountdownEffect
-        countdown={countdown}
-        setCountdown={setCountdown}
-        setCanResend={setCanResend}
       />
     </>
   );

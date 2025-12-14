@@ -1,15 +1,22 @@
 "use client";
 
+// libs
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "@/i18n/navigation";
 // components
 import ResendButton from "@/components/ResendButton";
-import OtpInputGroup from "../../components/OtpInputGroup";
-import OtpVerifyingStatus from "../../components/OtpVerifyingStatus";
+import OtpInputGroup from "@/components/OtpInputGroup";
 import OtpInstructionBox from "../../components/OtpInstructionBox";
-// ghosts
-import CountdownEffect from "@/ghosts/CountdownEffect";
-import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
 // hooks
-import { useOtpVerification } from "../../hooks/useOtpVerification";
+import { useCountdown } from "@/hooks";
+// ghosts
+import AutoVerifyOTPEffect from "@/ghosts/AutoVerifyOTPEffect";
+// others
+import CONSTANTS from "@/constants";
+
+const { OTP_LENGTH, RESEND_COUNTDOWN } = CONSTANTS.FORGOT_PASSWORD;
+const { RESET_PASSWORD } = CONSTANTS.ROUTES;
 
 const OtpStepForm = ({
   email,
@@ -26,45 +33,62 @@ const OtpStepForm = ({
     sending: string;
     tryOther: string;
     resendSuccess: string;
-    errorInvalidOtp: string;
-    errorGeneric: string;
   };
 }) => {
+  const router = useRouter();
   const {
-    otpValue,
-    countdown,
-    canResend,
-    isVerifying,
-    isResending,
-    handleOtpChange,
-    handleResend,
-    verifyOtp,
-    setCountdown,
-    setCanResend,
-    OTP_LENGTH
-  } = useOtpVerification({
-    email,
-    messages: {
-      resendSuccess: labels.resendSuccess,
-      errorInvalidOtp: labels.errorInvalidOtp,
-      errorGeneric: labels.errorGeneric
-    }
-  });
+    seconds: countdown,
+    isFinished: canResend,
+    reset: resetCountdown
+  } = useCountdown(RESEND_COUNTDOWN);
+
+  const [otp, setOtp] = useState("");
+  const [isResending, setIsResending] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
+
+  const handleVerify = async () => {
+    if (otp.length !== OTP_LENGTH) return;
+
+    setIsVerifying(true);
+
+    // TODO: Implement actual verification API call
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    setIsVerifying(false);
+
+    // Navigate to reset password page
+    const encodedEmail = encodeURIComponent(email);
+    const encodedToken = encodeURIComponent(otp);
+    router.push(
+      `${RESET_PASSWORD}?email=${encodedEmail}&token=${encodedToken}`
+    );
+  };
+
+  const handleResend = async () => {
+    setIsResending(true);
+
+    // TODO: Implement actual resend API call
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    toast.success(labels.resendSuccess);
+    resetCountdown();
+    setIsResending(false);
+    setOtp("");
+  };
+
+  const handleOtpChange = (value: string) => {
+    setOtp(value);
+  };
 
   return (
     <>
-      <div className="mb-6">
-        <div className="mb-2">
-          <OtpInputGroup
-            value={otpValue}
-            onChange={handleOtpChange}
-            disabled={isVerifying}
-            length={OTP_LENGTH}
-          />
-        </div>
-
-        {isVerifying && <OtpVerifyingStatus label={labels.verifying} />}
-      </div>
+      <OtpInputGroup
+        value={otp}
+        onChange={handleOtpChange}
+        disabled={isResending}
+        isVerifying={isVerifying}
+        verifyingLabel={labels.verifying}
+      />
 
       <OtpInstructionBox instruction={labels.instruction} />
 
@@ -83,15 +107,10 @@ const OtpStepForm = ({
         }}
       />
 
-      <CountdownEffect
-        countdown={countdown}
-        setCountdown={setCountdown}
-        setCanResend={setCanResend}
-      />
-      <AutoVerifyEffect
-        otpValue={otpValue}
+      <AutoVerifyOTPEffect
+        otpValue={otp}
         otpLength={OTP_LENGTH}
-        onVerify={verifyOtp}
+        onVerify={handleVerify}
       />
     </>
   );

@@ -1,8 +1,9 @@
 "use client";
 
 // libs
-import { useState } from "react";
 import { toast } from "sonner";
+// hooks
+import { useCountdown } from "@/hooks";
 // services
 import { useRequestOtpMutation } from "@/services/auths";
 
@@ -18,8 +19,11 @@ export const useMagicLink = ({
     errorGeneric: string;
   };
 }) => {
-  const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
-  const [canResend, setCanResend] = useState(false);
+  const {
+    seconds: countdown,
+    isFinished: canResend,
+    reset: resetCountdown
+  } = useCountdown(COUNTDOWN_SECONDS);
 
   // TODO: Replace with actual magic link mutation when API is ready
   const { mutate: sendMagicLinkMutation, isPending: isResending } =
@@ -31,8 +35,7 @@ export const useMagicLink = ({
       {
         onSuccess: () => {
           toast.success(messages.resendSuccess);
-          setCountdown(COUNTDOWN_SECONDS);
-          setCanResend(false);
+          resetCountdown();
         },
         onError: () => {
           toast.error(messages.errorGeneric);
@@ -45,8 +48,6 @@ export const useMagicLink = ({
     countdown,
     canResend,
     isResending,
-    handleResend,
-    setCountdown,
-    setCanResend
+    handleResend
   };
 };

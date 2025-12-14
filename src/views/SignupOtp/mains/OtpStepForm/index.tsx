@@ -6,16 +6,16 @@ import { toast } from "sonner";
 import { useRouter } from "@/i18n/navigation";
 // components
 import ResendButton from "@/components/ResendButton";
-import OtpInputGroup from "../../components/OtpInputGroup";
+import OtpInputGroup from "@/components/OtpInputGroup";
 import OtpInstruction from "../../components/OtpInstruction";
+// hooks
+import { useCountdown } from "@/hooks";
 // ghosts
-import CountdownEffect from "@/ghosts/CountdownEffect";
-import AutoVerifyEffect from "../../ghosts/AutoVerifyEffect";
+import AutoVerifyOTPEffect from "@/ghosts/AutoVerifyOTPEffect";
 // others
 import CONSTANTS from "@/constants";
 
-const OTP_LENGTH = 6;
-const COUNTDOWN_SECONDS = 60;
+const { OTP_LENGTH, RESEND_COUNTDOWN } = CONSTANTS.FORGOT_PASSWORD;
 const { SIGNUP_INFO } = CONSTANTS.ROUTES;
 
 const OtpStepForm = ({
@@ -36,10 +36,13 @@ const OtpStepForm = ({
   };
 }) => {
   const router = useRouter();
+  const {
+    seconds: countdown,
+    isFinished: canResend,
+    reset: resetCountdown
+  } = useCountdown(RESEND_COUNTDOWN);
 
   const [otp, setOtp] = useState("");
-  const [countdown, setCountdown] = useState(COUNTDOWN_SECONDS);
-  const [canResend, setCanResend] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
 
@@ -64,8 +67,7 @@ const OtpStepForm = ({
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     toast.success(labels.resendSuccess);
-    setCountdown(COUNTDOWN_SECONDS);
-    setCanResend(false);
+    resetCountdown();
     setIsResending(false);
     setOtp("");
   };
@@ -81,7 +83,7 @@ const OtpStepForm = ({
         onChange={handleOtpChange}
         disabled={isResending}
         isVerifying={isVerifying}
-        labels={{ verifying: labels.verifying }}
+        verifyingLabel={labels.verifying}
       />
 
       <OtpInstruction label={labels.instruction} />
@@ -101,12 +103,7 @@ const OtpStepForm = ({
         }}
       />
 
-      <CountdownEffect
-        countdown={countdown}
-        setCountdown={setCountdown}
-        setCanResend={setCanResend}
-      />
-      <AutoVerifyEffect
+      <AutoVerifyOTPEffect
         otpValue={otp}
         otpLength={OTP_LENGTH}
         onVerify={handleVerify}
