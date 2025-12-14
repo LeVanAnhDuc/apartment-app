@@ -2,6 +2,7 @@
 import type { ReactNode } from "react";
 // components
 import AuthHeader from "@/components/AuthHeader";
+import AuthFooter from "@/components/AuthFooter";
 
 export default function Layout({
   children
@@ -9,9 +10,12 @@ export default function Layout({
   children: ReactNode;
 }>) {
   return (
-    <div className="min-h-screen">
+    <>
       <AuthHeader />
-      {children}
-    </div>
+      <main className="auth-background flex min-h-screen flex-col items-center justify-center p-4 pt-20">
+        {children}
+        <AuthFooter />
+      </main>
+    </>
   );
 }

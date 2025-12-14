@@ -2,7 +2,6 @@
 import type { ReactNode } from "react";
 // components
 import EmailBadge from "@/components/EmailBadge";
-import AuthFooter from "@/components/AuthFooter";
 import AnimatedCard from "./components/AnimatedCard";
 import AnimatedText from "./components/AnimatedText";
 import BackButtonClient from "./components/BackButtonClient";
@@ -32,7 +31,7 @@ const AuthStepLayout = ({
   children: ReactNode;
   ghostComponents?: ReactNode;
 }) => (
-  <main className="auth-background flex min-h-screen items-center justify-center p-4">
+  <main className="auth-background flex items-center justify-center">
     <AnimatedCard maxWidth={maxWidth}>
       <div className="auth-card relative p-8 md:p-10">
         {backButton}
@@ -58,8 +57,6 @@ const AuthStepLayout = ({
 
         {children}
       </div>
-
-      <AuthFooter />
     </AnimatedCard>
 
     {ghostComponents}

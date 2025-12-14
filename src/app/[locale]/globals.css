@@ -127,20 +127,7 @@
 
 @layer utilities {
   .auth-background {
-    @apply relative min-h-screen w-full overflow-hidden;
-    background: linear-gradient(
-      to bottom right,
-      oklch(0.97 0.014 254.604),
-      oklch(0.93 0.034 272.788)
-    );
-  }
-
-  .dark .auth-background {
-    background: linear-gradient(
-      to bottom right,
-      oklch(0.205 0 0),
-      oklch(0.269 0.03 265)
-    );
+    @apply relative w-full overflow-hidden;
   }
 
   .auth-background > * {
@@ -148,7 +135,7 @@
   }
 
   .auth-card {
-    @apply rounded-2xl bg-white shadow-xl;
+    @apply rounded-2xl border-1 bg-white;
   }
 
   .dark .auth-card {
