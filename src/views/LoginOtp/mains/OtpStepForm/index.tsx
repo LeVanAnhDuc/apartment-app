@@ -74,8 +74,6 @@ const OtpStepForm = ({
     setOtp(value);
   };
 
-  console.log("check");
-
   return (
     <>
       <OtpInputGroup
