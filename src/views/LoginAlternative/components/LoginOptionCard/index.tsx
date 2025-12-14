@@ -8,6 +8,7 @@ import type { ColorVariant } from "@/dataSources/Common";
 // dataSources
 import { COLOR_VARIANT_CLASSES } from "@/dataSources/Common";
 // others
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/libs/utils";
 
 const LoginOptionCard = ({
@@ -15,42 +16,44 @@ const LoginOptionCard = ({
   title,
   description,
   colorVariant,
-  onClick,
+  href,
   animationDelay = 0
 }: {
   icon: LucideIcon;
   title: string;
   description: string;
   colorVariant: ColorVariant;
-  onClick: () => void;
+  href: string;
   animationDelay?: number;
 }) => (
-  <motion.button
+  <motion.div
     initial={{ opacity: 0, x: -20 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay: animationDelay }}
-    onClick={onClick}
-    type="button"
-    className={cn(
-      "group flex w-full items-center gap-4 rounded-xl border-2",
-      "border-border p-4 transition-all duration-200",
-      "hover:border-primary hover:bg-primary/5"
-    )}
   >
-    <div
+    <Link
+      href={href}
       className={cn(
-        "flex h-12 w-12 items-center justify-center rounded-lg",
-        "transition-colors duration-200",
-        COLOR_VARIANT_CLASSES[colorVariant]
+        "group flex w-full items-center gap-4 rounded-xl border-2",
+        "border-border p-4 transition-all duration-200",
+        "hover:border-primary hover:bg-primary/5"
       )}
     >
-      <Icon className="h-6 w-6" />
-    </div>
-    <div className="flex-1 text-left">
-      <div className="text-foreground font-medium">{title}</div>
-      <div className="text-muted-foreground text-sm">{description}</div>
-    </div>
-  </motion.button>
+      <div
+        className={cn(
+          "flex h-12 w-12 items-center justify-center rounded-lg",
+          "transition-colors duration-200",
+          COLOR_VARIANT_CLASSES[colorVariant]
+        )}
+      >
+        <Icon className="h-6 w-6" />
+      </div>
+      <div className="flex-1 text-left">
+        <div className="text-foreground font-medium">{title}</div>
+        <div className="text-muted-foreground text-sm">{description}</div>
+      </div>
+    </Link>
+  </motion.div>
 );
 
 export default LoginOptionCard;

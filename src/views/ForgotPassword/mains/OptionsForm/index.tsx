@@ -1,15 +1,11 @@
 "use client";
 
 // libs
-import { usePathname } from "next/navigation";
 import { Smartphone, Mail, ShieldCheck, Headset } from "lucide-react";
 // components
 import RecoveryOptionCard from "../../components/RecoveryOptionCard";
 import RecoveryOptionsInfo from "../../components/RecoveryOptionsInfo";
-// stores
-import { useContactAdminStore } from "@/stores";
 // others
-import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
@@ -18,10 +14,12 @@ const { FORGOT_PASSWORD_OTP, FORGOT_PASSWORD_MAGIC_LINK, CONTACT_ADMIN } =
 
 const OptionsForm = ({
   email,
+  currentPath,
   has2FAEnabled = false,
   labels
 }: {
   email: string;
+  currentPath: string;
   has2FAEnabled?: boolean;
   labels: {
     description: string;
@@ -38,33 +36,8 @@ const OptionsForm = ({
     unavailable: string;
   };
 }) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const setContactAdminEmail = useContactAdminStore((state) => state.setEmail);
-  const setContactAdminReferrer = useContactAdminStore(
-    (state) => state.setReferrerPath
-  );
-
-  const handleSelectOtp = () => {
-    const encodedEmail = encodeURIComponent(email);
-    router.push(`${FORGOT_PASSWORD_OTP}?email=${encodedEmail}`);
-  };
-
-  const handleSelectMagicLink = () => {
-    const encodedEmail = encodeURIComponent(email);
-    router.push(`${FORGOT_PASSWORD_MAGIC_LINK}?email=${encodedEmail}`);
-  };
-
-  const handleSelect2FA = () => {
-    // TODO: Implement 2FA recovery flow
-  };
-
-  const handleContactAdmin = () => {
-    setContactAdminEmail(email, true);
-    setContactAdminReferrer(pathname);
-    router.push(CONTACT_ADMIN);
-  };
+  const encodedEmail = encodeURIComponent(email);
+  const encodedFrom = encodeURIComponent(currentPath);
 
   return (
     <>
@@ -78,7 +51,7 @@ const OptionsForm = ({
           title={labels.otpTitle}
           description={labels.otpDescription}
           colorVariant="blue"
-          onClick={handleSelectOtp}
+          href={`${FORGOT_PASSWORD_OTP}?email=${encodedEmail}`}
           animationDelay={0}
         />
         <RecoveryOptionCard
@@ -86,7 +59,7 @@ const OptionsForm = ({
           title={labels.magicLinkTitle}
           description={labels.magicLinkDescription}
           colorVariant="orange"
-          onClick={handleSelectMagicLink}
+          href={`${FORGOT_PASSWORD_MAGIC_LINK}?email=${encodedEmail}`}
           animationDelay={ANIMATION_DELAY_STEP}
         />
         <RecoveryOptionCard
@@ -98,7 +71,6 @@ const OptionsForm = ({
               : labels.twoFactorDescriptionDisabled
           }
           colorVariant="green"
-          onClick={handleSelect2FA}
           animationDelay={ANIMATION_DELAY_STEP * 2}
           disabled={!has2FAEnabled}
           unavailableLabel={labels.unavailable}
@@ -108,7 +80,7 @@ const OptionsForm = ({
           title={labels.contactAdminTitle}
           description={labels.contactAdminDescription}
           colorVariant="purple"
-          onClick={handleContactAdmin}
+          href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
           animationDelay={ANIMATION_DELAY_STEP * 3}
         />
       </div>

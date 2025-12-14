@@ -12,7 +12,7 @@ import BackButton from "./components/BackButton";
 // others
 import CONSTANTS from "@/constants";
 
-const { LOGIN } = CONSTANTS.ROUTES;
+const { LOGIN, FORGOT_PASSWORD } = CONSTANTS.ROUTES;
 
 const ForgotPassword = async ({
   searchParams
@@ -24,6 +24,9 @@ const ForgotPassword = async ({
   if (!email) redirect(LOGIN);
 
   const decodedEmail = decodeURIComponent(email);
+  const encodedEmail = encodeURIComponent(decodedEmail);
+  const currentPath = `${FORGOT_PASSWORD}?email=${encodedEmail}`;
+
   const messages = await getMessages();
   const translations = messages.forgotPassword as ForgotPasswordMessages;
   const { options } = translations.form;
@@ -37,6 +40,7 @@ const ForgotPassword = async ({
     >
       <OptionsForm
         email={decodedEmail}
+        currentPath={currentPath}
         labels={{
           description: options.description,
           otpTitle: options.otp.title,

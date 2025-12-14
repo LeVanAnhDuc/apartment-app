@@ -1,14 +1,10 @@
 "use client";
 
 // libs
-import { usePathname } from "next/navigation";
 import { Mail, Smartphone, KeyRound, Headset } from "lucide-react";
 // components
 import LoginOptionCard from "../../components/LoginOptionCard";
-// stores
-import { useContactAdminStore } from "@/stores";
 // others
-import { useRouter } from "@/i18n/navigation";
 import CONSTANTS from "@/constants";
 
 const ANIMATION_DELAY_STEP = 0.1;
@@ -18,9 +14,11 @@ const { CONTACT_ADMIN, LOGIN_PASSWORD, LOGIN_OTP, LOGIN_MAGIC_LINK } =
 
 const AlternativeOptions = ({
   email,
+  currentPath,
   labels
 }: {
   email: string;
+  currentPath: string;
   labels: {
     magicLink: { title: string; description: string };
     otp: { title: string; description: string };
@@ -28,33 +26,8 @@ const AlternativeOptions = ({
     contactAdmin: { title: string; description: string };
   };
 }) => {
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const setContactAdminEmail = useContactAdminStore((state) => state.setEmail);
-  const setContactAdminReferrer = useContactAdminStore(
-    (state) => state.setReferrerPath
-  );
-
   const encodedEmail = encodeURIComponent(email);
-
-  const handleSelectPassword = () => {
-    router.push(`${LOGIN_PASSWORD}?email=${encodedEmail}`);
-  };
-
-  const handleSelectMagicLink = () => {
-    router.push(`${LOGIN_MAGIC_LINK}?email=${encodedEmail}`);
-  };
-
-  const handleSelectOTP = () => {
-    router.push(`${LOGIN_OTP}?email=${encodedEmail}`);
-  };
-
-  const handleContactAdmin = () => {
-    setContactAdminEmail(email, true);
-    setContactAdminReferrer(pathname);
-    router.push(CONTACT_ADMIN);
-  };
+  const encodedFrom = encodeURIComponent(currentPath);
 
   return (
     <div className="space-y-3">
@@ -63,7 +36,7 @@ const AlternativeOptions = ({
         title={labels.magicLink.title}
         description={labels.magicLink.description}
         colorVariant="orange"
-        onClick={handleSelectMagicLink}
+        href={`${LOGIN_MAGIC_LINK}?email=${encodedEmail}`}
         animationDelay={0}
       />
       <LoginOptionCard
@@ -71,7 +44,7 @@ const AlternativeOptions = ({
         title={labels.otp.title}
         description={labels.otp.description}
         colorVariant="blue"
-        onClick={handleSelectOTP}
+        href={`${LOGIN_OTP}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP}
       />
       <LoginOptionCard
@@ -79,7 +52,7 @@ const AlternativeOptions = ({
         title={labels.password.title}
         description={labels.password.description}
         colorVariant="green"
-        onClick={handleSelectPassword}
+        href={`${LOGIN_PASSWORD}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP * 2}
       />
       <LoginOptionCard
@@ -87,7 +60,7 @@ const AlternativeOptions = ({
         title={labels.contactAdmin.title}
         description={labels.contactAdmin.description}
         colorVariant="purple"
-        onClick={handleContactAdmin}
+        href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
         animationDelay={ANIMATION_DELAY_STEP * 3}
       />
     </div>
