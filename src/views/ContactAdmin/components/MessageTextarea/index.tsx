@@ -2,9 +2,9 @@
 
 // libs
 import { useFormContext, useWatch } from "react-hook-form";
-import { useTranslations } from "next-intl";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
+import type { ContactAdminMessages } from "@/types/libs";
 // components
 import FormFieldMessage from "@/components/FormFieldMessage";
 import {
@@ -20,10 +20,15 @@ import { useFormField } from "@/components/ui/form";
 import CONSTANTS from "@/constants";
 
 const { MESSAGE } = CONSTANTS.FIELD_NAMES.CONTACT_ADMIN_FIELD_NAMES;
-const MIN_CHARS = 20;
+const { MESSAGE_MIN_CHARS } = CONSTANTS.CONTACT_ADMIN;
 
-const MessageHint = ({ charCount }: { charCount: number }) => {
-  const t = useTranslations("contactAdmin.form");
+const MessageHint = ({
+  charCount,
+  labels
+}: {
+  charCount: number;
+  labels: ContactAdminMessages["form"]["hint"];
+}) => {
   const { error } = useFormField();
 
   return (
@@ -32,18 +37,27 @@ const MessageHint = ({ charCount }: { charCount: number }) => {
         <FormFieldMessage />
       ) : (
         <p className="text-muted-foreground text-xs">
-          {t("hint.minChars", { count: MIN_CHARS })}
+          {labels.minChars.replace("{count}", String(MESSAGE_MIN_CHARS))}
         </p>
       )}
       <p className="text-muted-foreground text-xs">
-        {t("hint.charCount", { count: charCount })}
+        {labels.charCount.replace("{count}", String(charCount))}
       </p>
     </div>
   );
 };
 
-const MessageTextarea = ({ disabled = false }: { disabled?: boolean }) => {
-  const t = useTranslations("contactAdmin.form");
+const MessageTextarea = ({
+  disabled = false,
+  labels
+}: {
+  disabled?: boolean;
+  labels: {
+    label: string;
+    placeholder: string;
+    hint: ContactAdminMessages["form"]["hint"];
+  };
+}) => {
   const { control } = useFormContext<ContactAdminFormValues>();
   const messageValue = useWatch({ control, name: MESSAGE });
 
@@ -54,19 +68,21 @@ const MessageTextarea = ({ disabled = false }: { disabled?: boolean }) => {
       render={({ field }) => (
         <FormItem>
           <FormLabel>
-            {t("input.labelMessage")}{" "}
-            <span className="text-destructive">*</span>
+            {labels.label} <span className="text-destructive">*</span>
           </FormLabel>
           <FormControl>
             <Textarea
               {...field}
-              placeholder={t("input.placeholderMessage")}
+              placeholder={labels.placeholder}
               disabled={disabled}
               rows={6}
               className="resize-none"
             />
           </FormControl>
-          <MessageHint charCount={messageValue?.length || 0} />
+          <MessageHint
+            charCount={messageValue?.length || 0}
+            labels={labels.hint}
+          />
         </FormItem>
       )}
     />
