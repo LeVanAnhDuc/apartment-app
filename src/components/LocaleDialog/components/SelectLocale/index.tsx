@@ -1,7 +1,8 @@
 "use client";
+
 // libs
 import { Check } from "lucide-react";
-import { hasLocale, useLocale } from "next-intl";
+import { hasLocale, useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 // types
@@ -12,8 +13,10 @@ import { Spinner } from "@/components/ui/spinner";
 // others
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { cn } from "@/libs/utils";
 
 const SelectLocale = () => {
+  const t = useTranslations("common");
   const localActive = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -21,7 +24,7 @@ const SelectLocale = () => {
   const [pending, startTransition] = useTransition();
   const [pendingLocale, setPendingLocale] = useState<Locale | null>(null);
 
-  const handleLanguageChange = async (newLocale: Locale) => {
+  const handleLanguageChange = (newLocale: Locale) => {
     if (newLocale === localActive || !hasLocale(routing.locales, newLocale))
       return;
 
@@ -45,7 +48,9 @@ const SelectLocale = () => {
 
   return (
     <main className="@container space-y-4">
-      <h3 className="text-xl font-semibold">Chọn ngôn ngữ và khu vực</h3>
+      <h3 className="text-xl font-semibold">
+        {t("localeDialog.selectLanguage")}
+      </h3>
       <div className="grid grid-cols-1 gap-3 @sm:grid-cols-2 @lg:grid-cols-3 @xl:grid-cols-4 @2xl:grid-cols-5">
         {routing.locales.map((locale) => (
           <CustomButton
@@ -53,7 +58,10 @@ const SelectLocale = () => {
             variant={"outline"}
             disabled={pending}
             onClick={() => handleLanguageChange(locale)}
-            className={`h-11 ${localActive === locale && "border-gray-900"}`}
+            className={cn(
+              "h-11",
+              localActive === locale && "border-2 border-gray-900"
+            )}
             iconRight={getRightIcon(locale)}
           >
             {localeNames[locale]}

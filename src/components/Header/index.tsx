@@ -1,6 +1,6 @@
 // components
 import Logo from "@/components/Logo";
-import ModalLanguage from "@/components/ModalLanguage";
+import LocaleDialog from "@/components/LocaleDialog";
 import UserMenu from "@/components/UserMenu";
 
 const Header = () => (
@@ -11,7 +11,7 @@ const Header = () => (
     </section>
 
     <section className="flex items-center justify-center gap-2">
-      <ModalLanguage />
+      <LocaleDialog />
       <UserMenu />
     </section>
   </header>

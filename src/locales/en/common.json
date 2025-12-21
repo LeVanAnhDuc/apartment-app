@@ -3,6 +3,11 @@
     "name": "Đức Application",
     "description": "Welcome to Đức platform"
   },
+  "localeDialog": {
+    "languageTab": "Language and Region",
+    "currencyTab": "Currency",
+    "selectLanguage": "Select language and region"
+  },
   "userMenu": {
     "signOut": "Sign Out",
     "logoutDescription": "Logout from account",

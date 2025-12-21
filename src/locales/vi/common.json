@@ -3,6 +3,11 @@
     "name": "Ứng dụng Đức",
     "description": "Chào mừng đến với nền tảng Đức"
   },
+  "localeDialog": {
+    "languageTab": "Ngôn ngữ và khu vực",
+    "currencyTab": "Loại tiền tệ",
+    "selectLanguage": "Chọn ngôn ngữ và khu vực"
+  },
   "userMenu": {
     "signOut": "Đăng xuất",
     "logoutDescription": "Đăng xuất khỏi tài khoản",
