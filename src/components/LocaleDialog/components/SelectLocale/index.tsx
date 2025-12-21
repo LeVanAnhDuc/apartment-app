@@ -60,7 +60,7 @@ const SelectLocale = () => {
             onClick={() => handleLanguageChange(locale)}
             className={cn(
               "h-11",
-              localActive === locale && "border-2 border-gray-900"
+              localActive === locale && "border-primary border-2"
             )}
             iconRight={getRightIcon(locale)}
           >

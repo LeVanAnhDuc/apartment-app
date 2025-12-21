@@ -39,7 +39,7 @@ const OptionsForm = ({
           icon={Smartphone}
           title={otp.title}
           description={otp.description}
-          colorVariant="blue"
+          colorVariant="info"
           href={`${FORGOT_PASSWORD_OTP}?email=${encodedEmail}`}
           animationDelay={0}
         />
@@ -47,7 +47,7 @@ const OptionsForm = ({
           icon={Mail}
           title={magicLink.title}
           description={magicLink.description}
-          colorVariant="orange"
+          colorVariant="primary"
           href={`${FORGOT_PASSWORD_MAGIC_LINK}?email=${encodedEmail}`}
           animationDelay={ANIMATION_DELAY_STEP}
         />
@@ -59,7 +59,7 @@ const OptionsForm = ({
               ? twoFactor.descriptionEnabled
               : twoFactor.descriptionDisabled
           }
-          colorVariant="green"
+          colorVariant="success"
           animationDelay={ANIMATION_DELAY_STEP * 2}
           disabled={!has2FAEnabled}
           unavailableLabel={unavailable}
@@ -68,7 +68,7 @@ const OptionsForm = ({
           icon={Headset}
           title={contactAdmin.title}
           description={contactAdmin.description}
-          colorVariant="purple"
+          colorVariant="info"
           href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
           animationDelay={ANIMATION_DELAY_STEP * 3}
         />

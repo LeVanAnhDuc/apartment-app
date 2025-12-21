@@ -11,15 +11,15 @@ const MagicLinkInstructions = ({
   };
 }) => (
   <FadeIn delay={0.3} className="mb-6 space-y-4">
-    <div className="rounded-lg bg-blue-50 p-4">
-      <p className="text-sm text-gray-700">
+    <div className="bg-info/10 rounded-lg p-4">
+      <p className="text-foreground text-sm">
         <span className="mb-2 block">📧 {labels.checkEmail}</span>
         {labels.clickLink}
       </p>
     </div>
 
-    <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4">
-      <p className="text-sm text-gray-700">
+    <div className="border-warning/30 bg-warning/10 rounded-lg border p-4">
+      <p className="text-warning-foreground text-sm">
         💡 <span>{labels.checkSpam}</span>
       </p>
     </div>

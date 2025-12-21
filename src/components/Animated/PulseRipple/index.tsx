@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/libs/utils";
 
 const PulseRipple = ({
-  color = "bg-green-500",
+  color = "bg-success",
   size = "inset-0",
   duration = 2,
   className

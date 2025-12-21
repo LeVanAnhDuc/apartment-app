@@ -35,7 +35,7 @@ const CardContent = ({
       <div
         className={cn(
           "font-medium",
-          disabled ? "text-gray-500" : "text-foreground"
+          disabled ? "text-muted-foreground" : "text-foreground"
         )}
       >
         {title}
@@ -43,7 +43,7 @@ const CardContent = ({
       <div className="text-muted-foreground text-sm">{description}</div>
     </div>
     {disabled && unavailableLabel && (
-      <div className="rounded bg-gray-200 px-2 py-1 text-xs text-gray-600">
+      <div className="bg-muted text-muted-foreground rounded px-2 py-1 text-xs">
         {unavailableLabel}
       </div>
     )}

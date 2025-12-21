@@ -36,16 +36,16 @@ const TicketInfo = ({
   return (
     <FadeSlideUp
       delay={0.4}
-      className="mb-8 rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 dark:border-blue-800 dark:from-blue-950/30 dark:to-indigo-950/30"
+      className="border-info/30 bg-info/5 mb-8 rounded-xl border-2 p-6"
     >
       <div className="mb-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <Mail className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-          <span className="text-sm text-blue-900 dark:text-blue-100">
+          <Mail className="text-info h-5 w-5" />
+          <span className="text-foreground text-sm font-medium">
             {labels.title}
           </span>
         </div>
-        <span className="rounded-full bg-blue-100 px-3 py-1 font-mono text-sm text-blue-700 dark:bg-blue-900/50 dark:text-blue-300">
+        <span className="bg-info/20 text-foreground rounded-full px-3 py-1 font-mono text-sm">
           {ticketNumber}
         </span>
       </div>

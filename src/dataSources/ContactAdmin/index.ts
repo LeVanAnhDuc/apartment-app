@@ -16,23 +16,33 @@ export const PRIORITIES: Record<
   { colorClass: string; styleClass: string }
 > = {
   low: {
-    colorClass: "text-green-600 dark:text-green-400",
-    styleClass:
-      "bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400"
+    colorClass: "text-success",
+    styleClass: "bg-success/10 text-success"
   },
   medium: {
-    colorClass: "text-amber-600 dark:text-amber-400",
-    styleClass:
-      "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400"
+    colorClass: "text-warning-foreground",
+    styleClass: "bg-warning/20 text-warning-foreground"
   },
   high: {
-    colorClass: "text-red-600 dark:text-red-400",
-    styleClass: "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400"
+    colorClass: "text-destructive",
+    styleClass: "bg-destructive/10 text-destructive"
   }
 };
 
 export const NEXT_STEPS = [
-  { key: "step1", color: "from-blue-500 to-blue-600" },
-  { key: "step2", color: "from-purple-500 to-purple-600" },
-  { key: "step3", color: "from-green-500 to-green-600" }
+  {
+    key: "step1",
+    color: "from-info to-info/80",
+    textColor: "text-info-foreground"
+  },
+  {
+    key: "step2",
+    color: "from-primary to-primary/80",
+    textColor: "text-primary-foreground"
+  },
+  {
+    key: "step3",
+    color: "from-success to-success/80",
+    textColor: "text-success-foreground"
+  }
 ] as const;

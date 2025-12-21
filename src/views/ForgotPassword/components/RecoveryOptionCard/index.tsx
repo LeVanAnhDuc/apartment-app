@@ -31,7 +31,7 @@ const RecoveryOptionCard = ({
     "group flex w-full items-center gap-4 rounded-xl border-2 p-4",
     "transition-all duration-200",
     disabled
-      ? "cursor-not-allowed border-gray-200 bg-gray-50 opacity-60"
+      ? "cursor-not-allowed border-border bg-muted opacity-60"
       : "border-border hover:border-primary hover:bg-primary/5"
   );
 

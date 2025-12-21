@@ -17,11 +17,11 @@ const AuthIcon = ({
   const iconElement = (
     <div
       className={cn(
-        "inline-flex h-16 w-16 items-center justify-center rounded-full bg-amber-500",
+        "bg-primary inline-flex h-16 w-16 items-center justify-center rounded-full",
         className
       )}
     >
-      <Icon className="h-8 w-8 text-white" />
+      <Icon className="text-primary-foreground h-8 w-8" />
     </div>
   );
 

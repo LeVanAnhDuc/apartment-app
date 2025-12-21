@@ -25,7 +25,7 @@ const NextSteps = ({
   return (
     <FadeSlideUp delay={0.5} className="mb-8">
       <h3 className="text-foreground mb-4 flex items-center gap-2">
-        <Clock className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+        <Clock className="text-info h-5 w-5" />
         {labels.title}
       </h3>
 
@@ -34,33 +34,33 @@ const NextSteps = ({
           delay={0.55}
           className={`mb-4 rounded-lg p-4 ${
             email
-              ? "border border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/30"
-              : "border border-amber-200 bg-amber-50 dark:border-amber-800 dark:bg-amber-950/30"
+              ? "border-success/30 bg-success/10 border"
+              : "border-warning/30 bg-warning/10 border"
           }`}
         >
           {email ? (
             <div className="flex items-start gap-3">
-              <CheckCircle className="mt-0.5 h-5 w-5 shrink-0 text-green-600 dark:text-green-400" />
+              <CheckCircle className="text-success mt-0.5 h-5 w-5 shrink-0" />
               <div>
-                <p className="text-sm text-green-800 dark:text-green-200">
+                <p className="text-foreground text-sm font-medium">
                   {responseLabels.withEmail?.replace("{email}", email)}
                 </p>
-                <p className="mt-1 text-xs text-green-600 dark:text-green-400">
+                <p className="text-muted-foreground mt-1 text-xs">
                   {responseLabels.withEmailTime}
                 </p>
               </div>
             </div>
           ) : (
             <div className="flex items-start gap-3">
-              <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-amber-600 dark:text-amber-400" />
+              <AlertTriangle className="text-warning-foreground mt-0.5 h-5 w-5 shrink-0" />
               <div>
-                <p className="text-sm text-amber-800 dark:text-amber-200">
+                <p className="text-warning-foreground text-sm">
                   {responseLabels.anonymous}
                 </p>
-                <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">
+                <p className="text-warning-foreground/80 mt-1 text-xs">
                   {responseLabels.anonymousNote}
                 </p>
-                <p className="mt-1 text-xs font-medium text-amber-700 dark:text-amber-300">
+                <p className="text-warning-foreground mt-1 text-xs font-medium">
                   {responseLabels.anonymousSaveTicket}
                 </p>
               </div>
@@ -77,7 +77,7 @@ const NextSteps = ({
             className="bg-muted/50 flex items-start gap-4 rounded-xl p-4"
           >
             <div
-              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br text-white ${step.color}`}
+              className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br ${step.color} ${step.textColor}`}
             >
               {index + 1}
             </div>

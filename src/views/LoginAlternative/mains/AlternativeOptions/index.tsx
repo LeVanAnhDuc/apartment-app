@@ -33,7 +33,7 @@ const AlternativeOptions = ({
         icon={Mail}
         title={magicLink.title}
         description={magicLink.description}
-        colorVariant="orange"
+        colorVariant="primary"
         href={`${LOGIN_MAGIC_LINK}?email=${encodedEmail}`}
         animationDelay={0}
       />
@@ -41,7 +41,7 @@ const AlternativeOptions = ({
         icon={Smartphone}
         title={otp.title}
         description={otp.description}
-        colorVariant="blue"
+        colorVariant="info"
         href={`${LOGIN_OTP}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP}
       />
@@ -49,7 +49,7 @@ const AlternativeOptions = ({
         icon={KeyRound}
         title={password.title}
         description={password.description}
-        colorVariant="green"
+        colorVariant="success"
         href={`${LOGIN_PASSWORD}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP * 2}
       />
@@ -57,7 +57,7 @@ const AlternativeOptions = ({
         icon={Headset}
         title={contactAdmin.title}
         description={contactAdmin.description}
-        colorVariant="purple"
+        colorVariant="info"
         href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
         animationDelay={ANIMATION_DELAY_STEP * 3}
       />
