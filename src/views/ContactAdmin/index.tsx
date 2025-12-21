@@ -38,7 +38,7 @@ const ContactAdmin = async ({
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={Headset} variant="purple" animated />}
+      icon={<AuthIcon Icon={Headset} animated />}
       title={title}
       description={description}
       maxWidth="2xl"

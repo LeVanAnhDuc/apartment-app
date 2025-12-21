@@ -30,15 +30,7 @@ const SignupOtp = async ({
 
   return (
     <AuthStepLayout
-      icon={
-        <AuthIcon
-          Icon={ShieldCheck}
-          variant="green"
-          shape="circle"
-          size="lg"
-          animated
-        />
-      }
+      icon={<AuthIcon Icon={ShieldCheck} animated />}
       title={otpStep.title}
       description={otpStep.description}
       email={decodedEmail}

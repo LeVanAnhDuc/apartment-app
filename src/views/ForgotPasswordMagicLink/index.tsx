@@ -33,15 +33,7 @@ const ForgotPasswordMagicLink = async ({
 
   return (
     <AuthStepLayout
-      icon={
-        <AuthIcon
-          Icon={Mail}
-          variant="orange"
-          shape="circle"
-          size="lg"
-          animated
-        />
-      }
+      icon={<AuthIcon Icon={Mail} animated />}
       title={magicLink.title}
       description={magicLink.description}
       email={decodedEmail}

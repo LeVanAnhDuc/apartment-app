@@ -18,7 +18,7 @@ const Signup = async () => {
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={UserPlus} variant="green" />}
+      icon={<AuthIcon Icon={UserPlus} />}
       title={emailStep.title}
       description={emailStep.description}
     >

@@ -33,7 +33,7 @@ const ForgotPassword = async ({
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={KeyRound} variant="orange" animated />}
+      icon={<AuthIcon Icon={KeyRound} animated />}
       title={options.title}
       email={decodedEmail}
       backButton={<BackButton />}

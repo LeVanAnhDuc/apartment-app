@@ -33,7 +33,7 @@ const ForgotPasswordOtp = async ({
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={Lock} variant="orange" animated />}
+      icon={<AuthIcon Icon={Lock} animated />}
       title={otp.title}
       description={otp.description}
       email={decodedEmail}

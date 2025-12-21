@@ -29,7 +29,7 @@ const SignupInfo = async ({
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={UserCircle} variant="green" />}
+      icon={<AuthIcon Icon={UserCircle} />}
       title={translations.infoStep.title}
       email={decodedEmail}
       backButton={<BackButton />}

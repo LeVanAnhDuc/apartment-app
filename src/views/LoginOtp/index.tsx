@@ -36,15 +36,7 @@ const LoginOtp = async ({
 
   return (
     <AuthStepLayout
-      icon={
-        <AuthIcon
-          Icon={Lock}
-          variant="blue"
-          shape="circle"
-          size="lg"
-          animated
-        />
-      }
+      icon={<AuthIcon Icon={Lock} animated />}
       title={otp.title}
       description={otp.description}
       email={decodedEmail}

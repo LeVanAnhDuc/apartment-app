@@ -31,7 +31,7 @@ const ResetPassword = async ({
 
   return (
     <AuthStepLayout
-      icon={<AuthIcon Icon={KeyRound} variant="orange" animated />}
+      icon={<AuthIcon Icon={KeyRound} animated />}
       title={translations.form.title}
       description={translations.form.description}
       email={decodedEmail}
