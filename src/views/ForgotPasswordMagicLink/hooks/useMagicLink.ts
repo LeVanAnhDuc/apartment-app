@@ -4,8 +4,6 @@
 import { toast } from "sonner";
 // hooks
 import { useCountdown } from "@/hooks";
-// services
-import { useRequestOtpMutation } from "@/services/auths";
 
 const COUNTDOWN_SECONDS = 60;
 
@@ -25,29 +23,17 @@ export const useMagicLink = ({
     reset: resetCountdown
   } = useCountdown(COUNTDOWN_SECONDS);
 
-  // TODO: Replace with actual magic link mutation when API is ready
-  const { mutate: sendMagicLinkMutation, isPending: isResending } =
-    useRequestOtpMutation();
-
   const handleResend = () => {
-    sendMagicLinkMutation(
-      { email },
-      {
-        onSuccess: () => {
-          toast.success(messages.resendSuccess);
-          resetCountdown();
-        },
-        onError: () => {
-          toast.error(messages.errorGeneric);
-        }
-      }
-    );
+    // TODO: Implement magic link API
+    console.log("Resend magic link:", email);
+    toast.success(messages.resendSuccess);
+    resetCountdown();
   };
 
   return {
     countdown,
     canResend,
-    isResending,
+    isResending: false,
     handleResend
   };
 };
