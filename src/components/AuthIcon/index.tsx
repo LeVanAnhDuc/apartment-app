@@ -1,7 +1,7 @@
 // types
 import type { LucideIcon } from "lucide-react";
 // components
-import AnimatedWrapper from "./components/AnimatedWrapper";
+import { ScaleSpring } from "@/components/Animated";
 // others
 import { cn } from "@/libs/utils";
 
@@ -59,7 +59,7 @@ const AuthIcon = ({
   );
 
   if (animated) {
-    return <AnimatedWrapper>{iconElement}</AnimatedWrapper>;
+    return <ScaleSpring>{iconElement}</ScaleSpring>;
   }
 
   return iconElement;
