@@ -2,6 +2,8 @@
 
 // libs
 import { Smartphone, Mail, ShieldCheck, Headset } from "lucide-react";
+// types
+import type { ForgotPasswordMessages } from "@/types/libs";
 // components
 import RecoveryOptionCard from "../../components/RecoveryOptionCard";
 import RecoveryOptionsInfo from "../../components/RecoveryOptionsInfo";
@@ -16,76 +18,65 @@ const OptionsForm = ({
   email,
   currentPath,
   has2FAEnabled = false,
-  labels
+  translations
 }: {
   email: string;
   currentPath: string;
   has2FAEnabled?: boolean;
-  labels: {
-    description: string;
-    otpTitle: string;
-    otpDescription: string;
-    magicLinkTitle: string;
-    magicLinkDescription: string;
-    twoFactorTitle: string;
-    twoFactorDescriptionEnabled: string;
-    twoFactorDescriptionDisabled: string;
-    contactAdminTitle: string;
-    contactAdminDescription: string;
-    hint: string;
-    unavailable: string;
-  };
+  translations: ForgotPasswordMessages;
 }) => {
   const encodedEmail = encodeURIComponent(email);
   const encodedFrom = encodeURIComponent(currentPath);
 
+  const { description, otp, magicLink, twoFactor, contactAdmin, hint } =
+    translations.form.options;
+  const { unavailable } = translations.badge;
+
   return (
     <>
-      <p className="text-muted-foreground mb-6 text-center">
-        {labels.description}
-      </p>
+      <p className="text-muted-foreground mb-6 text-center">{description}</p>
 
       <div className="space-y-3">
         <RecoveryOptionCard
           icon={Smartphone}
-          title={labels.otpTitle}
-          description={labels.otpDescription}
+          title={otp.title}
+          description={otp.description}
           colorVariant="blue"
           href={`${FORGOT_PASSWORD_OTP}?email=${encodedEmail}`}
           animationDelay={0}
         />
         <RecoveryOptionCard
           icon={Mail}
-          title={labels.magicLinkTitle}
-          description={labels.magicLinkDescription}
+          title={magicLink.title}
+          description={magicLink.description}
           colorVariant="orange"
           href={`${FORGOT_PASSWORD_MAGIC_LINK}?email=${encodedEmail}`}
           animationDelay={ANIMATION_DELAY_STEP}
         />
         <RecoveryOptionCard
           icon={ShieldCheck}
-          title={labels.twoFactorTitle}
+          title={twoFactor.title}
           description={
             has2FAEnabled
-              ? labels.twoFactorDescriptionEnabled
-              : labels.twoFactorDescriptionDisabled
+              ? twoFactor.descriptionEnabled
+              : twoFactor.descriptionDisabled
           }
           colorVariant="green"
           animationDelay={ANIMATION_DELAY_STEP * 2}
           disabled={!has2FAEnabled}
-          unavailableLabel={labels.unavailable}
+          unavailableLabel={unavailable}
         />
         <RecoveryOptionCard
           icon={Headset}
-          title={labels.contactAdminTitle}
-          description={labels.contactAdminDescription}
+          title={contactAdmin.title}
+          description={contactAdmin.description}
           colorVariant="purple"
           href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
           animationDelay={ANIMATION_DELAY_STEP * 3}
         />
       </div>
 
-      <RecoveryOptionsInfo hint={labels.hint} />
+      <RecoveryOptionsInfo hint={hint} />
     </>
   );
 };

@@ -4,6 +4,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 // types
 import type { SignupInfoFormValues } from "@/types/Signup";
+import type { SignupMessages } from "@/types/libs";
 // components
 import PasswordInput from "@/components/PasswordInput";
 import FullNameInput from "../../components/FullNameInput";
@@ -17,27 +18,25 @@ import CONSTANTS from "@/constants";
 
 const { PASSWORD, PASSWORD_CONFIRM } = CONSTANTS.FIELD_NAMES.SIGNUP_FIELD_NAMES;
 
-const InfoStepForm = ({
-  labels
-}: {
-  labels: {
-    fullName: string;
-    fullNamePlaceholder: string;
-    gender: string;
-    genderPlaceholder: string;
-    genderMale: string;
-    genderFemale: string;
-    genderOther: string;
-    birthday: string;
-    birthdayPlaceholder: string;
-    password: string;
-    passwordPlaceholder: string;
-    passwordConfirm: string;
-    passwordConfirmPlaceholder: string;
-    submit: string;
-  };
-}) => {
+const InfoStepForm = ({ translations }: { translations: SignupMessages }) => {
   const methods = useForm<SignupInfoFormValues>({ ...signupInfoFormProps });
+
+  const {
+    input: {
+      labelFullName,
+      placeholderFullName,
+      labelGender,
+      placeholderGender,
+      gender,
+      labelBirthday,
+      placeholderBirthday,
+      labelPassword,
+      placeholderPassword,
+      labelPasswordConfirm,
+      placeholderPasswordConfirm
+    },
+    button: { submit }
+  } = translations.infoStep;
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onSubmit = (data: SignupInfoFormValues) => {
@@ -48,35 +47,31 @@ const InfoStepForm = ({
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
         <FullNameInput
-          label={labels.fullName}
-          placeholder={labels.fullNamePlaceholder}
+          label={labelFullName}
+          placeholder={placeholderFullName}
         />
         <GenderSelect
-          label={labels.gender}
-          placeholder={labels.genderPlaceholder}
-          genderLabels={{
-            male: labels.genderMale,
-            female: labels.genderFemale,
-            other: labels.genderOther
-          }}
+          label={labelGender}
+          placeholder={placeholderGender}
+          genderLabels={gender}
         />
         <BirthdayInput
-          label={labels.birthday}
-          placeholder={labels.birthdayPlaceholder}
+          label={labelBirthday}
+          placeholder={placeholderBirthday}
         />
         <PasswordInput
           name={PASSWORD}
-          label={labels.password}
-          placeholder={labels.passwordPlaceholder}
+          label={labelPassword}
+          placeholder={placeholderPassword}
           required
         />
         <PasswordInput
           name={PASSWORD_CONFIRM}
-          label={labels.passwordConfirm}
-          placeholder={labels.passwordConfirmPlaceholder}
+          label={labelPasswordConfirm}
+          placeholder={placeholderPasswordConfirm}
           required
         />
-        <SubmitButton label={labels.submit} />
+        <SubmitButton label={submit} />
       </form>
     </FormProvider>
   );

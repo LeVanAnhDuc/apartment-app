@@ -42,12 +42,7 @@ const LoginAlternative = async ({
       <AlternativeOptions
         email={decodedEmail}
         currentPath={currentPath}
-        labels={{
-          magicLink: form.alternative.magicLink,
-          otp: form.alternative.otp,
-          password: form.alternative.password,
-          contactAdmin: form.alternative.contactAdmin
-        }}
+        translations={translations}
       />
       <LoginOptionsInfo label={form.descriptionChooseMethod} />
     </AuthStepLayout>

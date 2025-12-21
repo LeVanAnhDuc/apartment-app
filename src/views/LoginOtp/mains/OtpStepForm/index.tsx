@@ -4,6 +4,8 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/navigation";
+// types
+import type { LoginMessages } from "@/types/libs";
 // components
 import ResendButton from "@/components/ResendButton";
 import OtpInputGroup from "@/components/OtpInputGroup";
@@ -20,18 +22,10 @@ const { HOME } = CONSTANTS.ROUTES;
 
 const OtpStepForm = ({
   tryOtherHref,
-  labels
+  translations
 }: {
   tryOtherHref: string;
-  labels: {
-    instruction: string;
-    verifying: string;
-    resendSuccess: string;
-    resend: string;
-    resendIn: string;
-    sending: string;
-    tryOther: string;
-  };
+  translations: LoginMessages;
 }) => {
   const router = useRouter();
   const {
@@ -43,6 +37,13 @@ const OtpStepForm = ({
   const [otp, setOtp] = useState("");
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
+
+  const {
+    button: { resend, resendIn, sending, tryOther },
+    instruction,
+    resendSuccess,
+    verifying
+  } = translations.form.otp;
 
   const handleVerify = async () => {
     if (otp.length !== OTP_LENGTH) return;
@@ -64,7 +65,7 @@ const OtpStepForm = ({
     // TODO: Implement actual resend API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success(labels.resendSuccess);
+    toast.success(resendSuccess);
     resetCountdown();
     setIsResending(false);
     setOtp("");
@@ -81,10 +82,10 @@ const OtpStepForm = ({
         onChange={handleOtpChange}
         disabled={isResending}
         isVerifying={isVerifying}
-        verifyingLabel={labels.verifying}
+        verifyingLabel={verifying}
       />
 
-      <OtpInstruction label={labels.instruction} />
+      <OtpInstruction label={instruction} />
 
       <ResendButton
         countdown={countdown}
@@ -93,12 +94,7 @@ const OtpStepForm = ({
         isProcessing={isVerifying}
         onResend={handleResend}
         tryOtherHref={tryOtherHref}
-        labels={{
-          resend: labels.resend,
-          resendIn: labels.resendIn,
-          sending: labels.sending,
-          tryOther: labels.tryOther
-        }}
+        labels={{ resend, resendIn, sending, tryOther }}
       />
 
       <AutoVerifyOTPEffect

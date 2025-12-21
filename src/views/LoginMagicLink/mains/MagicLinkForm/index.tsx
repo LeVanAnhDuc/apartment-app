@@ -3,6 +3,8 @@
 // libs
 import { useState } from "react";
 import { toast } from "sonner";
+// types
+import type { LoginMessages } from "@/types/libs";
 // components
 import ResendButton from "@/components/ResendButton";
 // hooks
@@ -12,16 +14,10 @@ const COUNTDOWN_SECONDS = 60;
 
 const MagicLinkForm = ({
   tryOtherHref,
-  labels
+  translations
 }: {
   tryOtherHref: string;
-  labels: {
-    resendSuccess: string;
-    resend: string;
-    resendIn: string;
-    sending: string;
-    tryOther: string;
-  };
+  translations: LoginMessages;
 }) => {
   const {
     seconds: countdown,
@@ -30,13 +26,18 @@ const MagicLinkForm = ({
   } = useCountdown(COUNTDOWN_SECONDS);
   const [isResending, setIsResending] = useState(false);
 
+  const {
+    button: { resend, resendIn, sending, tryOther },
+    resendSuccess
+  } = translations.form.magicLink;
+
   const handleResend = async () => {
     setIsResending(true);
 
     // TODO: Implement actual resend API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success(labels.resendSuccess);
+    toast.success(resendSuccess);
     resetCountdown();
     setIsResending(false);
   };
@@ -48,12 +49,7 @@ const MagicLinkForm = ({
       isResending={isResending}
       onResend={handleResend}
       tryOtherHref={tryOtherHref}
-      labels={{
-        resend: labels.resend,
-        resendIn: labels.resendIn,
-        sending: labels.sending,
-        tryOther: labels.tryOther
-      }}
+      labels={{ resend, resendIn, sending, tryOther }}
     />
   );
 };

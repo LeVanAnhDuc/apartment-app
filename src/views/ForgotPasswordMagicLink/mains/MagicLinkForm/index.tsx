@@ -1,5 +1,7 @@
 "use client";
 
+// types
+import type { ForgotPasswordMessages } from "@/types/libs";
 // components
 import ResendButton from "@/components/ResendButton";
 import MagicLinkInstructions from "../../components/MagicLinkInstructions";
@@ -9,39 +11,28 @@ import { useMagicLink } from "../../hooks/useMagicLink";
 const MagicLinkForm = ({
   email,
   tryOtherHref,
-  labels
+  translations
 }: {
   email: string;
   tryOtherHref: string;
-  labels: {
-    checkEmail: string;
-    clickLink: string;
-    checkSpam: string;
-    resend: string;
-    resendIn: string;
-    sending: string;
-    tryOther: string;
-    resendSuccess: string;
-    errorGeneric: string;
-  };
+  translations: ForgotPasswordMessages;
 }) => {
+  const {
+    instruction: { checkEmail, clickLink },
+    checkSpam,
+    button: { resend, resendIn, sending, tryOther },
+    resendSuccess
+  } = translations.form.magicLink;
+  const { generic: errorGeneric } = translations.message.error;
+
   const { countdown, canResend, isResending, handleResend } = useMagicLink({
     email,
-    messages: {
-      resendSuccess: labels.resendSuccess,
-      errorGeneric: labels.errorGeneric
-    }
+    messages: { resendSuccess, errorGeneric }
   });
 
   return (
     <>
-      <MagicLinkInstructions
-        labels={{
-          checkEmail: labels.checkEmail,
-          clickLink: labels.clickLink,
-          checkSpam: labels.checkSpam
-        }}
-      />
+      <MagicLinkInstructions labels={{ checkEmail, clickLink, checkSpam }} />
 
       <ResendButton
         countdown={countdown}
@@ -49,12 +40,7 @@ const MagicLinkForm = ({
         isResending={isResending}
         onResend={handleResend}
         tryOtherHref={tryOtherHref}
-        labels={{
-          resend: labels.resend,
-          resendIn: labels.resendIn,
-          sending: labels.sending,
-          tryOther: labels.tryOther
-        }}
+        labels={{ resend, resendIn, sending, tryOther }}
       />
     </>
   );

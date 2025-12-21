@@ -41,20 +41,7 @@ const ForgotPassword = async ({
       <OptionsForm
         email={decodedEmail}
         currentPath={currentPath}
-        labels={{
-          description: options.description,
-          otpTitle: options.otp.title,
-          otpDescription: options.otp.description,
-          magicLinkTitle: options.magicLink.title,
-          magicLinkDescription: options.magicLink.description,
-          twoFactorTitle: options.twoFactor.title,
-          twoFactorDescriptionEnabled: options.twoFactor.descriptionEnabled,
-          twoFactorDescriptionDisabled: options.twoFactor.descriptionDisabled,
-          contactAdminTitle: options.contactAdmin.title,
-          contactAdminDescription: options.contactAdmin.description,
-          hint: options.hint,
-          unavailable: translations.badge.unavailable
-        }}
+        translations={translations}
       />
     </AuthStepLayout>
   );

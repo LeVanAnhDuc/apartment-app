@@ -2,6 +2,8 @@
 
 // libs
 import { Mail, Smartphone, KeyRound, Headset } from "lucide-react";
+// types
+import type { LoginMessages } from "@/types/libs";
 // components
 import LoginOptionCard from "../../components/LoginOptionCard";
 // others
@@ -15,50 +17,48 @@ const { CONTACT_ADMIN, LOGIN_PASSWORD, LOGIN_OTP, LOGIN_MAGIC_LINK } =
 const AlternativeOptions = ({
   email,
   currentPath,
-  labels
+  translations
 }: {
   email: string;
   currentPath: string;
-  labels: {
-    magicLink: { title: string; description: string };
-    otp: { title: string; description: string };
-    password: { title: string; description: string };
-    contactAdmin: { title: string; description: string };
-  };
+  translations: LoginMessages;
 }) => {
   const encodedEmail = encodeURIComponent(email);
   const encodedFrom = encodeURIComponent(currentPath);
+
+  const { magicLink, otp, password, contactAdmin } =
+    translations.form.alternative;
 
   return (
     <div className="space-y-3">
       <LoginOptionCard
         icon={Mail}
-        title={labels.magicLink.title}
-        description={labels.magicLink.description}
+        title={magicLink.title}
+        description={magicLink.description}
         colorVariant="orange"
         href={`${LOGIN_MAGIC_LINK}?email=${encodedEmail}`}
         animationDelay={0}
       />
       <LoginOptionCard
         icon={Smartphone}
-        title={labels.otp.title}
-        description={labels.otp.description}
+        title={otp.title}
+        description={otp.description}
         colorVariant="blue"
         href={`${LOGIN_OTP}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP}
       />
       <LoginOptionCard
         icon={KeyRound}
-        title={labels.password.title}
-        description={labels.password.description}
+        title={password.title}
+        description={password.description}
         colorVariant="green"
         href={`${LOGIN_PASSWORD}?email=${encodedEmail}`}
         animationDelay={ANIMATION_DELAY_STEP * 2}
       />
       <LoginOptionCard
         icon={Headset}
-        title={labels.contactAdmin.title}
-        description={labels.contactAdmin.description}
+        title={contactAdmin.title}
+        description={contactAdmin.description}
         colorVariant="purple"
         href={`${CONTACT_ADMIN}?email=${encodedEmail}&from=${encodedFrom}`}
         animationDelay={ANIMATION_DELAY_STEP * 3}

@@ -30,7 +30,6 @@ const ForgotPasswordMagicLink = async ({
   const messages = await getMessages();
   const translations = messages.forgotPassword as ForgotPasswordMessages;
   const { magicLink } = translations.form;
-  const { message } = translations;
 
   return (
     <AuthStepLayout
@@ -51,17 +50,7 @@ const ForgotPasswordMagicLink = async ({
       <MagicLinkForm
         email={decodedEmail}
         tryOtherHref={tryOtherHref}
-        labels={{
-          checkEmail: magicLink.instruction.checkEmail,
-          clickLink: magicLink.instruction.clickLink,
-          checkSpam: magicLink.checkSpam,
-          resend: magicLink.button.resend,
-          resendIn: magicLink.button.resendIn,
-          sending: magicLink.button.sending,
-          tryOther: magicLink.button.tryOther,
-          resendSuccess: magicLink.resendSuccess,
-          errorGeneric: message.error.generic
-        }}
+        translations={translations}
       />
     </AuthStepLayout>
   );

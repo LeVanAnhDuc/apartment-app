@@ -47,15 +47,7 @@ const SignupOtp = async ({
       <OtpStepForm
         email={decodedEmail}
         changeEmailHref={SIGNUP}
-        labels={{
-          verifying: otpStep.verifying,
-          instruction: otpStep.instruction,
-          resendSuccess: otpStep.resendSuccess,
-          resend: otpStep.button.resend,
-          resendIn: otpStep.button.resendIn,
-          sending: otpStep.button.sending,
-          changeEmail: otpStep.button.changeEmail
-        }}
+        translations={translations}
       />
     </AuthStepLayout>
   );

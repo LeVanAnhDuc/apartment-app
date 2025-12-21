@@ -28,30 +28,18 @@ const ResetPassword = async ({
 
   const messages = await getMessages();
   const translations = messages.resetPassword as ResetPasswordMessages;
-  const { form, message } = translations;
 
   return (
     <AuthStepLayout
       icon={<AuthIcon Icon={KeyRound} variant="orange" animated />}
-      title={form.title}
-      description={form.description}
+      title={translations.form.title}
+      description={translations.form.description}
       email={decodedEmail}
     >
       <ResetPasswordForm
         email={decodedEmail}
         token={decodedToken}
-        labels={{
-          newPasswordLabel: form.input.labelNewPassword,
-          newPasswordPlaceholder: form.input.placeholderNewPassword,
-          confirmPasswordLabel: form.input.labelConfirmPassword,
-          confirmPasswordPlaceholder: form.input.placeholderConfirmPassword,
-          requirementsTitle: form.requirements.title,
-          requirementsMinLength: form.requirements.minLength,
-          requirementsUppercase: form.requirements.uppercase,
-          requirementsNumber: form.requirements.number,
-          submitButton: form.button.reset,
-          successMessage: message.success
-        }}
+        translations={translations}
       />
     </AuthStepLayout>
   );

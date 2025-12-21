@@ -32,8 +32,7 @@ const LoginMagicLink = async ({
 
   const messages = await getMessages();
   const translations = messages.login as LoginMessages;
-  const { form } = translations;
-  const { magicLink } = form;
+  const { magicLink } = translations.form;
 
   return (
     <AuthStepLayout
@@ -51,24 +50,8 @@ const LoginMagicLink = async ({
       email={decodedEmail}
       backButton={<BackButton email={decodedEmail} />}
     >
-      <MagicLinkInstructions
-        labels={{
-          instructionCheck: magicLink.instruction.check,
-          instructionDetail: magicLink.instruction.detail,
-          hintTitle: magicLink.hint.title,
-          hintDescription: magicLink.hint.description
-        }}
-      />
-      <MagicLinkForm
-        tryOtherHref={tryOtherHref}
-        labels={{
-          resendSuccess: magicLink.resendSuccess,
-          resend: magicLink.button.resend,
-          resendIn: magicLink.button.resendIn,
-          sending: magicLink.button.sending,
-          tryOther: magicLink.button.tryOther
-        }}
-      />
+      <MagicLinkInstructions translations={translations} />
+      <MagicLinkForm tryOtherHref={tryOtherHref} translations={translations} />
     </AuthStepLayout>
   );
 };

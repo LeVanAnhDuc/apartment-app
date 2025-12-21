@@ -5,6 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 // types
 import type { ResetPasswordFormValues } from "@/types/ResetPassword";
+import type { ResetPasswordMessages } from "@/types/libs";
 // components
 import CustomButton from "@/components/CustomButton";
 import PasswordInput from "@/components/PasswordInput";
@@ -22,22 +23,11 @@ const { LOGIN } = CONSTANTS.ROUTES;
 const ResetPasswordForm = ({
   email,
   token,
-  labels
+  translations
 }: {
   email: string;
   token: string;
-  labels: {
-    newPasswordLabel: string;
-    newPasswordPlaceholder: string;
-    confirmPasswordLabel: string;
-    confirmPasswordPlaceholder: string;
-    requirementsTitle: string;
-    requirementsMinLength: string;
-    requirementsUppercase: string;
-    requirementsNumber: string;
-    submitButton: string;
-    successMessage: string;
-  };
+  translations: ResetPasswordMessages;
 }) => {
   const router = useRouter();
 
@@ -46,6 +36,18 @@ const ResetPasswordForm = ({
   });
   const { formState } = methods;
   const { isSubmitting } = formState;
+
+  const {
+    input: {
+      labelNewPassword,
+      placeholderNewPassword,
+      labelConfirmPassword,
+      placeholderConfirmPassword
+    },
+    requirements,
+    button: { reset }
+  } = translations.form;
+  const { success } = translations.message;
 
   const onSubmit = async (data: ResetPasswordFormValues) => {
     // TODO: Call API to reset password with email, token, and newPassword
@@ -56,7 +58,7 @@ const ResetPasswordForm = ({
     });
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success(labels.successMessage);
+    toast.success(success);
     router.push(LOGIN);
   };
 
@@ -65,24 +67,17 @@ const ResetPasswordForm = ({
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
         <PasswordInput
           name={NEW_PASSWORD}
-          label={labels.newPasswordLabel}
-          placeholder={labels.newPasswordPlaceholder}
+          label={labelNewPassword}
+          placeholder={placeholderNewPassword}
           disabled={isSubmitting}
         />
         <PasswordInput
           name={CONFIRM_PASSWORD}
-          label={labels.confirmPasswordLabel}
-          placeholder={labels.confirmPasswordPlaceholder}
+          label={labelConfirmPassword}
+          placeholder={placeholderConfirmPassword}
           disabled={isSubmitting}
         />
-        <PasswordRequirements
-          labels={{
-            title: labels.requirementsTitle,
-            minLength: labels.requirementsMinLength,
-            uppercase: labels.requirementsUppercase,
-            number: labels.requirementsNumber
-          }}
-        />
+        <PasswordRequirements labels={requirements} />
 
         <CustomButton
           type="submit"
@@ -90,7 +85,7 @@ const ResetPasswordForm = ({
           loading={isSubmitting}
           className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 rounded-lg transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {labels.submitButton}
+          {reset}
         </CustomButton>
       </form>
     </FormProvider>

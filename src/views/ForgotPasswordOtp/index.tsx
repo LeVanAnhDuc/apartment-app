@@ -42,15 +42,7 @@ const ForgotPasswordOtp = async ({
       <OtpStepForm
         email={decodedEmail}
         tryOtherHref={tryOtherHref}
-        labels={{
-          instruction: otp.instruction,
-          verifying: otp.verifying,
-          resend: otp.button.resend,
-          resendIn: otp.button.resendIn,
-          sending: otp.button.sending,
-          tryOther: otp.button.tryOther,
-          resendSuccess: otp.resendSuccess
-        }}
+        translations={translations}
       />
     </AuthStepLayout>
   );

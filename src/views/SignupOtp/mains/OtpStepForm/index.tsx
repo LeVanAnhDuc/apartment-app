@@ -4,6 +4,8 @@
 import { useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "@/i18n/navigation";
+// types
+import type { SignupMessages } from "@/types/libs";
 // components
 import ResendButton from "@/components/ResendButton";
 import OtpInputGroup from "@/components/OtpInputGroup";
@@ -21,19 +23,11 @@ const { SIGNUP_INFO } = CONSTANTS.ROUTES;
 const OtpStepForm = ({
   email,
   changeEmailHref,
-  labels
+  translations
 }: {
   email: string;
   changeEmailHref: string;
-  labels: {
-    verifying: string;
-    instruction: string;
-    resendSuccess: string;
-    resend: string;
-    resendIn: string;
-    sending: string;
-    changeEmail: string;
-  };
+  translations: SignupMessages;
 }) => {
   const router = useRouter();
   const {
@@ -45,6 +39,13 @@ const OtpStepForm = ({
   const [otp, setOtp] = useState("");
   const [isResending, setIsResending] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
+
+  const {
+    button: { changeEmail, resend, resendIn, sending },
+    instruction,
+    resendSuccess,
+    verifying
+  } = translations.otpStep;
 
   const handleVerify = async () => {
     if (otp.length !== OTP_LENGTH) return;
@@ -66,7 +67,7 @@ const OtpStepForm = ({
     // TODO: Implement actual resend API call
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    toast.success(labels.resendSuccess);
+    toast.success(resendSuccess);
     resetCountdown();
     setIsResending(false);
     setOtp("");
@@ -83,10 +84,10 @@ const OtpStepForm = ({
         onChange={handleOtpChange}
         disabled={isResending}
         isVerifying={isVerifying}
-        verifyingLabel={labels.verifying}
+        verifyingLabel={verifying}
       />
 
-      <OtpInstruction label={labels.instruction} />
+      <OtpInstruction label={instruction} />
 
       <ResendButton
         countdown={countdown}
@@ -96,10 +97,10 @@ const OtpStepForm = ({
         onResend={handleResend}
         tryOtherHref={changeEmailHref}
         labels={{
-          resend: labels.resend,
-          resendIn: labels.resendIn,
-          sending: labels.sending,
-          tryOther: labels.changeEmail
+          resend,
+          resendIn,
+          sending,
+          tryOther: changeEmail
         }}
       />
 

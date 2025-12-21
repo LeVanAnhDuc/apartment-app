@@ -50,18 +50,7 @@ const LoginOtp = async ({
       email={decodedEmail}
       backButton={<BackButton email={decodedEmail} />}
     >
-      <OtpStepForm
-        tryOtherHref={tryOtherHref}
-        labels={{
-          instruction: otp.instruction,
-          verifying: otp.verifying,
-          resendSuccess: otp.resendSuccess,
-          resend: otp.button.resend,
-          resendIn: otp.button.resendIn,
-          sending: otp.button.sending,
-          tryOther: otp.button.tryOther
-        }}
-      />
+      <OtpStepForm tryOtherHref={tryOtherHref} translations={translations} />
     </AuthStepLayout>
   );
 };

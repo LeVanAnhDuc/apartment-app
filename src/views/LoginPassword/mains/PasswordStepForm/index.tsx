@@ -4,6 +4,7 @@
 import { FormProvider, useForm } from "react-hook-form";
 // types
 import type { PasswordStepFormValues } from "@/types/Login";
+import type { LoginMessages } from "@/types/libs";
 // components
 import CustomButton from "@/components/CustomButton";
 import PasswordInput from "@/components/PasswordInput";
@@ -20,19 +21,19 @@ const { EMAIL, PASSWORD } = CONSTANTS.FIELD_NAMES.LOGIN_FIELD_NAMES;
 
 const PasswordStepForm = ({
   email,
-  labels
+  translations
 }: {
   email: string;
-  labels: {
-    password: string;
-    placeholder: string;
-    forgotPassword: string;
-    tryAnother: string;
-    next: string;
-  };
+  translations: LoginMessages;
 }) => {
   const { mutate: login, isPending } = useLoginMutation();
   const methods = useForm<PasswordStepFormValues>({ ...passwordStepFormProps });
+
+  const {
+    input: { labelEnterPassword, placeholderPassword },
+    button: { tryAnother, next }
+  } = translations.form;
+  const { forgotPassword } = translations.link;
 
   const onSubmit = (data: PasswordStepFormValues) => {
     login({ [EMAIL]: email, [PASSWORD]: data[PASSWORD] });
@@ -43,23 +44,23 @@ const PasswordStepForm = ({
       <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6">
         <PasswordInput
           name={PASSWORD}
-          label={labels.password}
-          placeholder={labels.placeholder}
+          label={labelEnterPassword}
+          placeholder={placeholderPassword}
           disabled={isPending}
         />
-        <ForgotPasswordLink email={email} label={labels.forgotPassword} />
+        <ForgotPasswordLink email={email} label={forgotPassword} />
         <div className="flex gap-3">
           <TryAnotherButton
             email={email}
             disabled={isPending}
-            label={labels.tryAnother}
+            label={tryAnother}
           />
           <CustomButton
             type="submit"
             loading={isPending}
             className="bg-primary text-primary-foreground hover:bg-primary/90 h-12 flex-1 rounded-lg transition-all duration-200 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {labels.next}
+            {next}
           </CustomButton>
         </div>
       </form>

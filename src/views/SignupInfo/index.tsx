@@ -26,33 +26,15 @@ const SignupInfo = async ({
   const decodedEmail = decodeURIComponent(email);
   const messages = await getMessages();
   const translations = messages.signup as SignupMessages;
-  const { infoStep } = translations;
 
   return (
     <AuthStepLayout
       icon={<AuthIcon Icon={UserCircle} variant="green" />}
-      title={infoStep.title}
+      title={translations.infoStep.title}
       email={decodedEmail}
       backButton={<BackButton />}
     >
-      <InfoStepForm
-        labels={{
-          fullName: infoStep.input.labelFullName,
-          fullNamePlaceholder: infoStep.input.placeholderFullName,
-          gender: infoStep.input.labelGender,
-          genderPlaceholder: infoStep.input.placeholderGender,
-          genderMale: infoStep.input.gender.male,
-          genderFemale: infoStep.input.gender.female,
-          genderOther: infoStep.input.gender.other,
-          birthday: infoStep.input.labelBirthday,
-          birthdayPlaceholder: infoStep.input.placeholderBirthday,
-          password: infoStep.input.labelPassword,
-          passwordPlaceholder: infoStep.input.placeholderPassword,
-          passwordConfirm: infoStep.input.labelPasswordConfirm,
-          passwordConfirmPlaceholder: infoStep.input.placeholderPasswordConfirm,
-          submit: infoStep.button.submit
-        }}
-      />
+      <InfoStepForm translations={translations} />
     </AuthStepLayout>
   );
 };

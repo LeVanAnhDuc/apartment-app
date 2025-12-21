@@ -2,6 +2,8 @@
 import { getMessages } from "next-intl/server";
 import { redirect } from "next/navigation";
 import { KeyRound } from "lucide-react";
+// types
+import type { LoginMessages } from "@/types/libs";
 // components
 import AuthStepLayout from "@/components/AuthStepLayout";
 import AuthIcon from "@/components/AuthIcon";
@@ -23,26 +25,16 @@ const LoginPassword = async ({
 
   const decodedEmail = decodeURIComponent(email);
   const messages = await getMessages();
-  const translations = messages.login;
-  const { form, link } = translations;
+  const translations = messages.login as LoginMessages;
 
   return (
     <AuthStepLayout
       icon={<AuthIcon Icon={KeyRound} />}
-      title={form.titleWelcome}
+      title={translations.form.titleWelcome}
       email={decodedEmail}
       backButton={<BackButton />}
     >
-      <PasswordStepForm
-        email={decodedEmail}
-        labels={{
-          password: form.input.labelEnterPassword,
-          placeholder: form.input.placeholderPassword,
-          forgotPassword: link.forgotPassword,
-          tryAnother: form.button.tryAnother,
-          next: form.button.next
-        }}
-      />
+      <PasswordStepForm email={decodedEmail} translations={translations} />
     </AuthStepLayout>
   );
 };
