@@ -1,5 +1,3 @@
-"use client";
-
 // libs
 import { Mail, Smartphone, KeyRound, Headset } from "lucide-react";
 // types

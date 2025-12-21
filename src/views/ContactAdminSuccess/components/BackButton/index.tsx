@@ -1,5 +1,3 @@
-"use client";
-
 // libs
 import { ArrowLeft } from "lucide-react";
 // components

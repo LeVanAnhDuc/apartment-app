@@ -1,5 +1,3 @@
-"use client";
-
 // types
 import type { ContactAdminMessages } from "@/types/libs";
 // components

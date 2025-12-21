@@ -1,5 +1,3 @@
-"use client";
-
 // libs
 import { Smartphone, Mail, ShieldCheck, Headset } from "lucide-react";
 // types
