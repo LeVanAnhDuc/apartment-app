@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "Đức Application",
-    "description": "Welcome to Đức platform"
+    "name": "Apartment",
+    "description": "Apartment Web Application"
   },
   "localeDialog": {
     "languageTab": "Language and Region",
@@ -21,11 +21,6 @@
     "lightModeDescription": "Toggle theme"
   },
   "or": "or",
-  "footer": {
-    "help": "Help",
-    "privacy": "Privacy",
-    "terms": "Terms"
-  },
   "validation": {
     "email": {
       "required": "Please enter email",

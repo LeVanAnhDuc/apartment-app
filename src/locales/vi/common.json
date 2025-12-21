@@ -1,7 +1,7 @@
 {
   "app": {
-    "name": "Ứng dụng Đức",
-    "description": "Chào mừng đến với nền tảng Đức"
+    "name": "Apartment",
+    "description": "Ứng dụng Web Căn hộ"
   },
   "localeDialog": {
     "languageTab": "Ngôn ngữ và khu vực",
@@ -21,11 +21,6 @@
     "lightModeDescription": "Chuyển đổi giao diện"
   },
   "or": "hoặc",
-  "footer": {
-    "help": "Trợ giúp",
-    "privacy": "Quyền riêng tư",
-    "terms": "Điều khoản"
-  },
   "validation": {
     "email": {
       "required": "Vui lòng nhập email",

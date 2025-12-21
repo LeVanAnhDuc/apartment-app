@@ -3,13 +3,11 @@
   "emailStep": {
     "title": "Tạo tài khoản",
     "description": "Bắt đầu hành trình của bạn với chúng tôi",
-    "backToLogin": "Quay lại đăng nhập",
     "input": {
       "labelEmail": "Email"
     },
     "button": {
       "next": "Tiếp theo",
-      "loading": "Đang xử lý...",
       "signupWithGoogle": "Đăng ký với Google",
       "signupWithFacebook": "Đăng ký với Facebook"
     }
@@ -34,8 +32,7 @@
       "placeholderPasswordConfirm": "Nhập lại mật khẩu"
     },
     "button": {
-      "submit": "Tạo tài khoản",
-      "loading": "Đang tạo tài khoản..."
+      "submit": "Tạo tài khoản"
     }
   },
   "otpStep": {

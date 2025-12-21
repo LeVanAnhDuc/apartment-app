@@ -64,9 +64,8 @@ const BirthdayInput = ({
                     disabled={disabled}
                     aria-invalid={fieldState.invalid}
                     fullWidth
-                    iconLeft={<CalendarIcon className="mr-2 h-4 w-4" />}
                     className={cn(
-                      "border-input bg-background focus:border-ring focus:ring-ring h-12 justify-start rounded-lg px-4 text-left font-normal transition-all duration-200",
+                      "h-12 justify-between",
                       !field.value && "text-muted-foreground"
                     )}
                   >
@@ -77,10 +76,11 @@ const BirthdayInput = ({
                     ) : (
                       <span>{placeholder}</span>
                     )}
+                    <CalendarIcon className="h-4 w-4" />
                   </CustomButton>
                 </FormControl>
               </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
+              <PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
                 <Calendar
                   mode="single"
                   selected={selectedDate}
@@ -93,6 +93,19 @@ const BirthdayInput = ({
                   fromYear={1900}
                   toYear={today.getFullYear()}
                   locale={dateLocale}
+                  className="w-[var(--radix-popover-trigger-width)] p-0"
+                  classNames={{
+                    nav: "flex items-center w-full absolute inset-x-0 top-3 justify-between",
+                    month_caption:
+                      "flex items-center justify-center w-full pt-3 px-10",
+                    dropdowns: "w-full flex items-center justify-center gap-4",
+                    caption_label:
+                      "w-20 h-10 flex items-center justify-between px-3",
+                    button_next:
+                      "size-10 flex justify-center items-center cursor-pointer rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
+                    button_previous:
+                      "size-10 flex justify-center items-center cursor-pointer rounded-md hover:bg-accent hover:text-accent-foreground transition-colors"
+                  }}
                 />
               </PopoverContent>
             </Popover>

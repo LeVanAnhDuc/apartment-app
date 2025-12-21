@@ -3,13 +3,11 @@
   "emailStep": {
     "title": "Create an account",
     "description": "Start your journey with us",
-    "backToLogin": "Back to login",
     "input": {
       "labelEmail": "Email"
     },
     "button": {
       "next": "Next",
-      "loading": "Processing...",
       "signupWithGoogle": "Sign up with Google",
       "signupWithFacebook": "Sign up with Facebook"
     }
@@ -34,8 +32,7 @@
       "placeholderPasswordConfirm": "Re-enter password"
     },
     "button": {
-      "submit": "Create Account",
-      "loading": "Creating account..."
+      "submit": "Create Account"
     }
   },
   "otpStep": {
