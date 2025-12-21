@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
 const AuthFooter = async () => {
-  const t = await getTranslations("common.footer");
+  const t = await getTranslations("common");
 
   return (
     <div className="mt-6 text-center">
@@ -13,21 +13,21 @@ const AuthFooter = async () => {
           href="#"
           className="hover:text-foreground transition-colors duration-200"
         >
-          {t("help")}
+          {t("footer.help")}
         </Link>
         <span>•</span>
         <Link
           href="#"
           className="hover:text-foreground transition-colors duration-200"
         >
-          {t("privacy")}
+          {t("footer.privacy")}
         </Link>
         <span>•</span>
         <Link
           href="#"
           className="hover:text-foreground transition-colors duration-200"
         >
-          {t("terms")}
+          {t("footer.terms")}
         </Link>
       </div>
     </div>

@@ -21,6 +21,11 @@
     "lightModeDescription": "Chuyển đổi giao diện"
   },
   "or": "hoặc",
+  "footer": {
+    "help": "Trợ giúp",
+    "privacy": "Bảo mật",
+    "terms": "Điều khoản"
+  },
   "validation": {
     "email": {
       "required": "Vui lòng nhập email",

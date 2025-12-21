@@ -21,6 +21,11 @@
     "lightModeDescription": "Toggle theme"
   },
   "or": "or",
+  "footer": {
+    "help": "Help",
+    "privacy": "Privacy",
+    "terms": "Terms"
+  },
   "validation": {
     "email": {
       "required": "Please enter email",
