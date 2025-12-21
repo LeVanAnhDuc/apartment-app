@@ -1,9 +1,7 @@
-"use client";
-
-// libs
-import { motion } from "framer-motion";
 // types
 import type { LoginMessages } from "@/types/libs";
+// components
+import { FadeIn } from "@/components/Animated";
 
 const MagicLinkInstructions = ({
   translations
@@ -16,12 +14,7 @@ const MagicLinkInstructions = ({
   } = translations.form.magicLink;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ delay: 0.3 }}
-      className="mb-6 space-y-4"
-    >
+    <FadeIn delay={0.3} className="mb-6 space-y-4">
       <div className="bg-primary/5 rounded-lg p-4">
         <p className="text-foreground text-sm">
           <span className="mb-2 block">{check}</span>
@@ -34,7 +27,7 @@ const MagicLinkInstructions = ({
           <span className="font-medium">{title}</span> {description}
         </p>
       </div>
-    </motion.div>
+    </FadeIn>
   );
 };
 

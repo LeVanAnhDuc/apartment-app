@@ -1,13 +1,12 @@
 "use client";
 
-// libs
-import { motion } from "framer-motion";
 // components
 import {
   InputOTP,
   InputOTPGroup,
   InputOTPSlot
 } from "@/components/ui/input-otp";
+import { FadeScale, FadeIn } from "@/components/Animated";
 // others
 import CONSTANTS from "@/constants";
 
@@ -26,12 +25,7 @@ const OtpInputGroup = ({
   isVerifying?: boolean;
   verifyingLabel?: string;
 }) => (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.9 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ delay: 0.3 }}
-    className="mb-6"
-  >
+  <FadeScale delay={0.3} className="mb-6">
     <div className="mb-2 flex justify-center">
       <InputOTP
         maxLength={OTP_LENGTH}
@@ -52,16 +46,12 @@ const OtpInputGroup = ({
     </div>
 
     {isVerifying && verifyingLabel && (
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="text-primary flex items-center justify-center gap-2 text-center text-sm"
-      >
+      <FadeIn className="text-primary flex items-center justify-center gap-2 text-center text-sm">
         <div className="border-primary h-4 w-4 animate-spin rounded-full border-2 border-t-transparent" />
         <span>{verifyingLabel}</span>
-      </motion.div>
+      </FadeIn>
     )}
-  </motion.div>
+  </FadeScale>
 );
 
 export default OtpInputGroup;

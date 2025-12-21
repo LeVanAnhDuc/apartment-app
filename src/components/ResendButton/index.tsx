@@ -1,9 +1,8 @@
 "use client";
 
-// libs
-import { motion } from "framer-motion";
 // components
 import CustomButton from "@/components/CustomButton";
+import { FadeIn } from "@/components/Animated";
 import { Link } from "@/i18n/navigation";
 
 const ResendButton = ({
@@ -28,12 +27,7 @@ const ResendButton = ({
     tryOther: string;
   };
 }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 0.4 }}
-    className="space-y-3"
-  >
+  <FadeIn delay={0.4} className="space-y-3">
     <CustomButton
       onClick={onResend}
       disabled={!canResend || isProcessing}
@@ -58,7 +52,7 @@ const ResendButton = ({
         {labels.tryOther}
       </Link>
     </div>
-  </motion.div>
+  </FadeIn>
 );
 
 export default ResendButton;

@@ -1,7 +1,5 @@
-"use client";
-
-// libs
-import { motion } from "framer-motion";
+// components
+import { FadeIn } from "@/components/Animated";
 
 const MagicLinkInstructions = ({
   labels
@@ -12,12 +10,7 @@ const MagicLinkInstructions = ({
     checkSpam: string;
   };
 }) => (
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 0.3 }}
-    className="mb-6 space-y-4"
-  >
+  <FadeIn delay={0.3} className="mb-6 space-y-4">
     <div className="rounded-lg bg-blue-50 p-4">
       <p className="text-sm text-gray-700">
         <span className="mb-2 block">📧 {labels.checkEmail}</span>
@@ -30,7 +23,7 @@ const MagicLinkInstructions = ({
         💡 <span>{labels.checkSpam}</span>
       </p>
     </div>
-  </motion.div>
+  </FadeIn>
 );
 
 export default MagicLinkInstructions;

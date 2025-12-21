@@ -1,11 +1,10 @@
-"use client";
-
 // libs
-import { motion } from "framer-motion";
 import { Mail } from "lucide-react";
 // types
 import type { ContactAdminFormValues } from "@/types/ContactAdmin";
 import type { ContactAdminMessages } from "@/types/libs";
+// components
+import { FadeSlideUp } from "@/components/Animated";
 // dataSources
 import { PRIORITIES } from "@/dataSources/ContactAdmin";
 
@@ -35,10 +34,8 @@ const TicketInfo = ({
     : "";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.4 }}
+    <FadeSlideUp
+      delay={0.4}
       className="mb-8 rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6 dark:border-blue-800 dark:from-blue-950/30 dark:to-indigo-950/30"
     >
       <div className="mb-4 flex items-center justify-between">
@@ -79,7 +76,7 @@ const TicketInfo = ({
           </span>
         </div>
       </div>
-    </motion.div>
+    </FadeSlideUp>
   );
 };
 

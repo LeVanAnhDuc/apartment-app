@@ -1,10 +1,8 @@
-"use client";
-
-// libs
-import { motion } from "framer-motion";
 // types
 import type { LucideIcon } from "lucide-react";
 import type { ColorVariant } from "@/dataSources/Common";
+// components
+import { FadeSlideLeft } from "@/components/Animated";
 // dataSources
 import { COLOR_VARIANT_CLASSES } from "@/dataSources/Common";
 // others
@@ -26,11 +24,7 @@ const LoginOptionCard = ({
   href: string;
   animationDelay?: number;
 }) => (
-  <motion.div
-    initial={{ opacity: 0, x: -20 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ delay: animationDelay }}
-  >
+  <FadeSlideLeft delay={animationDelay}>
     <Link
       href={href}
       className={cn(
@@ -53,7 +47,7 @@ const LoginOptionCard = ({
         <div className="text-muted-foreground text-sm">{description}</div>
       </div>
     </Link>
-  </motion.div>
+  </FadeSlideLeft>
 );
 
 export default LoginOptionCard;

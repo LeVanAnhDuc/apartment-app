@@ -1,10 +1,9 @@
-"use client";
-
 // libs
-import { motion } from "framer-motion";
 import { Clock, CheckCircle, AlertTriangle } from "lucide-react";
 // types
 import type { ContactAdminMessages } from "@/types/libs";
+// components
+import { FadeSlideUp, FadeSlideLeft } from "@/components/Animated";
 // dataSources
 import { NEXT_STEPS } from "@/dataSources/ContactAdmin";
 
@@ -24,23 +23,15 @@ const NextSteps = ({
   ];
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.5 }}
-      className="mb-8"
-    >
+    <FadeSlideUp delay={0.5} className="mb-8">
       <h3 className="text-foreground mb-4 flex items-center gap-2">
         <Clock className="h-5 w-5 text-purple-600 dark:text-purple-400" />
         {labels.title}
       </h3>
 
-      {/* Response status based on email */}
       {responseLabels && (
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.55 }}
+        <FadeSlideLeft
+          delay={0.55}
           className={`mb-4 rounded-lg p-4 ${
             email
               ? "border border-green-200 bg-green-50 dark:border-green-800 dark:bg-green-950/30"
@@ -75,16 +66,14 @@ const NextSteps = ({
               </div>
             </div>
           )}
-        </motion.div>
+        </FadeSlideLeft>
       )}
 
       <div className="space-y-3">
         {steps.map((step, index) => (
-          <motion.div
+          <FadeSlideLeft
             key={step.key}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.6 + index * 0.1 }}
+            delay={0.6 + index * 0.1}
             className="bg-muted/50 flex items-start gap-4 rounded-xl p-4"
           >
             <div
@@ -98,10 +87,10 @@ const NextSteps = ({
                 {step.description.replace("{email}", email || "")}
               </p>
             </div>
-          </motion.div>
+          </FadeSlideLeft>
         ))}
       </div>
-    </motion.div>
+    </FadeSlideUp>
   );
 };
 

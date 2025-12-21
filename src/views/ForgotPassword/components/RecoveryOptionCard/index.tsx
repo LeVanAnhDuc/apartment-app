@@ -1,12 +1,9 @@
-"use client";
-
-// libs
-import { motion } from "framer-motion";
 // types
 import type { LucideIcon } from "lucide-react";
 import type { ColorVariant } from "@/dataSources/Common";
 // components
 import CardContent from "./CardContent";
+import { FadeSlideLeft } from "@/components/Animated";
 // others
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/libs/utils";
@@ -49,29 +46,23 @@ const RecoveryOptionCard = ({
 
   if (disabled || !href) {
     return (
-      <motion.div
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: animationDelay }}
+      <FadeSlideLeft
+        delay={animationDelay}
         aria-label={disabled ? `${title} - ${unavailableLabel}` : title}
         aria-disabled={disabled}
         className={cardClassName}
       >
         <CardContent {...contentProps} />
-      </motion.div>
+      </FadeSlideLeft>
     );
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: animationDelay }}
-    >
+    <FadeSlideLeft delay={animationDelay}>
       <Link href={href} className={cardClassName}>
         <CardContent {...contentProps} />
       </Link>
-    </motion.div>
+    </FadeSlideLeft>
   );
 };
 

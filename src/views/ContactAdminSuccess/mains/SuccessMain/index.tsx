@@ -1,7 +1,6 @@
 "use client";
 
 // libs
-import { motion } from "framer-motion";
 import { useShallow } from "zustand/react/shallow";
 // types
 import type { ContactAdminMessages } from "@/types/libs";
@@ -11,6 +10,7 @@ import NextSteps from "../../components/NextSteps";
 import ImportantNotes from "../../components/ImportantNotes";
 import BackButton from "../../components/BackButton";
 import PrintButton from "../../components/PrintButton";
+import { FadeSlideUp } from "@/components/Animated";
 // ghosts
 import RedirectGuardEffect from "../../ghosts/RedirectGuardEffect";
 // stores
@@ -71,15 +71,10 @@ const SuccessMain = ({
 
       <ImportantNotes ticketNumber={ticketNumber} labels={importantNotes} />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-        className="flex flex-col gap-3 sm:flex-row"
-      >
+      <FadeSlideUp delay={1} className="flex flex-col gap-3 sm:flex-row">
         <BackButton label={back} onClick={handleBack} />
         <PrintButton label={print} />
-      </motion.div>
+      </FadeSlideUp>
 
       <RedirectGuardEffect formData={formData} ticketNumber={ticketNumber} />
     </>
