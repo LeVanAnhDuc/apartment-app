@@ -1,7 +1,7 @@
 // types
 import type { ReactNode } from "react";
 // components
-import AuthHeader from "@/components/AuthHeader";
+import Header from "@/components/Header";
 import AuthFooter from "@/components/AuthFooter";
 
 export default function ContactAdminLayout({
@@ -11,7 +11,7 @@ export default function ContactAdminLayout({
 }>) {
   return (
     <>
-      <AuthHeader />
+      <Header />
       <main className="auth-background flex min-h-screen flex-col items-center justify-center p-4 pt-20">
         {children}
         <AuthFooter />

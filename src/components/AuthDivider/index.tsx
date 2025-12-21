@@ -1,5 +1,7 @@
-import { Separator } from "@/components/ui/separator";
+// libs
 import { getTranslations } from "next-intl/server";
+// components
+import { Separator } from "@/components/ui/separator";
 
 const AuthDivider = async () => {
   const t = await getTranslations("common");
