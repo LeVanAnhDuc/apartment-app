@@ -3,8 +3,7 @@
     "name": "Đức Application",
     "description": "Welcome to Đức platform"
   },
-  "avatarDropdown": {
-    "account": "Account",
+  "userMenu": {
     "signOut": "Sign Out",
     "logoutDescription": "Logout from account",
     "profile": "Profile",

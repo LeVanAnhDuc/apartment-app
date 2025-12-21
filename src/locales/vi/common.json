@@ -3,8 +3,7 @@
     "name": "Ứng dụng Đức",
     "description": "Chào mừng đến với nền tảng Đức"
   },
-  "avatarDropdown": {
-    "account": "Tài khoản",
+  "userMenu": {
     "signOut": "Đăng xuất",
     "logoutDescription": "Đăng xuất khỏi tài khoản",
     "profile": "Hồ sơ",

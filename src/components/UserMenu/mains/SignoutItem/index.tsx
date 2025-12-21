@@ -29,10 +29,10 @@ const SignoutItem = () => {
         </div>
         <div className="flex-1">
           <p className="text-destructive text-sm font-semibold transition-colors duration-300">
-            {t("avatarDropdown.signOut")}
+            {t("userMenu.signOut")}
           </p>
           <p className="text-destructive/70 text-xs transition-colors duration-300">
-            {t("avatarDropdown.logoutDescription")}
+            {t("userMenu.logoutDescription")}
           </p>
         </div>
       </div>
