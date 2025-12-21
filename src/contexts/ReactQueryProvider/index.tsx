@@ -7,7 +7,7 @@ import queryClient from "@/libs/query-client";
 // types
 import type { ReactNode } from "react";
 
-const ProvidersReactQuery = ({ children }: { children: ReactNode }) => {
+const ReactQueryProvider = ({ children }: { children: ReactNode }) => {
   const [client] = useState(queryClient);
 
   return (
@@ -18,4 +18,4 @@ const ProvidersReactQuery = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default ProvidersReactQuery;
+export default ReactQueryProvider;

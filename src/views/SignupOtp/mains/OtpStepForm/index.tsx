@@ -13,7 +13,7 @@ import OtpInstruction from "../../components/OtpInstruction";
 // hooks
 import { useCountdown } from "@/hooks";
 // ghosts
-import AutoVerifyOTPEffect from "@/ghosts/AutoVerifyOTPEffect";
+import AutoVerifyOtpEffect from "@/ghosts/AutoVerifyOtpEffect";
 // others
 import CONSTANTS from "@/constants";
 
@@ -104,7 +104,7 @@ const OtpStepForm = ({
         }}
       />
 
-      <AutoVerifyOTPEffect
+      <AutoVerifyOtpEffect
         otpValue={otp}
         otpLength={OTP_LENGTH}
         onVerify={handleVerify}

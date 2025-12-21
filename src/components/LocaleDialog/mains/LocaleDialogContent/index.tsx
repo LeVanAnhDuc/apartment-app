@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SelectLocale from "../../components/SelectLocale";
 
-const ModalContent = () => {
+const LocaleDialogContent = () => {
   const t = useTranslations("common");
 
   return (
@@ -40,4 +40,4 @@ const ModalContent = () => {
   );
 };
 
-export default ModalContent;
+export default LocaleDialogContent;

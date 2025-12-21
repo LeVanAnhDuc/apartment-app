@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger
 } from "@/components/ui/dialog";
-import ModalContent from "./mains/ModalContent";
+import LocaleDialogContent from "./mains/LocaleDialogContent";
 import CustomButton from "../CustomButton";
 
 const LocaleDialog = () => (
@@ -25,7 +25,7 @@ const LocaleDialog = () => (
       <DialogHeader>
         <DialogTitle />
       </DialogHeader>
-      <ModalContent />
+      <LocaleDialogContent />
     </DialogContent>
   </Dialog>
 );

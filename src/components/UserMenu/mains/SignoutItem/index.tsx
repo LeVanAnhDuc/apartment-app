@@ -8,7 +8,7 @@ import { DropdownMenuItem } from "@/components/ui/dropdown-menu";
 // i18n
 import { useRouter } from "@/i18n/navigation";
 
-const SignoutItem = () => {
+const SignOutItem = () => {
   const router = useRouter();
   const t = useTranslations("common");
 
@@ -40,4 +40,4 @@ const SignoutItem = () => {
   );
 };
 
-export default SignoutItem;
+export default SignOutItem;
